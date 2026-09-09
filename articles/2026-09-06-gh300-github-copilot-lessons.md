@@ -109,13 +109,11 @@ You are no longer asking only, "What should I type?" You are asking, "What infor
 
 That question leads naturally to a more significant idea:
 
-**The developer is increasingly designing the operating environment for the AI, not merely giving it a request.**
-
 This is also where governance starts to become practical instead of abstract. The best AI workflow is not the one that exposes everything to the model. It is the one that provides the right context, under the right controls, for the right purpose.
 
 ---
 
-## Lesson 3: Instructions, Skills and Agents Change the Model
+## Lesson 3: Customisation Turns Copilot Into an Engineering Tool
 
 Once I started thinking in terms of environment design, I began to see a very different role for Copilot.
 
@@ -217,15 +215,11 @@ More importantly, it pushed me toward the next set of questions I wanted to expl
 
 I became more interested in:
 
-- custom Copilot instructions;
-- specialised AI agents;
-- reusable engineering skills;
-- AI-assisted pull-request review;
-- requirements analysis;
-- architecture validation;
-- context engineering;
-- responsible AI and governance;
-- multi-agent engineering workflows.
+- context engineering
+- instructions, skills and specialised agents
+- AI-assisted requirements and architecture analysis
+- AI-assisted PR review
+- governance-aware engineering workflows
 
 That is what made the exam valuable to me: not that it taught me a new prompt trick, but that it created a structure for thinking about the broader engineering system around AI.
 
@@ -233,10 +227,20 @@ That is what made the exam valuable to me: not that it taught me a new prompt tr
 
 ## Final Thoughts
 
-Using GitHub Copilot every day did not make GH-300 irrelevant. It made the certification more useful because I had real experience against which I could compare the material.
+Copilot started as a way for me to write code faster. I now see it increasingly as a platform for building AI-assisted engineering workflows designed around context, constraints and human judgement.
 
-The biggest change was not learning another prompt technique. It was changing how I think about the role of AI in software engineering.
+AI may reduce the cost of producing code, but it does not reduce the importance of understanding the problem, choosing the right design or deciding whether the result should exist at all.
 
-Copilot started as a way to write code faster. I now see it more as a platform for building AI-assisted engineering workflows that are designed with context, constraints and human judgement in mind.
+What happens to software engineering when producing code becomes dramatically cheaper, but understanding the right thing to build does not?
 
 That is the question I want to keep exploring.
+
+## Further Reading
+
+If you want to explore some of the GitHub Copilot capabilities discussed in this article in more detail, these official resources are useful starting points:
+
+- [About customizing GitHub Copilot responses](https://docs.github.com/en/copilot/concepts/prompting/response-customization) — GitHub's overview of custom instructions, prompt files and other ways to shape Copilot's responses.
+- [Copilot customization cheat sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) — a useful comparison of custom instructions, prompt files, custom agents, agent skills, hooks and MCP servers.
+- [About custom agents](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-custom-agents) — explains how specialised agents can be configured for particular workflows and engineering responsibilities.
+- [Adding agent skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) — covers reusable skills built from instructions, scripts and supporting resources.
+- [Content exclusion for GitHub Copilot](https://docs.github.com/en/copilot/concepts/context/content-exclusion) — explains how organisations can restrict certain content from being used by supported Copilot experiences.
