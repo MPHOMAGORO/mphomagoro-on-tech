@@ -1,0 +1,39 @@
+ai-engineering:
+  label: AI Engineering
+  permalink: /ai-engineering
+  description: Building practical AI-powered software systems.
+
+solution-architecture:
+  label: Solution Architecture
+  permalink: /solution-architecture
+  description: Architecture decisions, trade-offs and solution design.
+
+software-engineering:
+  label: Software Engineering
+  permalink: /software-engineering
+  description: Software design, engineering practices and implementation.
+
+github-copilot:
+  label: GitHub Copilot
+  permalink: /github-copilot
+  description: GitHub Copilot, agents, skills and AI-assisted engineering.
+
+context-engineering:
+  label: Context Engineering
+  permalink: /context-engineering
+  description: Designing context, instructions and knowledge for AI systems.
+
+ai-agents:
+  label: AI Agents
+  permalink: /ai-agents
+  description: Agent architecture, workflows and autonomous systems.
+
+azure-ai:
+  label: Azure AI
+  permalink: /azure-ai
+  description: AI engineering using Microsoft Azure and Microsoft Foundry.
+
+developer-productivity:
+  label: Developer Productivity
+  permalink: /developer-productivity
+  description: Engineering systems and practices that improve developer effectiveness.
