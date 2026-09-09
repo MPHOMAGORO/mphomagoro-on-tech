@@ -205,6 +205,8 @@ In many ways, AI raises the bar for good engineering judgement rather than lower
 
 ## What GH-300 Changed for Me
 
+![GitHub Copilot certification badge](/img/articles/github-copilot-gh300/github-copilot.svg)
+
 I did not take GH-300 because I needed someone to teach me how to open Copilot Chat.
 
 I took it because I wanted a more structured understanding of a tool that was becoming increasingly important in my engineering workflow.
@@ -234,13 +236,3 @@ AI may reduce the cost of producing code, but it does not reduce the importance 
 What happens to software engineering when producing code becomes dramatically cheaper, but understanding the right thing to build does not?
 
 That is the question I want to keep exploring.
-
-## Further Reading
-
-If you want to explore some of the GitHub Copilot capabilities discussed in this article in more detail, these official resources are useful starting points:
-
-- [About customizing GitHub Copilot responses](https://docs.github.com/en/copilot/concepts/prompting/response-customization) — GitHub's overview of custom instructions, prompt files and other ways to shape Copilot's responses.
-- [Copilot customization cheat sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) — a useful comparison of custom instructions, prompt files, custom agents, agent skills, hooks and MCP servers.
-- [About custom agents](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-custom-agents) — explains how specialised agents can be configured for particular workflows and engineering responsibilities.
-- [Adding agent skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) — covers reusable skills built from instructions, scripts and supporting resources.
-- [Content exclusion for GitHub Copilot](https://docs.github.com/en/copilot/concepts/context/content-exclusion) — explains how organisations can restrict certain content from being used by supported Copilot experiences.
