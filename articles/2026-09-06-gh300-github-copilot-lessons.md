@@ -107,8 +107,6 @@ This is the point where the engineering discipline becomes more subtle.
 
 You are no longer asking only, "What should I type?" You are asking, "What information should the assistant have access to, what should it be prevented from seeing, and how do I structure the environment so the output is useful?"
 
-That question leads naturally to a more significant idea:
-
 This is also where governance starts to become practical instead of abstract. The best AI workflow is not the one that exposes everything to the model. It is the one that provides the right context, under the right controls, for the right purpose.
 
 ---
@@ -205,7 +203,9 @@ In many ways, AI raises the bar for good engineering judgement rather than lower
 
 ## What GH-300 Changed for Me
 
-![GitHub Copilot certification badge](/img/articles/github-copilot-gh300/github-copilot.svg)
+<div>
+  <img src="/img/articles/github-copilot-gh300/github-copilot.svg" alt="GitHub Copilot certification badge" width="180" />
+</div>
 
 I did not take GH-300 because I needed someone to teach me how to open Copilot Chat.
 
