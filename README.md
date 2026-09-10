@@ -1,43 +1,105 @@
-# Website
+# Mpho Magoro on Tech
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Personal technical site focused on AI Engineering, Solution Architecture,
+Software Engineering, and practical engineering guides.
 
-## Installation
+## Author
 
-```bash
-npm install
+**Mpho Magoro**
+
+Software Engineer focused on:
+
+- Solution Architecture
+- AI Engineering
+- Software Engineering
+- Cloud Architecture
+- Engineering Productivity
+
+Website:
+
+[https://mphomagoro.com]()
+
+## Tech Stack
+
+- Docusaurus
+- React
+- TypeScript
+- GitHub Pages
+- GitHub Actions
+
+## Content Structure
+
+The site contains both articles and longer-form technical guides.
+
+### Articles
+
+Articles cover topics such as:
+
+- AI Engineering
+- GitHub Copilot
+- Solution Architecture
+- Software Engineering
+- Engineering decision-making
+- Architecture trade-offs
+
+### Guides
+
+Guides are intended to provide more structured, reusable technical reference material.
+
+Examples include:
+
+- Architecture Decision Records
+
+
+- Engineering workflows
+- GitHub Copilot customisation
+- Solution design practices
+- CI/CD practices
+
+## Repository Structure
+
+```text
+.
+├── .github/
+│   └── workflows/
+│       ├── pr-build.yml
+│       └── deploy.yml
+│
+├── blog/
+│   └── articles/
+│
+├── docs/
+│   └── guides/
+│
+├── src/
+│   ├── components/
+│   ├── css/
+│   └── pages/
+│
+├── static/
+│   └── img/
+│
+├── docusaurus.config.ts
+├── sidebars.ts
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
-**Note**: feel free to use the package manager of your choice.
+Repository overview:
 
-## Local Development
-
-```bash
-npm run start
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                     mphomagoro-tech                          │
+├──────────────────────────────────────────────────────────────┤
+│  blog/articles     │  docs/guides                           │
+│  src/components    │  src/pages                            │
+│  src/css           │  static/img                            │
+│  .github/workflows │  docusaurus.config.ts                 │
+│  sidebars.ts       │  package.json / package-lock.json     │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## Licence
 
-## Build
-
-```bash
-npm run build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true npm run deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Unless otherwise stated, the source code and written content in this repository remain the property of the author.
