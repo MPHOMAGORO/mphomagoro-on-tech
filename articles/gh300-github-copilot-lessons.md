@@ -3,6 +3,7 @@ title: "I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things"
 description: "What studying for GH-300 taught me despite already using GitHub Copilot professionally."
 date: 2026-09-11
 authors: [mpho]
+image: /img/articles/github-copilot-gh300/hero.png
 tags:
   - ai-engineering
   - github-copilot

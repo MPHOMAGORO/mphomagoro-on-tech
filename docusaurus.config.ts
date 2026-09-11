@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Mpho Magoro on Tech',
   tagline: 'AI Engineering, Solution Architecture and Software Engineering',
-  favicon: 'img/favicon.ico',
+  favicon: 'mpho.ico',
 
   // Set the production url of your site here
   url: 'https://mphomagoro.com',
@@ -60,8 +60,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/mpho-magoro-social-card.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },
