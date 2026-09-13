@@ -1,6 +1,3 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem'; 
-
 ---
 title: "Prompts vs Instructions vs Skills vs Agents vs Hooks"
 description: "How GitHub Copilot Customisation Actually Fits Together."
@@ -15,6 +12,9 @@ hide_table_of_contents: false
 toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem'; 
+
 
 # Prompts vs Instructions vs Skills vs Agents vs Hooks
 
@@ -55,31 +55,65 @@ GitHub Copilot uses  six configuration primitives: __Prompts__, __instructions__
 
 ## 1) Prompts: What do I want done right now?
 
-### What is it
-Prompts are one off task shortcuts that you manually trigger via slash commands.
+### What is it?
+Prompts are one off task or request that you manually trigger via slash commands. Reusable prompts are. `.prompt.md` files that are stored within your workspace and invoked when needed.
 
-### What problem it solves
+### What problem do prompts solve?
 
-### When to use it
+Prompts solve the problem of telling Copilot what you want it to do right now.
+Even though Copilot already has some surrounding context - such as the current active file, select code and chat history, it still needs an explicit goal.
 
-### When not to use it
+Instead of repeatedly wrting:
+> Review this API for authentication, authorization, input validation, rate limiting, logging...
+
+you can encode that workflow once as something  like:
+
+`api-security-review.prompt.md`
+
+and reuse it.
+
+### When to use it?
+
+Use a prompt file when the task is:
+repeatable + intentional. + invoked when needed.
+
+Good candidates include:
+- generating unit tests according to a standard structure
+- creating an implementation plan
+- reviewing an API for security concerns
+- generating documentation
+
+### When not to use a prompt file?
+
+If something should apply all the time, it probably belongs in **instructions**, not a prompt.
+
+For example: 
+> Use xUnit for all .NET unit tests.
+
+That's a repository convention. You shouldn't have to remember to solve it.
 
 ### Common mistake
+
+The biggest mistake is treating every useful instruction as a prompt. If you are constantly doing this, it means you are compensating for missing custom instructions rather than improving your prompts.
+
+Another mistake is turning a prompt into an agent simply because the prompt has become long.
 
 ## 2) Instructions: Always apply these rules
 
 ### What is it?
-Instructions are Markdown files containing persistanet guidance and rules. Those are automatically loaded in the background for every session or prompt.
+Instructions are `Markdown` files containing persistanet guidance and rules. Those are automatically loaded in the background for every session or prompt.
 
-Copilot offers three variations of custom instructions:
-  - Global instructions:  These apply to every chat request in the workspace and are usually under `github/copilot-instructions.md`
-  - File/path targeted instructions: These are targeted to specific file types and use the `applyTo`  pattern so the instructions only apply when working with matching files. These are usually under `.github/instructions/*.instructions.md`.
-  - Multi-agent compatible: These support subfolder-level scoping. These are recognised by multiple agents and are under `AGENTS.md`.
-  - Organisations instructions: These apply across all the repos in a GitHub organisation.
+Copilot offers four variations of custom instructions:
+  - **Global instructions**:  These apply to every chat request in the workspace and are usually under `github/copilot-instructions.md`
+  - **File/path targeted instructions**: These are targeted to specific file types and use the `applyTo`  pattern so the instructions only apply when working with matching files. These are usually under `.github/instructions/*.instructions.md`.
+  - **Multi-agent compatible**: These support subfolder-level scoping. These are recognised by multiple agents and are under `AGENTS.md`.
+  - **Organisations instructions**: These apply across all the repos in a GitHub organisation.
 
 ### What problem do instructions solves?
 
-Without instructions, engineers repeatedly put the same context into prompts. 
+Instructions make persistent project knowledge avaiable automatically, so developers don't have to repeat it and Copilot makes fewer incorrect assumptions.
+
+Without instructions, developers repeatedly put the same context into prompts. 
 
 ### When should you use instructions?
 
@@ -107,7 +141,14 @@ The **second mistake** is writing vague principles instead of actionable constra
 
 <Tabs>
 
-  <TabItem value="ineffective" label="⚠️ Ineffective" default>
+  <TabItem value="effective" label="✅ Effective" default>
+
+  Do not log authentication tokens <br/>
+  New HTTP integrations must use the existing type HttpClient pattern <br/>
+  Use xUnit for new unit tests <br/>
+
+  </TabItem>
+  <TabItem value="ineffective" label="⚠️ Ineffective">
 
   Write high-quality code <br/>
   Make sure the code is secure <br/>
@@ -115,13 +156,7 @@ The **second mistake** is writing vague principles instead of actionable constra
 
   </TabItem>
 
-  <TabItem value="effective" label="✅ Effective">
 
-  Do not log authentication tokens
-  New HTTP integrations must use the existing type HttpClient pattern
-  Use xUnit for new unit tests
-
-  </TabItem>
 </Tabs>
 
 The **third mistake** that often gets overlooked, is treating instructions as enforcement.

@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Mpho Magoro on Tech',
   tagline: 'AI Engineering, Solution Architecture and Software Engineering',
-  favicon: 'mpho.ico',
+  favicon: 'img/favicon/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://mphomagoro.com',
