@@ -49,7 +49,7 @@ This is where GitHub Copilot customisation starts becoming interesting.
 
 :::info
 
-GitHub Copilot uses  six configuration primitives: __Prompts__, __instructions__, __skills__, __agents__ and __hooks__ that help solve this problem — but they solve very different parts of it.
+GitHub Copilot uses  *four* configuration primitives: __Prompts__, __instructions__, __skills__, __agents__ and __hooks__ that help solve this problem — but they solve very different parts of it.
 
 :::
 
@@ -92,7 +92,7 @@ For example:
 
 That's a repository convention. You shouldn't have to remember to solve it.
 
-### Common mistake
+### Common mistakes
 
 The biggest mistake is treating every useful instruction as a prompt. If you are constantly doing this, it means you are compensating for missing custom instructions rather than improving your prompts.
 
@@ -161,4 +161,55 @@ The **second mistake** is writing vague principles instead of actionable constra
 
 The **third mistake** that often gets overlooked, is treating instructions as enforcement.
 GitHub explicitly notes that , because AI is nondeterministic , Copilot may not follow custom instructions the same way every time.
+
+
+## 3) Skills
+
+### What are skills?
+Skills are specialised capabilities that agents load automatically when relevant. A Skill lives in a folder, has a required SKILL.md, and can include supporting resources such as scripts, references, and assets.
+
+### What problem do skills solve?
+
+
+### When to use skills it?
+
+
+### When not to use skills?
+
+### Common mistakes
+
+
+## 4) Agents
+
+### What are agents?
+
+
+### What problem do agents solve?
+
+
+### When to use agents it?
+
+
+### When not to use agents?
+
+### Common mistakes
+
+
+## 5) Hooks
+
+### What is hooks file?
+
+
+### What problem do hooks solve?
+
+
+### When to use hooks it?
+
+
+### When not to use hooks?
+
+### Common mistakes
+
+
+## 6) How it all fits together?
 
