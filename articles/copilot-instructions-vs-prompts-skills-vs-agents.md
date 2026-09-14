@@ -49,24 +49,24 @@ This is where GitHub Copilot customisation starts becoming interesting.
 
 :::info
 
-GitHub Copilot uses  *four* configuration primitives: __Prompts__, __instructions__, __skills__, __agents__ and __hooks__ that help solve this problem — but they solve very different parts of it.
+GitHub Copilot customization is usually discussed in terms of several related mechanisms: __prompts__, __instructions__, __skills__, __agents__, and __hooks__. They solve different parts of the same problem, and the right choice depends on whether the guidance is one-off, persistent, or workflow-level.
 
 :::
 
 ## 1) Prompts: What do I want done right now?
 
 ### What is it?
-Prompts are one off task or request that you manually trigger via slash commands. Reusable prompts are. `.prompt.md` files that are stored within your workspace and invoked when needed.
+Prompts are the task-level instructions you give Copilot for a specific job. In practice, they are often reusable prompt files stored in the workspace as `.prompt.md` files and invoked when needed.
 
 ### What problem do prompts solve?
 
 Prompts solve the problem of telling Copilot what you want it to do right now.
-Even though Copilot already has some surrounding context - such as the current active file, select code and chat history, it still needs an explicit goal.
+Even though Copilot already has some surrounding context — such as the current active file, selected code, and chat history — it still needs an explicit goal.
 
-Instead of repeatedly wrting:
+Instead of repeatedly writing:
 > Review this API for authentication, authorization, input validation, rate limiting, logging...
 
-you can encode that workflow once as something  like:
+you can encode that workflow once as something like:
 
 `api-security-review.prompt.md`
 
@@ -101,19 +101,19 @@ Another mistake is turning a prompt into an agent simply because the prompt has 
 ## 2) Instructions: Always apply these rules
 
 ### What is it?
-Instructions are `Markdown` files containing persistanet guidance and rules. Those are automatically loaded in the background for every session or prompt.
+Instructions are Markdown files containing persistent guidance and rules. In GitHub Copilot, they are typically stored in the repository and are automatically provided when relevant to a request.
 
-Copilot offers four variations of custom instructions:
-  - **Global instructions**:  These apply to every chat request in the workspace and are usually under `github/copilot-instructions.md`
-  - **File/path targeted instructions**: These are targeted to specific file types and use the `applyTo`  pattern so the instructions only apply when working with matching files. These are usually under `.github/instructions/*.instructions.md`.
-  - **Multi-agent compatible**: These support subfolder-level scoping. These are recognised by multiple agents and are under `AGENTS.md`.
-  - **Organisations instructions**: These apply across all the repos in a GitHub organisation.
+GitHub Copilot supports several kinds of instructions:
+  - **Repository-wide instructions**: These apply to requests in the repository and are usually stored in `.github/copilot-instructions.md`.
+  - **Path-specific instructions**: These are targeted to matching files and use the `applyTo` pattern. These are usually stored in `.github/instructions/*.instructions.md`.
+  - **Agent instructions**: These are used by agent workflows and can be scoped with `AGENTS.md` files.
+  - **Organization-level instructions**: These can apply across repositories in a GitHub organization.
 
-### What problem do instructions solves?
+### What problem do instructions solve?
 
-Instructions make persistent project knowledge avaiable automatically, so developers don't have to repeat it and Copilot makes fewer incorrect assumptions.
+Instructions make persistent project knowledge available automatically, so developers do not have to repeat it and Copilot makes fewer incorrect assumptions.
 
-Without instructions, developers repeatedly put the same context into prompts. 
+Without instructions, developers repeatedly put the same context into prompts.
 
 ### When should you use instructions?
 
@@ -135,7 +135,7 @@ Good candidates include:
 ### Common mistakes
 
 The **first mistake** is putting every rule at the repository scope.
-If NET conventions. React conventions all live in the global file, Copilot receives irrelvant information constantly. This is where you need to apply file-specific custom instructions.
+If .NET conventions and React conventions all live in the global file, Copilot receives irrelevant information constantly. This is where file-specific custom instructions are more useful.
 
 The **second mistake** is writing vague principles instead of actionable constraints.
 
@@ -219,37 +219,49 @@ Examples include:
 
 ### What are agents?
 
-Agent definition files define a specialist persona and are located under `.github/agents/*.agent.md`.
+Agents are specialist execution modes or personas that can be given a narrower role and workflow than a general chat session. In practice, they are often used to separate concerns such as planning, implementation, review, or migration work.
 
-Agents have the option to perform handoffs that you let chain agents into guided workflows.
-
+Agents can also participate in handoff workflows where one agent completes a phase and then passes the task to another agent with a different focus.
 
 ### What problem do agents solve?
 
+Agents help reduce context mixing. Instead of asking one general assistant to act as planner, implementer, reviewer, and tester all at once, you can give it a narrower role and a clearer decision boundary.
 
-### When to use agents it?
+### When to use agents?
 
+Use an agent when the workflow is specialised, repeated, or involves a clear sequence of responsibilities.
 
 ### When not to use agents?
 
+A dedicated agent is usually unnecessary when the task is short, when the workflow is ad hoc, or when a prompt or instruction is sufficient.
+
 ### Common mistakes
 
+The biggest mistake is treating an agent as a fancy wrapper around a prompt. A real agent is not just a longer set of instructions; it is a role with a defined job, context, and workflow boundary.
 
 ## 5) Hooks
 
-### What is hooks file?
+### What are hooks?
 
+Hooks are automation triggers that run in response to events or workflow stages. They are distinct from prompts and instructions because they operate at the workflow level instead of the conversation level.
 
 ### What problem do hooks solve?
 
+Hooks solve the problem of enforcing behaviour automatically when a task or workflow starts, finishes, or changes state. They are useful when you want a standard workflow to happen without requiring the developer to remember to trigger it manually.
 
-### When to use hooks it?
+### When to use hooks?
 
+Use hooks when a rule or workflow should happen automatically for every relevant event, not just when someone asks for it manually.
 
 ### When not to use hooks?
 
+Avoid hooks when the action is optional, human-driven, or only relevant in a subset of moments that should remain explicitly invoked.
+
 ### Common mistakes
 
+The biggest mistake is using hooks to compensate for a missing instruction or unclear workflow. Hooks work best when the behaviour is mechanical and repeatable.
 
 ## 6) How it all fits together?
+
+The practical pattern is simple: use a prompt when you need a specific task done now, instructions when the guidance should apply consistently, skills when you want reusable specialist reasoning, agents when a role or workflow needs separation, and hooks when a standard action should happen automatically. The goal is not to stack every mechanism everywhere; it is to match the right mechanism to the right problem.
 
