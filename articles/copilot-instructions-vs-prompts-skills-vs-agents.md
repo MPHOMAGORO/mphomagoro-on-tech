@@ -188,7 +188,6 @@ For example, instead of telling Copilot how to assess a PR, you could have separ
 
 Use skills when the work is repeatable, bounded, and requires recognisable expertise.
 
-
 ### When not to use skills?
 
 A skill is not necessary when:
@@ -219,6 +218,10 @@ Examples include:
 ## 4) Agents
 
 ### What are agents?
+
+Agent definition files define a specialist persona and are located under `.github/agents/*.agent.md`.
+
+Agents have the option to perform handoffs that you let chain agents into guided workflows.
 
 
 ### What problem do agents solve?
