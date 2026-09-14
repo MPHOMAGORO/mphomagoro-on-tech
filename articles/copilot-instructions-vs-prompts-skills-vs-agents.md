@@ -166,17 +166,54 @@ GitHub explicitly notes that , because AI is nondeterministic , Copilot may not 
 ## 3) Skills
 
 ### What are skills?
-Skills are specialised capabilities that agents load automatically when relevant. A Skill lives in a folder, has a required SKILL.md, and can include supporting resources such as scripts, references, and assets.
+Skills are specialised are reusable, task-specific capabilities that agents load automatically when relevant. A Skill lives in a folder that hs a required SKILL.md, and can include supporting resources such as scripts, references, and assets.
+
+Skills are loaded on demand , only when a specific kind of task comes up. The name and description are what tell the agent when the Skill is relevant.
 
 ### What problem do skills solve?
+Skills solve the problem of repeated specialist reasoning.
+Without skills, teams often keep rewriting the same guidance into prompts:
 
+> Review this PR for architecture impact, requirements alignment, and test adequacy.
+
+A skills lets you package that expertise once and reuse it.
+
+For example, instead of telling Copilot how to assess a PR, you could have separate skills for:
+- requirements alignment
+- test adequacy
+- architecture impact
+- security review
 
 ### When to use skills it?
+
+Use skills when the work is repeatable, bounded, and requires recognisable expertise.
 
 
 ### When not to use skills?
 
+A skill is not necessary when:
+- The task is trivial
+- It is only needed once.
+- The capability cannot be defined clearly enough to produce consistent results.
+
 ### Common mistakes
+
+The biggest mistake is turning every repeated prompt into a skill.
+
+1. Skills that are too broad.
+2. Skills that are too narrow. For example, if the skill only applies to one file, one ticket, or one edge case.
+3. Mixing orchestration with expertise. A skill usually describe how to perform a capability.
+
+### Good candidates for skills
+
+The best candidates tend to be specialised reasoning modules.
+
+Examples include:
+- Requirements completeness assessment
+- Test adequacy assessment
+- Architecture impact analysis
+- Backward-compatibility analysis
+- Migration-risk analysis
 
 
 ## 4) Agents
