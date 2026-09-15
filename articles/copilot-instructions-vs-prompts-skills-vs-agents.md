@@ -45,13 +45,47 @@ At some point, you realise the problem. You are spending a surprising amount of 
 
 And that is where prompting starts to feel insufficient.
 
-This is where GitHub Copilot customisation starts becoming interesting.
+This is where GitHub Copilot customization starts to become genuinely useful.
 
 :::info
 
 GitHub Copilot customization is usually discussed in terms of several related mechanisms: __prompts__, __instructions__, __skills__, __agents__, and __hooks__. They solve different parts of the same problem, and the right choice depends on whether the guidance is one-off, persistent, or workflow-level.
 
 :::
+
+## Quick decision framework
+
+Use this as a practical filter when deciding which Copilot customization mechanism to reach for:
+
+- Prompt: use when the guidance is one-off, task-specific, and meant for a single job.
+- Instructions: use when the rule should apply repeatedly without needing to be restated.
+- Skill: use when the work requires reusable expertise or a repeatable way of thinking about a type of task.
+- Agent: use when responsibility, workflow ownership, or a clear sequence of steps matters.
+- Hook: use when the behaviour should happen automatically at a workflow boundary or event.
+- MCP: use when Copilot needs access to external tools, data, or systems that are not already in context.
+
+A useful shorthand is:
+- Prompt = “what should happen right now?”
+- Instructions = “what rules should always apply?”
+- Skill = “how should this kind of work be done?”
+- Agent = “who owns this workflow?”
+- Hook = “what should happen automatically when an event occurs?”
+- MCP = “what external systems can this worker access?”
+
+If the answer is “this should always apply,” use instructions. If the answer is “this is a reusable capability,” use a skill. If the answer is “this is a role with a workflow,” use an agent. If the answer is “this needs external context,” use MCP.
+
+## The core distinction: scope and ownership
+
+The repeated question in all of this is not just “what is it?” but “what is its scope, and who owns the responsibility?”
+
+- Prompts answer the immediate task.
+- Instructions define rules that should apply repeatedly across a project or workflow.
+- Skills package reusable expertise.
+- Agents own a workflow or role.
+- Hooks fire automatically at defined moments.
+- MCP exposes external systems and data.
+
+That distinction is the key to choosing the right primitive. If the requirement is short-lived and specific, use a prompt. If it should apply broadly and automatically, use instructions. If it is repeatable expertise, use a skill. If it is a workflow with responsibility boundaries, use an agent. If it needs to trigger automatically, use a hook. If it needs access to systems outside the current context, use MCP.
 
 ## 1) Prompts: What do I want done right now?
 
@@ -74,8 +108,7 @@ and reuse it.
 
 ### When to use it?
 
-Use a prompt file when the task is:
-repeatable + intentional. + invoked when needed.
+As a rule of thumb, use a prompt file when the task is repeatable, intentional, and only needed in the moment.
 
 Good candidates include:
 - generating unit tests according to a standard structure
@@ -117,8 +150,8 @@ Without instructions, developers repeatedly put the same context into prompts.
 
 ### When should you use instructions?
 
-Use custom instructions when you want Copilot to behave consistently without repeating yourself in every chat session.
-This makes the context stable and the rules that follow work consistent.
+As a default, use custom instructions when you want Copilot to behave consistently without repeating yourself in every chat session.
+This keeps the context stable and makes the rules easier to apply consistently across work.
 
 Good candidates include:
 - naming or coding conventions
@@ -127,10 +160,10 @@ Good candidates include:
 - repository architecture and important boundaries
 - language/framework conventions
 
-### When not to use it
+### When not to use instructions
 - You only need a task or operation once.
-- Complex multi-step workflows.
-- Task requiring specialising tools.
+- The workflow is complex and multi-step.
+- The task requires specialized tooling or context that should not be treated as a universal rule.
 
 ### Common mistakes
 
@@ -159,16 +192,16 @@ The **second mistake** is writing vague principles instead of actionable constra
 
 </Tabs>
 
-The **third mistake** that often gets overlooked, is treating instructions as enforcement.
-GitHub explicitly notes that , because AI is nondeterministic , Copilot may not follow custom instructions the same way every time.
+The **third mistake** that often gets overlooked is treating instructions as enforcement.
+GitHub explicitly notes that, because AI is nondeterministic, Copilot may not follow custom instructions in the same way every time.
 
 
 ## 3) Skills
 
 ### What are skills?
-Skills are specialised are reusable, task-specific capabilities that agents load automatically when relevant. A Skill lives in a folder that hs a required SKILL.md, and can include supporting resources such as scripts, references, and assets.
+Skills are reusable, task-specific capabilities that can be surfaced to an agent when the work matches their scope. A skill usually lives in a folder with a required `SKILL.md`, and may include supporting resources such as scripts, references, and assets.
 
-Skills are loaded on demand , only when a specific kind of task comes up. The name and description are what tell the agent when the Skill is relevant.
+In many agent setups, skills are selected or loaded only when a specific kind of task comes up. The name and description often help the agent decide when a skill is relevant.
 
 ### What problem do skills solve?
 Skills solve the problem of repeated specialist reasoning.
@@ -176,7 +209,7 @@ Without skills, teams often keep rewriting the same guidance into prompts:
 
 > Review this PR for architecture impact, requirements alignment, and test adequacy.
 
-A skills lets you package that expertise once and reuse it.
+A skill lets you package that expertise once and reuse it.
 
 For example, instead of telling Copilot how to assess a PR, you could have separate skills for:
 - requirements alignment
@@ -184,9 +217,9 @@ For example, instead of telling Copilot how to assess a PR, you could have separ
 - architecture impact
 - security review
 
-### When to use skills it?
+### When to use skills?
 
-Use skills when the work is repeatable, bounded, and requires recognisable expertise.
+As a rule of thumb, use skills when the work is repeatable, bounded, and requires recognisable expertise.
 
 ### When not to use skills?
 
@@ -201,7 +234,7 @@ The biggest mistake is turning every repeated prompt into a skill.
 
 1. Skills that are too broad.
 2. Skills that are too narrow. For example, if the skill only applies to one file, one ticket, or one edge case.
-3. Mixing orchestration with expertise. A skill usually describe how to perform a capability.
+3. Mixing orchestration with expertise. A skill usually describes how to perform a capability.
 
 ### Good candidates for skills
 
@@ -219,21 +252,17 @@ Examples include:
 
 ### What are agents?
 
-Agents are  personas that can be given a narrower role and workflow than a general chat session.
-These are AI workers confiured to pursue a goal.
-In practice, they are often used to separate concerns such as planning, implementation, review, or migration work.
+Agents are the responsibility-boundary primitive. They are role-based AI workers configured around a specific workflow, goal, or decision boundary rather than a single prompt.
 
-Agents can also participate in handoff workflows where one agent completes a phase and then passes the task to another agent with a different focus.
+They are useful when you want to separate concerns such as planning, implementation, review, or migration work, and they can hand off to another agent once one phase is complete.
 
 ### What problem do agents solve?
 
-Agents help reduce context mixing. Instead of asking one general worker to act as planner, implementer, reviewer, and tester all at once, you can give it a narrower role and a clearer decision boundary.
-
-Agents package responsibility, reasoning, context and capabilities around a job.
+Agents reduce context mixing. Instead of asking one general worker to act as planner, implementer, reviewer, and tester all at once, you give the work a narrower role and a clearer ownership boundary.
 
 ### When to use agents?
 
-Use an agent when the workflow is specialised, repeated, or involves a clear sequence of responsibilities.
+A good default is to use an agent when the workflow is specialised, repeated, or involves a clear sequence of responsibilities.
 
 ### When not to use agents?
 
@@ -241,7 +270,7 @@ A dedicated agent is usually unnecessary when:
 - You need reusable expertise knowledge. That's probably a skill.
 - You are simply repeating the same request. That's probably a prompt.
 - A rule should apply everywhere. Those belong in instructions. 
-- The default Copilot gent already does a good job.
+- The default Copilot agent already does a good job.
 
 ### Common mistakes
 
@@ -250,7 +279,7 @@ The biggest mistake is treating an agent as a fancy wrapper around a prompt. A r
 :::
 
 ::: info
-Agents aren't valuable because of personas. They're valuable because they establish responsibility boundaries.
+Agents are valuable because they establish responsibility boundaries, not because they have a persona.
 :::
 
 ## 5) Hooks
@@ -259,7 +288,7 @@ Agents aren't valuable because of personas. They're valuable because they establ
 
 Hooks are automation triggers that run in response to events or workflow stages. They are distinct from prompts and instructions because they operate at the workflow level instead of the conversation level.
 
-GitHub hooks are executed at strategic points such as start/end, when a prompt is submitted, or when an agent stops.
+In workflow tools, hooks often run at strategic points such as task start or completion, before or after a prompt is submitted, or when an agent transitions between phases.
 
 
 ### What problem do hooks solve?
@@ -274,7 +303,7 @@ Good candidates for hooks are :
 
 ### When to use hooks?
 
-Use hooks when a rule or workflow should happen automatically for every relevant event, not just when someone asks for it manually.
+A practical rule is to use hooks when a rule or workflow should happen automatically for every relevant event, not just when someone asks for it manually.
 
 ### When not to use hooks?
 
@@ -288,17 +317,16 @@ The biggest mistake is using hooks to compensate for a missing instruction or un
 
 ### What is an MCP Server?
 
-It a server that exposes external data, tools or systems through the Model Context Protocol.
+It is a server that exposes external data, tools, or systems through the Model Context Protocol.
 MCP is an open standard that lets applications share context and capabilities with LLMs.
-
 
 ### What problem does MCP solve?
 
-MCP allows AI a standard way to access external information and capabilities.
-For example, a Requirements Analyst agent may need information from a GitHub issue.
-Without MCP, the agent can't retrieve the user story information and a human must copy this into the conversation.
+MCP gives AI applications a standard way to access external information and capabilities.
+For example, a requirements analyst agent may need information from a GitHub issue.
+Without MCP, the agent may have to rely on a human to copy that context into the conversation manually.
 
-You don't want to manually copy everything into the chat every tme.
+You do not want to manually copy everything into the chat every time.
 
 So instead of:
 
@@ -310,7 +338,7 @@ you can move toward:
 
 ### When should you use MCP?
 
-Use MCP when Copilot needs to interact with an external system or retrieve information that isn't naturally available in its current context.
+MCP is often useful when Copilot needs to interact with an external system or retrieve information that isn't naturally available in its current context.
 
 ### When should you NOT use MCP?
 
@@ -503,7 +531,7 @@ The chef receives the **prompt**.
 
 The chef follows the restaurant's **instructions**.
 
-The chef loads the **Margherita pizza skill**.
+The chef selects the **Margherita pizza skill**.
 
 The chef checks the inventory system through an **MCP server** and discovers that fresh mozzarella is available.
 
@@ -536,14 +564,3 @@ And the customer's order does not need to contain the entire recipe.
 Each piece has its own responsibility.
 
 The strength of the system comes from **combining them rather than trying to force everything into one giant prompt**.
-
-
-
-| Primitive   | Question it answers |
-| :------- | :------- |
-| Prompt | What do I want done? |
-| Instructions | What rules should always be followed |
-| Skill | How should this type of work be performed |
-| Agent | Who owns this responsibility |
-| Hook | What must automatically happen when an event occurs |
-| MCP | What external systems/capabilities can Copilot access |
