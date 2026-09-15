@@ -219,13 +219,17 @@ Examples include:
 
 ### What are agents?
 
-Agents are specialist execution modes or personas that can be given a narrower role and workflow than a general chat session. In practice, they are often used to separate concerns such as planning, implementation, review, or migration work.
+Agents are  personas that can be given a narrower role and workflow than a general chat session.
+These are AI workers confiured to pursue a goal.
+In practice, they are often used to separate concerns such as planning, implementation, review, or migration work.
 
 Agents can also participate in handoff workflows where one agent completes a phase and then passes the task to another agent with a different focus.
 
 ### What problem do agents solve?
 
-Agents help reduce context mixing. Instead of asking one general assistant to act as planner, implementer, reviewer, and tester all at once, you can give it a narrower role and a clearer decision boundary.
+Agents help reduce context mixing. Instead of asking one general worker to act as planner, implementer, reviewer, and tester all at once, you can give it a narrower role and a clearer decision boundary.
+
+Agents package responsibility, reasoning, context and capabilities around a job.
 
 ### When to use agents?
 
@@ -233,11 +237,21 @@ Use an agent when the workflow is specialised, repeated, or involves a clear seq
 
 ### When not to use agents?
 
-A dedicated agent is usually unnecessary when the task is short, when the workflow is ad hoc, or when a prompt or instruction is sufficient.
+A dedicated agent is usually unnecessary when: 
+- You need reusable expertise knowledge. That's probably a skill.
+- You are simply repeating the same request. That's probably a prompt.
+- A rule should apply everywhere. Those belong in instructions. 
+- The default Copilot gent already does a good job.
 
 ### Common mistakes
 
+:::warning
 The biggest mistake is treating an agent as a fancy wrapper around a prompt. A real agent is not just a longer set of instructions; it is a role with a defined job, context, and workflow boundary.
+:::
+
+::: info
+Agents aren't valuable because of personas. They're valuable because they establish responsibility boundaries.
+:::
 
 ## 5) Hooks
 
@@ -245,9 +259,18 @@ The biggest mistake is treating an agent as a fancy wrapper around a prompt. A r
 
 Hooks are automation triggers that run in response to events or workflow stages. They are distinct from prompts and instructions because they operate at the workflow level instead of the conversation level.
 
+GitHub hooks are executed at strategic points such as start/end, when a prompt is submitted, or when an agent stops.
+
+
 ### What problem do hooks solve?
 
 Hooks solve the problem of enforcing behaviour automatically when a task or workflow starts, finishes, or changes state. They are useful when you want a standard workflow to happen without requiring the developer to remember to trigger it manually.
+
+Good candidates for hooks are :
+- Guardrails
+- Enforcement
+- Auditing
+
 
 ### When to use hooks?
 
@@ -255,13 +278,272 @@ Use hooks when a rule or workflow should happen automatically for every relevant
 
 ### When not to use hooks?
 
-Avoid hooks when the action is optional, human-driven, or only relevant in a subset of moments that should remain explicitly invoked.
+Avoid hooks when the action is optional or requires judgement.
 
 ### Common mistakes
 
 The biggest mistake is using hooks to compensate for a missing instruction or unclear workflow. Hooks work best when the behaviour is mechanical and repeatable.
 
+## MCP Servers
+
+### What is an MCP Server?
+
+It a server that exposes external data, tools or systems through the Model Context Protocol.
+MCP is an open standard that lets applications share context and capabilities with LLMs.
+
+
+### What problem does MCP solve?
+
+MCP allows AI a standard way to access external information and capabilities.
+For example, a Requirements Analyst agent may need information from a GitHub issue.
+Without MCP, the agent can't retrieve the user story information and a human must copy this into the conversation.
+
+You don't want to manually copy everything into the chat every tme.
+
+So instead of:
+
+> Human -> Copy user story -> paste into Copilot 
+
+you can move toward:
+
+> Agent -> MCP -> GitHub
+
+### When should you use MCP?
+
+Use MCP when Copilot needs to interact with an external system or retrieve information that isn't naturally available in its current context.
+
+### When should you NOT use MCP?
+
+- When built-in capabilities already solve the work.
+- When the knowledge is static and does not change. Prefer to  use instructions or a skill.
+
+### Common mistakes
+
+The biggest mistake is giving the MCP integration all permissions.
+The MCP design should follow least privilege.
+
+
 ## 6) How it all fits together?
 
-The practical pattern is simple: use a prompt when you need a specific task done now, instructions when the guidance should apply consistently, skills when you want reusable specialist reasoning, agents when a role or workflow needs separation, and hooks when a standard action should happen automatically. The goal is not to stack every mechanism everywhere; it is to match the right mechanism to the right problem.
+## How Everything Fits Together
 
+Imagine we are running an Italian restaurant.
+
+A customer places an order:
+
+> **“Make me a Margherita pizza.”**
+
+That order is the equivalent of a **prompt**.
+
+It tells us what needs to be done right now. The customer does not need to explain how the entire restaurant operates. They simply provide the immediate request.
+
+But the chef should not make the pizza however they want.
+
+The restaurant already has a set of standing rules:
+
+* Use fresh ingredients.
+* Keep preparation time under 30 minutes.
+* Follow the restaurant's food-safety standards.
+* Use approved ingredients and suppliers.
+
+These are the equivalent of **instructions**.
+
+They apply broadly across the restaurant. They do not explain how to make one particular dish; they define the rules and constraints under which the kitchen operates.
+
+### The restaurant needs more than one recipe
+
+Now we need the actual know-how for preparing the food.
+
+The restaurant might have recipes for:
+
+**Margherita Pizza**
+
+1. Prepare and stretch the dough.
+2. Add tomato sauce.
+3. Add fresh mozzarella.
+4. Bake at the required temperature.
+5. Finish with basil and olive oil.
+
+**Carbonara**
+
+1. Cook the pasta.
+2. Prepare the egg and cheese mixture.
+3. Cook the guanciale.
+4. Combine everything correctly without scrambling the eggs.
+5. Finish with black pepper and Pecorino Romano.
+
+**Tiramisu**
+
+1. Prepare the coffee.
+2. Make the mascarpone mixture.
+3. Dip the ladyfingers.
+4. Layer the ingredients.
+5. Chill and finish with cocoa.
+
+These recipes are the equivalent of **skills**.
+
+Each skill packages reusable expertise for a particular kind of task.
+
+The kitchen does not need to relearn how to make carbonara every time someone orders it. The method already exists and can be selected when the task requires it.
+
+The same idea applies to Copilot.
+
+An engineering agent might have access to several specialised skills:
+
+* **Requirements analysis skill**
+* **Test adequacy skill**
+* **Architecture impact skill**
+* **Security review skill**
+* **ADR review skill**
+
+The agent does not need every skill for every task.
+
+If the request is:
+
+> “Review this pull request.”
+
+the agent might use the requirements-alignment, test-adequacy and architecture-impact skills.
+
+If the request is:
+
+> “Review this proposed architecture decision.”
+
+it might instead use the ADR-review and architecture-impact skills.
+
+The skills provide reusable know-how. The **agent decides which capabilities are relevant to achieving the goal**.
+
+### The chef is the agent
+
+The **agent** is the chef.
+
+The chef receives the customer's order, works within the restaurant's standing rules, chooses the appropriate recipe and performs the work.
+
+So for our pizza order:
+
+**Prompt**
+“Make me a Margherita pizza.”
+
+**Instructions**
+Use fresh ingredients, follow food-safety rules and prepare orders within 30 minutes.
+
+**Skill**
+The Margherita pizza recipe.
+
+**Agent**
+The chef who understands the request, selects the appropriate recipe and carries out the work.
+
+But there is still something missing.
+
+A chef cannot operate using recipes alone.
+
+They sometimes need information or capabilities that exist **outside the kitchen**.
+
+### MCP is how the kitchen connects to the outside world
+
+Imagine the chef discovers that the kitchen has run out of fresh mozzarella.
+
+Knowing the recipe does not magically provide mozzarella.
+
+The chef needs access to an external supplier system.
+
+Or perhaps the chef needs to:
+
+* Check whether an ingredient is in stock.
+* Order more ingredients from a supplier.
+* Look up today's reservations.
+* Check whether a customer has recorded an allergy.
+* Update an order in the restaurant's ordering system.
+* Check a delivery status.
+
+Those external systems are not skills.
+
+They are **systems the chef needs to interact with**.
+
+This is where **MCP servers** fit into the analogy.
+
+An MCP server acts like a standard connection between the chef and an outside service, exposing tools or data the agent can use. In GitHub Copilot, custom agents can be configured with MCP servers and specific tools from those servers.
+
+For our restaurant, imagine we have:
+
+**Inventory MCP server**
+Allows the chef to:
+
+* Check ingredient stock.
+* Find ingredient locations.
+* Update stock levels.
+
+**Supplier MCP server**
+Allows the chef to:
+
+* Find approved suppliers.
+* Check ingredient availability.
+* Place an ingredient order.
+
+**Reservation MCP server**
+Allows the chef to:
+
+* Check today's bookings.
+* Find customer dietary requirements.
+* See expected party sizes.
+
+**Order Management MCP server**
+Allows the chef to:
+
+* Read incoming orders.
+* Update an order's status.
+* Mark an order as completed.
+
+Now the workflow becomes much more powerful.
+
+A customer says:
+
+> **“Make me a Margherita pizza.”**
+
+The chef receives the **prompt**.
+
+The chef follows the restaurant's **instructions**.
+
+The chef loads the **Margherita pizza skill**.
+
+The chef checks the inventory system through an **MCP server** and discovers that fresh mozzarella is available.
+
+The chef then prepares the pizza.
+
+The **agent** coordinates all of this.
+
+So the pieces are doing fundamentally different jobs:
+
+**Prompt → What needs to be done**
+
+**Instructions → What rules must be followed**
+
+**Skills → How particular kinds of work should be done**
+
+**MCP → What external tools and information the agent can access**
+
+**Agent → The worker that brings those pieces together to achieve the outcome**
+
+That distinction is important.
+
+A recipe cannot check the stockroom.
+
+A stock-management system does not know how to make a pizza.
+
+The restaurant rules do not tell the chef which dish the customer ordered.
+
+And the customer's order does not need to contain the entire recipe.
+
+Each piece has its own responsibility.
+
+The strength of the system comes from **combining them rather than trying to force everything into one giant prompt**.
+
+
+
+| Primitive   | Question it answers |
+| :------- | :------- |
+| Prompt | What do I want done? |
+| Instructions | What rules should always be followed |
+| Skill | How should this type of work be performed |
+| Agent | Who owns this responsibility |
+| Hook | What must automatically happen when an event occurs |
+| MCP | What external systems/capabilities can Copilot access |
