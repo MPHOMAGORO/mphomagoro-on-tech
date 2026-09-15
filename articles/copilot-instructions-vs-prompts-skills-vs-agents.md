@@ -72,7 +72,6 @@ If the answer is “this should always apply,” use instructions. If the answer
 
 :::
 
-
 ## Prompts: What do I want done right now?
 
 ### What is it?
@@ -187,7 +186,7 @@ GitHub explicitly notes that, because AI is nondeterministic, Copilot may not fo
 
 :::
 
-## Skills
+## Skills: How should this kind of work be done?
 
 ### What are skills?
 Skills are reusable, task-specific capabilities that can be surfaced to an agent when the work matches their scope. A skill usually lives in a folder with a required `SKILL.md`, and may include supporting resources such as scripts, references, and assets.
@@ -240,7 +239,7 @@ The biggest mistake is turning every repeated prompt into a skill.
 :::
 
 
-## Agents
+## Agents: Who owns this workflow
 
 ### What are agents?
 
@@ -277,7 +276,7 @@ The biggest mistake is treating an agent as a fancy wrapper around a prompt. A r
 
 :::
 
-## Hooks
+## Hooks: What should happen automatically when an event occurs?
 
 ### What are hooks?
 
@@ -310,7 +309,7 @@ The biggest mistake is using hooks to compensate for a missing instruction or un
 
 :::
 
-## MCP Servers
+## MCP Servers: What external systems can this worker access?
 
 ### What is an MCP Server?
 
