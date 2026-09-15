@@ -73,7 +73,7 @@ If the answer is “this should always apply,” use instructions. If the answer
 :::
 
 
-## 1) Prompts: What do I want done right now?
+## Prompts: What do I want done right now?
 
 ### What is it?
 Prompts are the task-level instructions you give Copilot for a specific job. In practice, they are often reusable prompt files stored in the workspace as `.prompt.md` files and invoked when needed.
@@ -120,7 +120,7 @@ The **biggest mistake** is treating every useful **instruction** as a **prompt**
 Another **mistake** is turning a prompt into an agent simply because the prompt has become long.
 :::
 
-## 2) Instructions: Always apply these rules
+## Instructions: Always apply these rules
 
 ### What is it?
 Instructions are Markdown files containing persistent guidance and rules. In GitHub Copilot, they are typically stored in the repository and are automatically provided when relevant to a request.
@@ -187,7 +187,7 @@ GitHub explicitly notes that, because AI is nondeterministic, Copilot may not fo
 
 :::
 
-## 3) Skills
+## Skills
 
 ### What are skills?
 Skills are reusable, task-specific capabilities that can be surfaced to an agent when the work matches their scope. A skill usually lives in a folder with a required `SKILL.md`, and may include supporting resources such as scripts, references, and assets.
@@ -240,7 +240,7 @@ The biggest mistake is turning every repeated prompt into a skill.
 :::
 
 
-## 4) Agents
+## Agents
 
 ### What are agents?
 
@@ -277,14 +277,13 @@ The biggest mistake is treating an agent as a fancy wrapper around a prompt. A r
 
 :::
 
-## 5) Hooks
+## Hooks
 
 ### What are hooks?
 
 Hooks are automation triggers that run in response to events or workflow stages. They are distinct from prompts and instructions because they operate at the workflow level instead of the conversation level.
 
 In workflow tools, hooks often run at strategic points such as task start or completion, before or after a prompt is submitted, or when an agent transitions between phases.
-
 
 ### What problem do hooks solve?
 
@@ -294,7 +293,6 @@ Good candidates for hooks are :
 - Guardrails
 - Enforcement
 - Auditing
-
 
 ### When to use hooks?
 
@@ -312,7 +310,7 @@ The biggest mistake is using hooks to compensate for a missing instruction or un
 
 :::
 
-## 6) MCP Servers
+## MCP Servers
 
 ### What is an MCP Server?
 
@@ -400,14 +398,6 @@ The restaurant might have recipes for:
 4. Combine everything correctly without scrambling the eggs.
 5. Finish with black pepper and Pecorino Romano.
 
-**Tiramisu**
-
-1. Prepare the coffee.
-2. Make the mascarpone mixture.
-3. Dip the ladyfingers.
-4. Layer the ingredients.
-5. Chill and finish with cocoa.
-
 These recipes are the equivalent of **skills**.
 
 Each skill packages reusable expertise for a particular kind of task.
@@ -416,29 +406,7 @@ The kitchen does not need to relearn how to make carbonara every time someone or
 
 The same idea applies to Copilot.
 
-An engineering agent might have access to several specialised skills:
-
-* **Requirements analysis skill**
-* **Test adequacy skill**
-* **Architecture impact skill**
-* **Security review skill**
-* **ADR review skill**
-
-The agent does not need every skill for every task.
-
-If the request is:
-
-> “Review this pull request.”
-
-the agent might use the requirements-alignment, test-adequacy and architecture-impact skills.
-
-If the request is:
-
-> “Review this proposed architecture decision.”
-
-it might instead use the ADR-review and architecture-impact skills.
-
-The skills provide reusable know-how. The **agent decides which capabilities are relevant to achieving the goal**.
+The **agent decides which capabilities are relevant to achieving the goal**.
 
 ### The chef is the agent
 
@@ -551,20 +519,6 @@ The **agent** coordinates all of this.
 
 So the pieces are doing fundamentally different jobs:
 
-**Prompt → What needs to be done**
-
-**Instructions → What rules must be followed**
-
-**Skills → How particular kinds of work should be done**
-
-**Hook → What should happen automatically when an event occurs**
-
-**MCP → What external tools and information the agent can access**
-
-**Agent → The worker that brings those pieces together to achieve the outcome**
-
-That distinction is important.
-
 A recipe cannot check the stockroom.
 
 A stock-management system does not know how to make a pizza.
@@ -578,7 +532,7 @@ Each piece has its own responsibility.
 The strength of the system comes from **combining them rather than trying to force everything into one giant prompt**.
 
 
-### Final thoughts : Scope and ownership
+## Final takeaway 
 
 The repeated question in all of this is not just “what is it?” but “what is its scope, and who owns the responsibility?”
 
