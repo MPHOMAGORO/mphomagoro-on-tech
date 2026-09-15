@@ -45,13 +45,13 @@ At some point, you realise the problem. You are spending a surprising amount of 
 
 And that is where prompting starts to feel insufficient.
 
-This is where GitHub Copilot customization starts to become genuinely useful.
+This is where GitHub Copilot customisation starts to become genuinely useful.
 
 :::tip
 
 ### Quick decision framework
 
-Use this as a practical filter when deciding which Copilot customization mechanism to reach for:
+Use this as a practical filter when deciding which Copilot customisation mechanism to reach for:
 
 - **Prompt**: use when the guidance is one-off, task-specific, and meant for a single job.
 - **Instructions**: use when the rule should apply repeatedly without needing to be restated.

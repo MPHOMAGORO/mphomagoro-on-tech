@@ -124,22 +124,21 @@ function Featured() {
               engineering practices that mattered most.
             </p>
 
-            <Link to="/articles">Read article →</Link>
+            <Link to="/articles/gh300-github-copilot-lessons">Read article →</Link>
           </article>
 
           <article className={styles.featureCard}>
-            <span className={styles.tag}>Solution Architecture</span>
+            <span className={styles.tag}>AI Engineering</span>
 
             <Heading as="h3">
-              How to Write an Architecture Decision Record That Actually Helps
+            Prompts vs Instructions vs Skills vs Agents vs Hooks
             </Heading>
 
             <p>
-              A practical way to capture architectural decisions, alternatives
-              and trade-offs without turning ADRs into bureaucracy.
+              GitHub Copilot customisation and AI engineering workflows for building software with AI.
             </p>
 
-            <Link to="/articles">Read article →</Link>
+            <Link to="/articles/copilot-instructions-vs-prompts-skills-vs-agents">Read article →</Link>
           </article>
         </div>
       </div>
