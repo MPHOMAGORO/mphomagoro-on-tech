@@ -353,7 +353,7 @@ The MCP design should follow least privilege.
 
 :::
 
-## 7) How it all fits together?
+##  How it all fits together?
 
 Imagine we are running an Italian restaurant.
 
