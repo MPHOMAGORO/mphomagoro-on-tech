@@ -113,7 +113,7 @@ and reuse it.
 
 ### When should you use prompts?
 
-As a rule of thumb, use a prompt file when the request is repeatable but still represents a task you you deliberatel invoke when needed.
+As a rule of thumb, use a prompt file when the request is repeatable but still represents a task  you deliberately invoke when needed.
 
 :::tip
 
@@ -239,7 +239,7 @@ For example, instead of telling Copilot how to assess a PR, you could have separ
 ### When should you use skills?
 
 As a rule of thumb, use skills when the work is repeatable, bounded, and requires recognisable expertise.
-The best candidates tend to be specialised reasoning modules.
+The best candidates tend to be specialised, reusable capabilities.
 
 :::tip
 Good candidates include:
@@ -278,7 +278,7 @@ A useful way to think about agents is as responsibility boundaries: role-based A
 
 They are useful when you want to separate concerns such as planning, implementation, review, or migration work.
 
-A skills knows how to do something. An agent is responsible for getting something done.
+A skill knows how to do something. An agent is responsible for getting something done.
 
 In workflows that support agent handoffs, one specialised agent can pass work to another when its phase is complete.
 
@@ -288,7 +288,7 @@ Agents reduce context mixing. Instead of asking one general worker to act as pla
 
 ### When should you use agents?
 
-A good default is to use an agent when the workflow is specialised, repeated, or involves a clear sequence of responsibilities.
+A good default is to use an agent when the work has a distinct role, responsibility boundary, or multi-step workflow that benefits from dedicated ownership.
 
 :::note
 
@@ -324,12 +324,11 @@ In workflow tools, hooks often run at strategic points such as task start or com
 
 Hooks automate predefined actions when particular lifecycle events occur. They are useful for checks, logging, validation and other repeatable workflow actions.
 
-Good candidates for hooks are :
-- Guardrails
+Good candidates for hooks are:
 - Validation
 - Auditing
 - Logging
-- Pr/post-task checks
+- Pre/post-task checks
 
 ### When should you use hooks?
 
@@ -428,13 +427,7 @@ The restaurant might have recipes for:
 4. Bake at the required temperature.
 5. Finish with basil and olive oil.
 
-**Carbonara**
-
-1. Cook the pasta.
-2. Prepare the egg and cheese mixture.
-3. Cook the guanciale.
-4. Combine everything correctly without scrambling the eggs.
-5. Finish with black pepper and Pecorino Romano.
+The restaurant may also have a separate `Carbonara` recipe with a different preparation method.
 
 These recipes are the equivalent of **skills**.
 
@@ -444,7 +437,7 @@ The kitchen does not need to relearn how to make carbonara every time someone or
 
 The same idea applies to Copilot.
 
-The **agent decides which capabilities are relevant to achieving the goal**.
+The **agent can use the capabilities made available to it when they are they are relevant to achieving the goal**.
 
 ### The chef is the agent
 
@@ -555,7 +548,6 @@ Each piece has its own responsibility.
 
 The strength of the system comes from **combining them rather than trying to force everything into one giant prompt**.
 
-
 ## Final takeaway 
 
 The goal of Copilot customisation is not to use more features. It is to design better boundaries.
@@ -566,7 +558,9 @@ The important question is not simply:
 
 But: 
 
-> **“What is its scope?** \n> **Who owns the responsibility?**  \n> **Where does it belong?”**
+> **"What is its scope?"** <br/>
+> **"Who owns the responsibility?"**  <br/>
+> **"Where does it belong?”**
 
 Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.
 
