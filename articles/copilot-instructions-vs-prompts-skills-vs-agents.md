@@ -113,7 +113,7 @@ and reuse it.
 
 ### When should you use prompts?
 
-As a rule of thumb, use a prompt file when the task is repeatable, intentional, and only needed in the moment.
+As a rule of thumb, use a prompt file when the request is repeatable but still represents a task you you deliberatel invoke when needed.
 
 :::tip
 
@@ -153,11 +153,11 @@ GitHub Copilot supports several kinds of instructions:
   - **Repository-wide instructions**: These apply to requests in the repository and are usually stored in `.github/copilot-instructions.md`.
   - **Path-specific instructions**: These are targeted to matching files and use the `applyTo` pattern. These are usually stored in `.github/instructions/*.instructions.md`.
   - **Agent instructions**: These are used by agent workflows and can be scoped with `AGENTS.md` files.
-  - **Organization-level instructions**: These can apply across repositories in a GitHub organization.
+  - **Organisation-level instructions**: These can apply across repositories in a GitHub organisation.
 
 ### What problem do instructions solve?
 
-Instructions make persistent project knowledge available automatically, so developers do not have to repeat it and Copilot makes fewer incorrect assumptions.
+Instructions make persistent project knowledge available when relevant, reducing repetition and helping Copilot avoid incorrect assumptions.
 
 Without instructions, developers repeatedly put the same context into prompts.
 
@@ -179,8 +179,8 @@ __Good candidates include:__
 
 ### When should you NOT use instructions?
 - You only need a task or operation once.
-- The workflow is complex and multi-step.
-- The task requires specialized tooling or context that should not be treated as a universal rule.
+- The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance
+- The task requires specialised tooling or context that should not be treated as a universal rule.
 
 :::danger
 
@@ -223,7 +223,7 @@ Skills are reusable, task-specific capabilities that can be surfaced to an agent
 In many agent setups, skills are selected or loaded only when a specific kind of task comes up. The name and description often help the agent decide when a skill is relevant.
 
 ### What problem do skills solve?
-Skills solve the problem of repeated specialist reasoning.
+Skills solve the problem of repeatedly recreating specialised methods, knowledge, and supporting resources.
 Without skills, teams often keep rewriting the same guidance into prompts:
 
 > Review this PR for architecture impact, requirements alignment, and test adequacy.
@@ -326,8 +326,10 @@ Hooks automate predefined actions when particular lifecycle events occur. They a
 
 Good candidates for hooks are :
 - Guardrails
-- Enforcement
+- Validation
 - Auditing
+- Logging
+- Pr/post-task checks
 
 ### When should you use hooks?
 
@@ -349,7 +351,8 @@ The biggest mistake is using hooks to compensate for a missing instruction or un
 
 ### What is an MCP Server?
 
-It is a server that exposes external data, tools, or systems through the Model Context Protocol.
+An MCP server exposes external data, tools, or systems through the Model Context Protocol.
+
 MCP is an open standard that lets applications share context and capabilities with LLMs.
 
 ### What problem does MCP solve?
@@ -358,7 +361,7 @@ MCP gives AI applications a standard way to access external information and capa
 For example, a requirements analyst agent may need information from a GitHub issue.
 Without MCP, the agent may have to rely on a human to copy that context into the conversation manually.
 
-You do not want to manually copy everything into the chat every time.
+For repeated workflows, manually copying that context into chat becomes inefficient and error-prone.
 
 So instead of:
 
@@ -557,15 +560,13 @@ The strength of the system comes from **combining them rather than trying to for
 
 The goal of Copilot customisation is not to use more features. It is to design better boundaries.
 
-The important question in all of this is not: 
+The important question is not simply: 
 
-> “What is it?” or " What feature should I use?"
+> "What feature should I use?"
 
 But: 
 
-> **“What is its scope?**
-> **Who owns the responsibility?**  
-> **Where does it belong?”**
+> **“What is its scope?** \n> **Who owns the responsibility?**  \n> **Where does it belong?”**
 
 Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.
 
