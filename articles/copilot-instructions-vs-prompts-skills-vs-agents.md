@@ -436,22 +436,13 @@ The restaurant already has a set of standing rules:
 
 These are the equivalent of **instructions**.
 
-They do not explain how to make one particular dish.
-They define the rules and constraints under which the kitchen operates.
+They do not explain how to make one particular dish. They define the rules and constraints under which the kitchen operates.
 
-### The restaurant needs more than one recipe
+### The recipe is the skill
 
-Now we need the actual know-how for preparing the food.
+Now we need the actual know-how for preparing the pizza.
 
-The restaurant might have recipes for:
-
-**Margherita Pizza**
-
-1. Prepare and stretch the dough.
-2. Add tomato sauce.
-3. Add fresh mozzarella.
-4. Bake at the required temperature.
-5. Finish with basil and olive oil.
+The `Margherita` recipe describes how to prepare the dough, add the ingredients, bake the pizza and finish the dish.
 
 The restaurant may also have a separate `Carbonara` recipe with a different preparation method.
 
@@ -459,70 +450,39 @@ These recipes are the equivalent of **skills**.
 
 Each skill packages reusable expertise for a particular kind of task.
 
-The kitchen does not need to relearn how to make carbonara every time someone orders it. The method already exists and can be selected when the task requires it.
-
-The same idea applies to Copilot.
-
-The **agent can use the capabilities made available to it when they are they are relevant to achieving the goal**.
+The kitchen does not need to relearn how to make a `Margherita` or `Carbonara` every time someone orders one.
 
 ### The chef is the agent
 
 The **agent** is the chef.
 
-The chef receives the customer's order, works within the restaurant's standing rules, chooses the appropriate recipe and performs the work.
+The chef receives the order, works within the restaurant's standing rules, selects the appropriate recipe and performs the work.
 
-So for our pizza order:
+A recipe knows how a dish should be made.
 
-**Prompt**
-“Make me a Margherita pizza.”
+The chef wns the responsibiity for getting it made.
 
-**Instructions**
-Use fresh ingredients, follow food-safety rules and prepare orders within 30 minutes.
-
-**Skill**
-The Margherita pizza recipe.
-
-**Agent**
-The chef who understands the request, selects the appropriate recipe and carries out the work.
-
-But there is still something missing.
-
-A chef cannot operate using recipes alone.
-
-They sometimes need information or capabilities that exist **outside the kitchen**.
+But recipes alone are not enough. Some capabilities exist outside the chef's enviornment.
 
 ### Hooks are the kitchen's automatic checks
 
-Now imagine the restaurant has an automatic kitchen monitor.
+Imagine that when an order is marked ready, the front-of-house team is automtically notified and the order status is updated.
 
-When a new order is placed, a hook checks whether the required ingredients are available. If mozzarella is running low, it can trigger a restock alert before the pizza is started. When the pizza is marked ready, another hook can notify the front-of-house team and update the order status.
+That is the equivalent of a __hook__.
 
-This is different from a prompt, instruction, or skill. The hook is not the task itself, the rule, or the recipe. It is the automatic event-driven trigger that fires when something important happens.
+Nobody has to remember to request the action. It happens because a defined event occured.
 
-### MCP is how the kitchen connects to the outside world
+The hook is not the order, the rule, or the recipe. It connects an event to an automatic action.
 
-Imagine the chef discovers that the kitchen has run out of fresh mozzarella.
+### MCP connects the kitchen to the outside world
 
-Knowing the recipe does not magically provide mozzarella.
+Now imagine the chef discovers that the kitchen needs information from somewhere else.
 
-The chef needs access to an external supplier system.
+They may need to check ingredient stock, look up a customer's allergy information, or place an order with an approved supplier.
 
-Or perhaps the chef needs to:
+Those external capabilities are not skills.
 
-* Check whether an ingredient is in stock.
-* Order more ingredients from a supplier.
-* Look up today's reservations.
-* Check whether a customer has recorded an allergy.
-* Update an order in the restaurant's ordering system.
-* Check a delivery status.
-
-Those external systems are not skills.
-
-They are **systems the chef needs to interact with**.
-
-This is where **MCP servers** fit into the analogy.
-
-An MCP server acts like a standard connection between the chef and an outside service, exposing tools or data the agent can use. In GitHub Copilot, custom agents can be configured with MCP servers and specific tools from those servers.
+Knowing how to make a pizza does not give the chef access to an inventory or supplier system.
 
 For our restaurant, imagine we have:
 
@@ -540,17 +500,15 @@ Allows the chef to:
 * Check ingredient availability.
 * Place an ingredient order.
 
-Now the workflow becomes much more powerful.
+### Putting the pieces together
 
 A customer says:
 
 > **“Make me a Margherita pizza.”**
 
-The chef receives the **prompt**.
+The chef receives the **prompt**, follows the restaurant's **instructions**, applies the **Margherita pizza skill**.
 
-The chef follows the restaurant's **instructions**.
-
-The chef selects the **Margherita pizza skill**.
+Defined hooks can automatically perform actions when particular events occur.
 
 The chef checks the inventory system through an **MCP server** and discovers that fresh mozzarella is available.
 
@@ -558,13 +516,9 @@ The chef then prepares the pizza.
 
 The **agent** coordinates all of this.
 
-So the pieces are doing fundamentally different jobs:
+Each piece has a different responsibility.
 
-A recipe cannot check the stockroom.
-
-A stock-management system does not know how to make a pizza.
-
-The restaurant rules do not tell the chef which dish the customer ordered.
+A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's oder does not need to contain the entire recipe.
 
 And the customer's order does not need to contain the entire recipe.
 
