@@ -214,7 +214,7 @@ A skill packages reusable expertise for a particular kind of work.
 
 It captures a recognisable method, body of knowledge, or approach that can be applied whenever the same type of problem appears.
 
-A skill does not own the overall workflow. It contributes specialised capability to whoever is performing the work.
+A skill does not own **the overall workflow.** It contributes specialised capability to whoever is performing the work.
 
 ### What problem do skills solve?
 
@@ -427,7 +427,7 @@ The restaurant may also have a separate `Carbonara` recipe with a different prep
 
 These recipes are the equivalent of **skills**.
 
-Each skill packages reusable expertise for a particular kind of task.
+**Each skill packages reusable expertise for a particular kind of task.**
 
 The kitchen does not need to relearn how to make a `Margherita` or `Carbonara` every time someone orders one.
 
@@ -451,7 +451,7 @@ That is the equivalent of a **hook**.
 
 Nobody has to remember to request the action. It happens because a defined event occurred.
 
-The hook is not the order, the rule, or the recipe. It connects an event to an automatic action.
+The hook is not the order, the rule, or the recipe. **It connects an event to an automatic action.**
 
 ### MCP connects the kitchen to the outside world
 
