@@ -167,16 +167,16 @@ Instructions make sense when the guidance should follow the work without the dev
 This keeps the context stable and makes the rules easier to apply consistently across work.
 
 **Instructions are a good fit for:**
-- naming or coding conventions
-- testing frameworks and testing expectations
-- patterns the team uses or avoids
-- repository architecture and important boundaries
-- language/framework conventions
+- Naming or coding conventions.
+- Testing frameworks and testing expectations.
+- Patterns the team uses or avoids.
+- Repository architecture and important boundaries.
+- Language/framework conventions.
 
 
 ### When should you NOT use instructions?
 - You only need a task or operation once.
-- The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance
+- The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance.
 - The task requires specialised tooling or context that should not be treated as a universal rule.
 
 ### Common mistakes
@@ -189,16 +189,16 @@ Vague principles are another problem: instructions should express actionable con
 
   <TabItem value="effective" label="✅ Effective" default>
 
-  Do not log authentication tokens <br/>
-  New HTTP integrations must use the existing typed HttpClient pattern <br/>
-  Use xUnit for new unit tests <br/>
+  Do not log authentication tokens.<br/>
+  New HTTP integrations must use the existing typed HttpClient pattern.<br/>
+  Use xUnit for new unit tests.<br/>
 
   </TabItem>
   <TabItem value="ineffective" label="⚠️ Ineffective">
 
-  Write high-quality code <br/>
-  Make sure the code is secure <br/>
-  Follow best practices 
+  Write high-quality code.<br/>
+  Make sure the code is secure.<br/>
+  Follow best practices.
 
   </TabItem>
 
@@ -214,7 +214,7 @@ A skill packages reusable expertise for a particular kind of work.
 
 It captures a recognisable method, body of knowledge, or approach that can be applied whenever the same type of problem appears.
 
-A skill does not own **the overall workflow.** It contributes specialised capability to whoever is performing the work.
+A skill does not own **the overall workflow**. It contributes specialised capability to whoever is performing the work.
 
 ### What problem do skills solve?
 
@@ -233,16 +233,16 @@ A good skill has a recognisable boundary: it performs a particular kind of speci
 The best candidates tend to be specialised, reusable capabilities.
 
 **Good skill boundaries include:**
-- Requirements completeness assessment
-- Test adequacy assessment
-- Architecture impact analysis
-- Backward-compatibility analysis
-- Migration-risk analysis
+- Requirements completeness assessment.
+- Test adequacy assessment.
+- Architecture impact analysis.
+- Backward-compatibility analysis.
+- Migration-risk analysis.
 
 ### When should you NOT use skills?
 
 A skill is not necessary when:
-- The task is trivial
+- The task is trivial.
 - It is only needed once.
 - The capability cannot be defined clearly enough to produce consistent results.
 
@@ -279,11 +279,11 @@ The value of an agent therefore comes from the responsibility it owns, not from 
 Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.
 
 **Good agent responsibilities include:**
-- Analysing whether requirements are ready for implementation
-- Turning approved requirements into an implementation plan
-- Implementing a defined change
-- Reviewing a pull request and producing findings
-- Coordinating a bounded migration workflow
+- Analysing whether requirements are ready for implementation.
+- Turning approved requirements into an implementation plan.
+- Implementing a defined change.
+- Reviewing a pull request and producing findings.
+- Coordinating a bounded migration workflow.
 
 ### When should you NOT use agents?
 
@@ -408,10 +408,10 @@ But the chef should not make the pizza however they want.
 
 The restaurant already has a set of standing rules:
 
-* Use fresh ingredients.
-* Keep preparation time under 30 minutes.
-* Follow the restaurant's food-safety standards.
-* Use approved ingredients and suppliers.
+- Use fresh ingredients.
+- Keep preparation time under 30 minutes.
+- Follow the restaurant's food-safety standards.
+- Use approved ingredients and suppliers.
 
 These are the equivalent of **instructions**.
 
@@ -421,15 +421,15 @@ They do not explain how to make one particular dish. They define the rules and c
 
 Now we need the actual know-how for preparing the pizza.
 
-The `Margherita` recipe describes how to prepare the dough, add the ingredients, bake the pizza and finish the dish.
+The Margherita recipe describes how to prepare the dough, add the ingredients, bake the pizza and finish the dish.
 
-The restaurant may also have a separate `Carbonara` recipe with a different preparation method.
+The restaurant may also have a separate Carbonara recipe with a different preparation method.
 
 These recipes are the equivalent of **skills**.
 
 **Each skill packages reusable expertise for a particular kind of task.**
 
-The kitchen does not need to relearn how to make a `Margherita` or `Carbonara` every time someone orders one.
+The kitchen does not need to relearn how to make a Margherita or Carbonara every time someone orders one.
 
 ### The chef is the agent
 
@@ -443,7 +443,7 @@ The chef owns the responsibility for getting it made.
 
 But recipes alone are not enough. Some capabilities exist outside the chef's environment.
 
-### Hooks are the kitchen's automatic checks
+### Hooks are the kitchen's automatic actions
 
 Imagine that when an order is marked ready, the front-of-house team is automatically notified and the order status is updated.
 
@@ -468,16 +468,16 @@ For our restaurant, imagine we have:
 **Inventory MCP server**
 Allows the chef to:
 
-* Check ingredient stock.
-* Find ingredient locations.
-* Update stock levels.
+- Check ingredient stock.
+- Find ingredient locations.
+- Update stock levels.
 
 **Supplier MCP server**
 Allows the chef to:
 
-* Find approved suppliers.
-* Check ingredient availability.
-* Place an ingredient order.
+- Find approved suppliers.
+- Check ingredient availability.
+- Place an ingredient order.
 
 ### Putting the pieces together
 
