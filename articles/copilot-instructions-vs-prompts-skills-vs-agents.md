@@ -37,13 +37,16 @@ Later that morning, you open another conversation to work on something else.
 - Again, you explain the project structure.
 - Again, you mention the coding standards.
 - Again, you remind it how your team expects tests to be written.
-- Again, you remind on which architectural boundaries it needs to respect.
+- Again, you remind it which architectural boundaries it needs to respect.
 
 At some point, you realise the problem. You are spending a surprising amount of time teaching Copilot how your engineering environment works before asking it to do any actual engineering. 
 
-- Some knowledge should already be available and automatic. 
-- Some behaviours should be reusable.
-- Some work should belong to belong to a specialised worker.
+- Some rules should already be available.
+- Some expertise should be reusable. 
+- Some work should have a clear owner.
+- Some behaviour should happen automatically.
+- Some workflows need access to systems outside Copilot.
+
 
 And that is where prompting starts to feel insufficient.
 
@@ -93,9 +96,7 @@ Use the smallest mechanism that solves the problem.
 
 ## Prompts: What do I want done right now?
 
-A prompt expresses immediate intent. It tells Copilot what you want to do in the current situation.
-
-Prompts express the task you want Copilot to perform for a specific job. They can be written directly in a conversation or saved as reusable prompt files, typically using the .prompt.md format, and invoked when needed.
+A prompt expresses immediate intent: the task you want Copilot to perform now. It can be written directly in a conversation or saved as a reusable .prompt.md file for repeated use.
 
 The important distinction is that a prompt represents what you want done now, even when the prompt itself is reusable.
 
@@ -280,6 +281,8 @@ A useful way to think about agents is as responsibility boundaries: role-based A
 
 They are useful when you want to separate concerns such as planning, implementation, review, or migration work.
 
+A sklls knows how to do something. An agent is responsible for getting something done.
+
 In workflows that support agent handoffs, one specialised agent can pass work to another when its phase is complete.
 
 ### What problem do agents solve?
@@ -299,7 +302,7 @@ Agents are valuable because they establish responsibility boundaries, not becaus
 ### When should you NOT use agents?
 
 A dedicated agent is usually unnecessary when: 
-- You need reusable expertise knowledge. That's probably a skill.
+- You need reusable expertise. That's probably a skill.
 - You are simply repeating the same request. That's probably a prompt.
 - A rule should apply everywhere. Those belong in instructions. 
 - The default Copilot agent already does a good job.
@@ -322,7 +325,7 @@ In workflow tools, hooks often run at strategic points such as task start or com
 
 ### What problem do hooks solve?
 
-Hooks solve the problem of enforcing behaviour automatically when a task or workflow starts, finishes, or changes state. They are useful when you want a standard workflow to happen without requiring the developer to remember to trigger it manually.
+Hooks automate predefined actions when particular lifecycle events occur. They are useful for checks, logging, validation and other repeatable workflow actions.
 
 Good candidates for hooks are :
 - Guardrails
@@ -362,11 +365,11 @@ You do not want to manually copy everything into the chat every time.
 
 So instead of:
 
-> Human -> Copy user story -> paste into Copilot 
+> Human → copy user story → paste into Copilot
 
 you can move toward:
 
-> Agent -> MCP -> GitHub
+> Agent → MCP → GitHub
 
 ### When should you use MCP?
 
@@ -375,7 +378,7 @@ MCP is often useful when Copilot needs to interact with an external system or re
 ### When should you NOT use MCP?
 
 - When built-in capabilities already solve the work.
-- When the knowledge is static and does not change. Prefer to  use instructions or a skill.
+- When the information is project guidance or reusable methodology that can live in instructions, repository context, or a skill.
 
 :::danger
 
@@ -386,7 +389,7 @@ The MCP design should follow **least privilege**.
 
 :::
 
-##  How it all fits together?
+##  How it all fits together
 
 Imagine we are running an Italian restaurant.
 
@@ -520,20 +523,6 @@ Allows the chef to:
 * Check ingredient availability.
 * Place an ingredient order.
 
-**Reservation MCP server**
-Allows the chef to:
-
-* Check today's bookings.
-* Find customer dietary requirements.
-* See expected party sizes.
-
-**Order Management MCP server**
-Allows the chef to:
-
-* Read incoming orders.
-* Update an order's status.
-* Mark an order as completed.
-
 Now the workflow becomes much more powerful.
 
 A customer says:
@@ -577,7 +566,9 @@ The important question in all of this is not:
 
 But: 
 
-> **“What is its scope, and who owns the responsibility, and where does it belong?”**
+> **“What is its scope?**
+> **Who owns the responsibility?**  
+> **Where does it belong?”**
 
 Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.
 
