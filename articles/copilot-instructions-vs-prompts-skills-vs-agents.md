@@ -96,13 +96,10 @@ Use the smallest mechanism that solves the problem.
 
 ## Prompts: What do I want done right now?
 
-A prompt expresses immediate intent: the task you want Copilot to perform now. It can be written directly in a conversation or saved as a reusable .prompt.md file for repeated use.
-
-The important distinction is that a prompt represents what you want done now, even when the prompt itself is reusable.
+A prompt expresses immediate intent: the task you want Copilot to perform now. It can be written directly in a conversation or saved as a reusable `.prompt.md` file for repeated use.
 
 ### What problem do prompts solve?
 
-Prompts solve the problem of telling Copilot what you want it to do right now.
 Even though Copilot already has some surrounding context — such as the current active file, selected code, and chat history — it still needs an explicit goal.
 
 Instead of repeatedly writing:
@@ -281,7 +278,7 @@ A useful way to think about agents is as responsibility boundaries: role-based A
 
 They are useful when you want to separate concerns such as planning, implementation, review, or migration work.
 
-A sklls knows how to do something. An agent is responsible for getting something done.
+A skills knows how to do something. An agent is responsible for getting something done.
 
 In workflows that support agent handoffs, one specialised agent can pass work to another when its phase is complete.
 
