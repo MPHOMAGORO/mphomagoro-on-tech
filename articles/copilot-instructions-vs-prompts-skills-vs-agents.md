@@ -1,7 +1,7 @@
 ---
 title: "How GitHub Copilot Customisation Actually Fits Together"
 description: "Prompts, instructions, skills, agents, hooks, and MCP explained."
-date: 2026-09-20
+date: 2026-09-25
 authors: [mpho]
 image: /img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.png
 tags:
