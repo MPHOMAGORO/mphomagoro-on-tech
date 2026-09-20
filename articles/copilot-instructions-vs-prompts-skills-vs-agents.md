@@ -111,7 +111,7 @@ The important distinction is that a prompt represents the request, not all of th
 
 AI needs direction. 
 
-Even though relevant context is already available, Copilot still needs to understand the outcome you ar trying to achieve.
+Even though relevant context is already available, Copilot still needs to understand the outcome you are trying to achieve.
 
 A prompt provides that immediate goal.
 
@@ -121,7 +121,7 @@ That is usually a sign that some of those responsibilities belong elsewhere.
 
 ### When should you use prompts?
 
-Prompt files work best for tasks you intentionally invoke rather than behaviour that should always apply.
+Prompts work best for tasks you intentionally invoke rather than behaviour that should always apply.
 
 :::tip
 
@@ -198,10 +198,9 @@ __This works particularly well for:__
 
 ### Common mistakes
 
-The **first mistake** is putting every rule at the repository scope.
-If .NET conventions and React conventions all live in the global file, Copilot receives irrelevant information constantly. This is where file-specific custom instructions are more useful.
+Instruction scope is often too broad. Guidance should apply only where it is relevant; otherwise unrelated work receives unnecessary constraints.
 
-The **second mistake** is writing vague principles instead of actionable constraints.
+Vague principles are another problem: instructions should express actionable constraints.
 
 <Tabs>
 
@@ -222,8 +221,7 @@ The **second mistake** is writing vague principles instead of actionable constra
 
 </Tabs>
 
-The **third mistake** that often gets overlooked is treating instructions as enforcement.
-GitHub explicitly notes that, because AI is nondeterministic, Copilot may not follow custom instructions in the same way every time.
+Instructions guide behaviour; they do not enforce it. If a rule must be guaranteed, it needs an enforcement mechanism rather than relying on AI behaviour alone.
 
 :::
 
@@ -304,7 +302,7 @@ The value of an agent therefore comes from the responsibility it owns, not from 
 
 ### When should you use agents?
 
-Create an agent when the work deserves its own responsibility boundary — for example planning, reviewing, migration, or implementation.
+Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.
 
 ### When should you NOT use agents?
 
@@ -334,9 +332,9 @@ __When this event occurs, perform this action.__
 
 ### What problem do hooks solve?
 
-Some workflow behaviour should be reliable rather than optional.  Checks, logging, validation, notifications and other mechanical  actions can easily be forgotten when they depend on someone remembering to request them.
+Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical  actions can easily be forgotten when they depend on someone remembering to request them.
 
-Hooks move that responsibility out of the __conversation__ and into the __worflow__ itself.
+Hooks move that responsibility out of the __conversation__ and into the __workflow__ itself.
 
 :::tip
 
@@ -409,7 +407,7 @@ MCP becomes relevant when the workflow reaches beyond the context Copilot alread
 ### Common mistakes
 
 The **biggest mistake** is giving the MCP integration all permissions.
-The MCP design should follow **least privilege**.
+The MCP design should follow **least privilege**. External capability should be bounded. Give a workflow only the access it genuinely needs to perform its role or fulfil its responsibility.
 
 :::
 
@@ -460,17 +458,17 @@ The chef receives the order, works within the restaurant's standing rules, selec
 
 A recipe knows how a dish should be made.
 
-The chef wns the responsibiity for getting it made.
+The chef owns the responsibiity for getting it made.
 
-But recipes alone are not enough. Some capabilities exist outside the chef's enviornment.
+But recipes alone are not enough. Some capabilities exist outside the chef's environment.
 
 ### Hooks are the kitchen's automatic checks
 
-Imagine that when an order is marked ready, the front-of-house team is automtically notified and the order status is updated.
+Imagine that when an order is marked ready, the front-of-house team is automatically notified and the order status is updated.
 
 That is the equivalent of a __hook__.
 
-Nobody has to remember to request the action. It happens because a defined event occured.
+Nobody has to remember to request the action. It happens because a defined event occurred.
 
 The hook is not the order, the rule, or the recipe. It connects an event to an automatic action.
 
@@ -518,9 +516,7 @@ The **agent** coordinates all of this.
 
 Each piece has a different responsibility.
 
-A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's oder does not need to contain the entire recipe.
-
-And the customer's order does not need to contain the entire recipe.
+A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's order does not need to contain the entire recipe.
 
 Each piece has its own responsibility.
 
