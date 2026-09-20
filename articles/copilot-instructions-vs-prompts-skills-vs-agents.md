@@ -310,7 +310,7 @@ A dedicated agent is usually unnecessary when:
 - You need reusable expertise. That's probably a skill.
 - You are simply repeating the same request. That's probably a prompt.
 - A rule should apply everywhere. Those belong in instructions. 
-- The default Copilot agent already does a good job.
+- The existing worker already has sufficient responsibility and context for the task.
 
 :::warning
 
@@ -332,7 +332,7 @@ __When this event occurs, perform this action.__
 
 ### What problem do hooks solve?
 
-Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical  actions can easily be forgotten when they depend on someone remembering to request them.
+Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical actions can easily be forgotten when they depend on someone remembering to request them.
 
 Hooks move that responsibility out of the __conversation__ and into the __workflow__ itself.
 
@@ -406,8 +406,7 @@ MCP becomes relevant when the workflow reaches beyond the context Copilot alread
 
 ### Common mistakes
 
-The **biggest mistake** is giving the MCP integration all permissions.
-The MCP design should follow **least privilege**. External capability should be bounded. Give a workflow only the access it genuinely needs to perform its role or fulfil its responsibility.
+External capability should be bounded. Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.
 
 :::
 
@@ -458,7 +457,7 @@ The chef receives the order, works within the restaurant's standing rules, selec
 
 A recipe knows how a dish should be made.
 
-The chef owns the responsibiity for getting it made.
+The chef owns the responsibility for getting it made.
 
 But recipes alone are not enough. Some capabilities exist outside the chef's environment.
 
@@ -514,8 +513,6 @@ The chef then prepares the pizza.
 
 The **agent** coordinates all of this.
 
-Each piece has a different responsibility.
-
 A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's order does not need to contain the entire recipe.
 
 Each piece has its own responsibility.
@@ -530,7 +527,7 @@ The important question is not simply:
 
 > "What feature should I use?"
 
-But: 
+Instead, ask: 
 
 > **"What is its scope?"**
 >
