@@ -119,7 +119,7 @@ That is usually a sign that some of those responsibilities belong elsewhere.
 
 Prompts work best for tasks you intentionally invoke rather than behaviour that should always apply.
 
-__Typical prompt tasks include__:
+**Typical prompt tasks include:**
 - Generating unit tests according to a standard structure.
 - Creating an implementation plan.
 - Reviewing an API for security concerns.
@@ -166,7 +166,7 @@ Instructions make sense when the guidance should follow the work without the dev
 
 This keeps the context stable and makes the rules easier to apply consistently across work.
 
-__Instructions are a good fit for:__
+**Instructions are a good fit for:**
 - naming or coding conventions
 - testing frameworks and testing expectations
 - patterns the team uses or avoids
@@ -181,7 +181,7 @@ __Instructions are a good fit for:__
 
 ### Common mistakes
 
-Instruction scope is often too broad. Guidance should apply only where it is relevant; otherwise unrelated work receives unnecessary constraints.
+**Instruction scope is often too broad.** Guidance should apply only where it is relevant; otherwise unrelated work receives unnecessary constraints.
 
 Vague principles are another problem: instructions should express actionable constraints.
 
@@ -232,7 +232,7 @@ A good skill has a recognisable boundary: it performs a particular kind of speci
 
 The best candidates tend to be specialised, reusable capabilities.
 
-__Good skill boundaries include__:
+**Good skill boundaries include:**
 - Requirements completeness assessment
 - Test adequacy assessment
 - Architecture impact analysis
@@ -248,7 +248,7 @@ A skill is not necessary when:
 
 ### Common mistakes
 
-Repetition alone does not justify a skill. A task should also represent reusable expertise with a meaningful boundary.
+**Repetition alone does not justify a skill.** A task should also represent reusable expertise with a meaningful boundary.
 
 Skills tend to break down at either extreme: too broad to provide specialist guidance, or so narrow that they only apply to one ticket or edge case. Another warning sign is when a skill starts coordinating an entire workflow rather than contributing expertise to it.
 
@@ -278,7 +278,7 @@ The value of an agent therefore comes from the responsibility it owns, not from 
 
 Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.
 
-__Good agent responsibilities include__:
+**Good agent responsibilities include:**
 - Analysing whether requirements are ready for implementation
 - Turning approved requirements into an implementation plan
 - Implementing a defined change
@@ -295,7 +295,7 @@ A dedicated agent is usually unnecessary when:
 
 ### Common mistakes
 
-A long prompt is not, by itself, a reason to create an agent. The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.
+**A long prompt is not, by itself, a reason to create an agent.** The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.
 
 Another mistake is creating too many agents for responsibilities that do not need to be separated. Every additional boundary introduces coordination and context handoff, so the separation should earn its complexity.
 
@@ -307,19 +307,19 @@ A hook connects a defined event to an automatic action.
 
 The important idea is the relationship:
 
-__When this event occurs, perform this action.__
+**When this event occurs, perform this action.**
 
 ### What problem do hooks solve?
 
 Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical actions can easily be forgotten when they depend on someone remembering to request them.
 
-Hooks move that responsibility out of the __conversation__ and into the __workflow__ itself.
+Hooks move that responsibility out of the **conversation** and into the **workflow** itself.
 
 ### When should you use hooks?
 
 Hooks earn their place when an action should happen because an event occurred, not because someone remembered to request it.
 
-__Common automated actions include:__
+**Common automated actions include:**
 
 - Validation.
 - Auditing.
@@ -332,7 +332,7 @@ Avoid hooks when the action is optional or requires judgement.
 
 ### Common mistakes
 
-Hooks become dangerous when they automate something that has not been designed clearly in the first place. Automation should make a well-understood workflow reliable, not hide ambiguity inside it.
+**Hooks become dangerous when they automate something that has not been designed clearly in the first place.** Automation should make a well-understood workflow reliable, not hide ambiguity inside it.
 
 Another mistake is using hooks for decisions that require judgement. Hooks work best for predictable actions; if the correct response depends on context or interpretation, that responsibility probably belongs elsewhere.
 
@@ -373,7 +373,7 @@ you can move toward:
 
 MCP becomes relevant when the workflow reaches beyond the context Copilot already has — into another system, data source, or tool.
 
-__Common external capabilities include:__
+**Common external capabilities include:**
 
 - Retrieving requirements from an issue or work-item system.
 - Reading pull request or repository information.
@@ -388,7 +388,7 @@ __Common external capabilities include:__
 
 ### Common mistakes
 
-External capability should be bounded. Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.
+**External capability should be bounded.** Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.
 
 Another mistake is introducing external access when the required information or capability is already available locally.
 
@@ -447,7 +447,7 @@ But recipes alone are not enough. Some capabilities exist outside the chef's env
 
 Imagine that when an order is marked ready, the front-of-house team is automatically notified and the order status is updated.
 
-That is the equivalent of a __hook__.
+That is the equivalent of a **hook**.
 
 Nobody has to remember to request the action. It happens because a defined event occurred.
 
