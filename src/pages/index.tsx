@@ -124,21 +124,21 @@ function Featured() {
               engineering practices that mattered most.
             </p>
 
-            <Link to="/articles/gh300-github-copilot-lessons">Read article →</Link>
+            <Link to="/articles/github-copilot-customisation">Read article →</Link>
           </article>
 
           <article className={styles.featureCard}>
             <span className={styles.tag}>AI Engineering</span>
 
             <Heading as="h3">
-            Prompts vs Instructions vs Skills vs Agents vs Hooks
+              How GitHub Copilot Customisation Actually Fits Together
             </Heading>
 
             <p>
-              GitHub Copilot customisation and AI engineering workflows for building software with AI.
+              Prompts, instructions, skills, agents, hooks, and MCP explained.
             </p>
 
-            <Link to="/articles/copilot-instructions-vs-prompts-skills-vs-agents">Read article →</Link>
+            <Link to="/articles/github-copilot-customisation">Read article →</Link>
           </article>
         </div>
       </div>
