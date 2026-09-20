@@ -96,11 +96,23 @@ Use the smallest mechanism that solves the problem.
 
 ## Prompts: What do I want done right now?
 
-A prompt expresses immediate intent: the task you want Copilot to perform now. It can be written directly in a conversation or saved as a reusable `.prompt.md` file for repeated use.
+A prompt expresses immediate intent.
+
+It tells Copilot what you want to accomplish in the current interaction: review something, explain something, generate something, investigate a problem, or help make a decision.
+
+The important distinction is that a prompt represents the request, not all of the knowledge, rules, or expertise needed to complete it.
 
 ### What problem do prompts solve?
 
-Even though Copilot already has some surrounding context — such as the current active file, selected code, and chat history — it still needs an explicit goal.
+AI needs direction. 
+
+Even though relevant context is already available, Copilot still needs to understand the outcome you ar trying to achieve.
+
+A prompt provides that immediate goal.
+
+The problem starts when the prompt also has to carry every coding standard, architectural rule, testing convention, workflow step, and piece of specialist knowledge required to complete the task.
+
+That is usually a sign that some of those responsibilities belong elsewhere.
 
 Instead of repeatedly writing:
 > Review this API for authentication, authorisation, input validation, rate limiting, logging...
@@ -113,11 +125,11 @@ and reuse it.
 
 ### When should you use prompts?
 
-As a rule of thumb, use a prompt file when the request is repeatable but still represents a task  you deliberately invoke when needed.
+Prompt files work best for tasks you intentionally invoke rather than behaviour that should always apply.
 
 :::tip
 
-Good candidates include:
+__This works particularly well for__:
 - Generating unit tests according to a standard structure.
 - Creating an implementation plan.
 - Reviewing an API for security concerns.
@@ -139,7 +151,7 @@ That's a repository convention. You shouldn't have to remember to restate it in 
 
 ### Common mistakes
 
-The **biggest mistake** is treating every useful **instruction** as a **prompt**. If you are constantly doing this, it means you are compensating for missing custom **instructions** rather than improving your **prompts**.
+**Prompts become bloated when they start carrying information that should already exist elsewhere.** If you repeatedly paste the same coding conventions, architecture rules, or testing expectations into requests, the problem is probably missing instructions rather than weak prompting.
 
 Another **mistake** is turning a prompt into an agent simply because the prompt has become long.
 :::
@@ -147,7 +159,12 @@ Another **mistake** is turning a prompt into an agent simply because the prompt 
 ## Instructions: Always apply these rules
 
 ### What are instructions?
-Instructions are Markdown files containing persistent guidance and rules. In GitHub Copilot, they are typically stored in the repository and are automatically provided when relevant to a request.
+
+Instructions provide persistent guidance and constraints that should influence how work is carried out.
+
+Unlike a prompt, which expresses what you want done now, instructions describe expectations that should remain true across multiple tasks.
+
+They represent the standing rules of the environment.
 
 GitHub Copilot supports several kinds of instructions:
   - **Repository-wide instructions**: These apply to requests in the repository and are usually stored in `.github/copilot-instructions.md`.
@@ -155,20 +172,26 @@ GitHub Copilot supports several kinds of instructions:
   - **Agent instructions**: These are used by agent workflows and can be scoped with `AGENTS.md` files.
   - **Organisation-level instructions**: These can apply across repositories in a GitHub organisation.
 
+
+:::note
+Support for each instruction type varies across GitHub.com, IDEs and Copilot CLI, so check the current GitHub support matrix for your environment.
+:::
+
 ### What problem do instructions solve?
 
-Instructions make persistent project knowledge available when relevant, reducing repetition and helping Copilot avoid incorrect assumptions.
+Without instructions, the same expectations have to be repeatedly communicated.
 
-Without instructions, developers repeatedly put the same context into prompts.
+Developers end up restating things such as architectural boundaries, testing expectations, naming conventions, security requirements, and preferred patterns every time they start a new task.
 
 ### When should you use instructions?
 
-As a default, use custom instructions when you want Copilot to behave consistently without repeating yourself in every chat session.
+Instructions make sense when the guidance should follow the work without the developer having to remember to provide it.
+
 This keeps the context stable and makes the rules easier to apply consistently across work.
 
 :::tip
 
-__Good candidates include:__
+__This works particularly well for:__
 - naming or coding conventions
 - testing frameworks and testing expectations
 - patterns the team uses or avoids
@@ -218,6 +241,13 @@ GitHub explicitly notes that, because AI is nondeterministic, Copilot may not fo
 ## Skills: How should this kind of work be done?
 
 ### What are skills?
+
+A skill packages reusable expertise for a particular kind of work.
+
+It captures a recognisable method, body of knowledge, or approach that can be applied whenever the same type of problem appears.
+
+A skill does not own the overall workflow. It contributes specialised capability to whoever is performing the work.
+
 Skills are reusable, task-specific capabilities that can be surfaced to an agent when the work matches their scope. A skill usually lives in a folder with a required `SKILL.md`, and may include supporting resources such as scripts, references, and assets.
 
 In many agent setups, skills are selected or loaded only when a specific kind of task comes up. The name and description often help the agent decide when a skill is relevant.
@@ -238,11 +268,12 @@ For example, instead of telling Copilot how to assess a PR, you could have separ
 
 ### When should you use skills?
 
-As a rule of thumb, use skills when the work is repeatable, bounded, and requires recognisable expertise.
+A good skill has a recognisable boundary: it performs a particular kind of specialist work that will be useful more than once.
+
 The best candidates tend to be specialised, reusable capabilities.
 
 :::tip
-Good candidates include:
+__This works particularly well for__:
 - Requirements completeness assessment
 - Test adequacy assessment
 - Architecture impact analysis
@@ -261,11 +292,9 @@ A skill is not necessary when:
 
 ### Common mistakes
 
-The biggest mistake is turning every repeated prompt into a skill.
+Repetition alone does not justify a skill. A task should also represent reusable expertise with a meaningful boundary.
 
-1. Skills that are too broad.
-2. Skills that are too narrow. For example, if the skill only applies to one file, one ticket, or one edge case.
-3. Mixing orchestration with expertise. A skill usually describes how to perform a capability.
+Skills tend to break down at either extreme: too broad to provide specialist guidance, or so narrow that they only apply to one ticket or edge case. Another warning sign is when a skill starts coordinating an entire workflow rather than contributing expertise to it.
 
 :::
 
@@ -288,7 +317,7 @@ Agents reduce context mixing. Instead of asking one general worker to act as pla
 
 ### When should you use agents?
 
-A good default is to use an agent when the work has a distinct role, responsibility boundary, or multi-step workflow that benefits from dedicated ownership.
+Create an agent when the work deserves its own responsibility boundary — for example planning, reviewing, migration, or implementation.
 
 :::note
 
@@ -308,7 +337,7 @@ A dedicated agent is usually unnecessary when:
 
 ### Common mistakes
 
-The biggest mistake is treating an agent as a fancy wrapper around a prompt. A real agent is not just a longer set of instructions; it is a role with a defined job, context, and workflow boundary.
+A long prompt is not, by itself, a reason to create an agent. The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.
 
 :::
 
@@ -324,15 +353,19 @@ In workflow tools, hooks often run at strategic points such as task start or com
 
 Hooks automate predefined actions when particular lifecycle events occur. They are useful for checks, logging, validation and other repeatable workflow actions.
 
-Good candidates for hooks are:
+:::tip
+
+This works particularly well for:
 - Validation
 - Auditing
 - Logging
 - Pre/post-task checks
 
+:::
+
 ### When should you use hooks?
 
-A practical rule is to use hooks when a rule or workflow should happen automatically for every relevant event, not just when someone asks for it manually.
+Hooks earn their place when an action should happen because an event occurred, not because someone remembered to request it.
 
 ### When should you NOT use hooks?
 
@@ -342,15 +375,20 @@ Avoid hooks when the action is optional or requires judgement.
 
 ### Common mistakes
 
-The biggest mistake is using hooks to compensate for a missing instruction or unclear workflow. Hooks work best when the behaviour is mechanical and repeatable.
-
+Hooks become dangerous when they automate something that has not been designed clearly in the first place. Automation should make a well-understood workflow reliable, not hide ambiguity inside it.
 :::
 
-## MCP Servers: What external systems can this worker access?
+## MCP: What external capability does the workflow need?
 
-### What is an MCP Server?
+### What is MCP?
 
-An MCP server exposes external data, tools, or systems through the Model Context Protocol.
+MCP provides a way for an AI workflow to reach beyond the information and capabilities already available in its immediate context.
+
+It creates a boundary between the reasoning system and external tools, systems, or sources of information.
+
+The important distinction is that MCP does not describe how to perform the work.
+
+It provides access to something the work needs.
 
 MCP is an open standard that lets applications share context and capabilities with LLMs.
 
@@ -372,7 +410,7 @@ you can move toward:
 
 ### When should you use MCP?
 
-MCP is often useful when Copilot needs to interact with an external system or retrieve information that isn't naturally available in its current context.
+MCP becomes relevant when the workflow reaches beyond the context Copilot already has — into another system, data source, or tool.
 
 ### When should you NOT use MCP?
 
@@ -388,7 +426,7 @@ The MCP design should follow **least privilege**.
 
 :::
 
-##  How it all fits together
+## How it all fits together
 
 Imagine we are running an Italian restaurant.
 
@@ -411,7 +449,8 @@ The restaurant already has a set of standing rules:
 
 These are the equivalent of **instructions**.
 
-They apply broadly across the restaurant. They do not explain how to make one particular dish; they define the rules and constraints under which the kitchen operates.
+They do not explain how to make one particular dish.
+They define the rules and constraints under which the kitchen operates.
 
 ### The restaurant needs more than one recipe
 
@@ -472,8 +511,6 @@ Now imagine the restaurant has an automatic kitchen monitor.
 When a new order is placed, a hook checks whether the required ingredients are available. If mozzarella is running low, it can trigger a restock alert before the pizza is started. When the pizza is marked ready, another hook can notify the front-of-house team and update the order status.
 
 This is different from a prompt, instruction, or skill. The hook is not the task itself, the rule, or the recipe. It is the automatic event-driven trigger that fires when something important happens.
-
-In GitHub Copilot terms, hooks are used for guardrails, auditing, and automatic workflow enforcement at the points where a task starts, finishes, or changes state.
 
 ### MCP is how the kitchen connects to the outside world
 
@@ -558,9 +595,11 @@ The important question is not simply:
 
 But: 
 
-> **"What is its scope?"** <br/>
-> **"Who owns the responsibility?"**  <br/>
-> **"Where does it belong?”**
+> **"What is its scope?"**
+>
+> **"Who owns the responsibility?"**
+>
+> **"Where does it belong?"**
 
 Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.
 
