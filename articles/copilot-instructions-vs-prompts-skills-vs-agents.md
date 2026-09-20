@@ -16,10 +16,6 @@ slug: github-copilot-customisation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem'; 
 
-
-> **This article focuses on choosing the right customisation mechanism; implementation guides for each mechanism will**
-> **cover configuration and practical examples separately.**
-
 ![GitHub Copilot Customisation](/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.png)
 
 
@@ -123,15 +119,11 @@ That is usually a sign that some of those responsibilities belong elsewhere.
 
 Prompts work best for tasks you intentionally invoke rather than behaviour that should always apply.
 
-:::tip
-
-__This works particularly well for__:
+__Typical prompt tasks include__:
 - Generating unit tests according to a standard structure.
 - Creating an implementation plan.
 - Reviewing an API for security concerns.
 - Generating documentation.
-
-:::
 
 ### When should you NOT use prompts?
 
@@ -142,15 +134,11 @@ For example:
 
 That's a repository convention. You shouldn't have to remember to restate it in every prompt.
 
-:::danger
-
 ### Common mistakes
 
 **Prompts become bloated when they start carrying information that should already exist elsewhere.** If you repeatedly paste the same coding conventions, architecture rules, or testing expectations into requests, the problem is probably missing instructions rather than weak prompting.
 
 Another **mistake** is turning a prompt into an agent simply because the prompt has become long.
-
-:::
 
 ## Instructions: Always apply these rules
 
@@ -178,23 +166,18 @@ Instructions make sense when the guidance should follow the work without the dev
 
 This keeps the context stable and makes the rules easier to apply consistently across work.
 
-:::tip
-
-__This works particularly well for:__
+__Instructions are a good fit for:__
 - naming or coding conventions
 - testing frameworks and testing expectations
 - patterns the team uses or avoids
 - repository architecture and important boundaries
 - language/framework conventions
 
-:::
 
 ### When should you NOT use instructions?
 - You only need a task or operation once.
 - The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance
 - The task requires specialised tooling or context that should not be treated as a universal rule.
-
-:::danger
 
 ### Common mistakes
 
@@ -223,8 +206,6 @@ Vague principles are another problem: instructions should express actionable con
 
 Instructions guide behaviour; they do not enforce it. If a rule must be guaranteed, it needs an enforcement mechanism rather than relying on AI behaviour alone.
 
-:::
-
 ## Skills: How should this kind of work be done?
 
 ### What are skills?
@@ -251,14 +232,12 @@ A good skill has a recognisable boundary: it performs a particular kind of speci
 
 The best candidates tend to be specialised, reusable capabilities.
 
-:::tip
-__This works particularly well for__:
+__Good skill boundaries include__:
 - Requirements completeness assessment
 - Test adequacy assessment
 - Architecture impact analysis
 - Backward-compatibility analysis
 - Migration-risk analysis
-:::
 
 ### When should you NOT use skills?
 
@@ -267,16 +246,11 @@ A skill is not necessary when:
 - It is only needed once.
 - The capability cannot be defined clearly enough to produce consistent results.
 
-:::danger
-
 ### Common mistakes
 
 Repetition alone does not justify a skill. A task should also represent reusable expertise with a meaningful boundary.
 
 Skills tend to break down at either extreme: too broad to provide specialist guidance, or so narrow that they only apply to one ticket or edge case. Another warning sign is when a skill starts coordinating an entire workflow rather than contributing expertise to it.
-
-:::
-
 
 ## Agents: Who owns this responsibility?
 
@@ -304,6 +278,13 @@ The value of an agent therefore comes from the responsibility it owns, not from 
 
 Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.
 
+__Good agent responsibilities include__:
+- Analysing whether requirements are ready for implementation
+- Turning approved requirements into an implementation plan
+- Implementing a defined change
+- Reviewing a pull request and producing findings
+- Coordinating a bounded migration workflow
+
 ### When should you NOT use agents?
 
 A dedicated agent is usually unnecessary when: 
@@ -312,13 +293,11 @@ A dedicated agent is usually unnecessary when:
 - A rule should apply everywhere. Those belong in instructions. 
 - The existing worker already has sufficient responsibility and context for the task.
 
-:::warning
-
 ### Common mistakes
 
 A long prompt is not, by itself, a reason to create an agent. The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.
 
-:::
+Another mistake is creating too many agents for responsibilities that do not need to be separated. Every additional boundary introduces coordination and context handoff, so the separation should earn its complexity.
 
 ## Hooks: What should happen automatically when an event occurs?
 
@@ -336,30 +315,27 @@ Some workflow behaviour should be reliable rather than optional. Checks, logging
 
 Hooks move that responsibility out of the __conversation__ and into the __workflow__ itself.
 
-:::tip
-
-This works particularly well for:
-- Validation
-- Auditing
-- Logging
-- Pre/post-task checks
-
-:::
-
 ### When should you use hooks?
 
 Hooks earn their place when an action should happen because an event occurred, not because someone remembered to request it.
+
+__Common automated actions include:__
+
+- Validation.
+- Auditing.
+- Logging.
+- Pre/post-task checks.
 
 ### When should you NOT use hooks?
 
 Avoid hooks when the action is optional or requires judgement.
 
-:::danger
-
 ### Common mistakes
 
 Hooks become dangerous when they automate something that has not been designed clearly in the first place. Automation should make a well-understood workflow reliable, not hide ambiguity inside it.
-:::
+
+Another mistake is using hooks for decisions that require judgement. Hooks work best for predictable actions; if the correct response depends on context or interpretation, that responsibility probably belongs elsewhere.
+
 
 ## MCP: What external capability does the workflow need?
 
@@ -397,18 +373,24 @@ you can move toward:
 
 MCP becomes relevant when the workflow reaches beyond the context Copilot already has — into another system, data source, or tool.
 
+__Common external capabilities include:__
+
+- Retrieving requirements from an issue or work-item system.
+- Reading pull request or repository information.
+- Querying operational or monitoring data.
+- Looking up records in an external system.
+- Creating or updating information in another service.
+
 ### When should you NOT use MCP?
 
 - When built-in capabilities already solve the work.
 - When the information is project guidance or reusable methodology that can live in instructions, repository context, or a skill.
 
-:::danger
-
 ### Common mistakes
 
 External capability should be bounded. Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.
 
-:::
+Another mistake is introducing external access when the required information or capability is already available locally.
 
 ## How it all fits together
 
