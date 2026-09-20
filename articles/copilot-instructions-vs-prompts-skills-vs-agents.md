@@ -16,7 +16,12 @@ slug: github-copilot-customisation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem'; 
 
+
+> **This article focuses on choosing the right customisation mechanism; implementation guides for each mechanism will**
+> **cover configuration and practical examples separately.**
+
 ![GitHub Copilot Customisation](/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.png)
+
 
 It’s Tuesday morning, 09:00.
 
@@ -114,15 +119,6 @@ The problem starts when the prompt also has to carry every coding standard, arch
 
 That is usually a sign that some of those responsibilities belong elsewhere.
 
-Instead of repeatedly writing:
-> Review this API for authentication, authorisation, input validation, rate limiting, logging...
-
-you can encode that workflow once as something like:
-
-`api-security-review.prompt.md`
-
-and reuse it.
-
 ### When should you use prompts?
 
 Prompt files work best for tasks you intentionally invoke rather than behaviour that should always apply.
@@ -136,7 +132,6 @@ __This works particularly well for__:
 - Generating documentation.
 
 :::
-
 
 ### When should you NOT use prompts?
 
@@ -154,6 +149,7 @@ That's a repository convention. You shouldn't have to remember to restate it in 
 **Prompts become bloated when they start carrying information that should already exist elsewhere.** If you repeatedly paste the same coding conventions, architecture rules, or testing expectations into requests, the problem is probably missing instructions rather than weak prompting.
 
 Another **mistake** is turning a prompt into an agent simply because the prompt has become long.
+
 :::
 
 ## Instructions: Always apply these rules
@@ -166,22 +162,15 @@ Unlike a prompt, which expresses what you want done now, instructions describe e
 
 They represent the standing rules of the environment.
 
-GitHub Copilot supports several kinds of instructions:
-  - **Repository-wide instructions**: These apply to requests in the repository and are usually stored in `.github/copilot-instructions.md`.
-  - **Path-specific instructions**: These are targeted to matching files and use the `applyTo` pattern. These are usually stored in `.github/instructions/*.instructions.md`.
-  - **Agent instructions**: These are used by agent workflows and can be scoped with `AGENTS.md` files.
-  - **Organisation-level instructions**: These can apply across repositories in a GitHub organisation.
-
-
-:::note
-Support for each instruction type varies across GitHub.com, IDEs and Copilot CLI, so check the current GitHub support matrix for your environment.
-:::
-
 ### What problem do instructions solve?
 
 Without instructions, the same expectations have to be repeatedly communicated.
 
 Developers end up restating things such as architectural boundaries, testing expectations, naming conventions, security requirements, and preferred patterns every time they start a new task.
+
+Instructions separate those persistent constraints from the immediate request.
+
+The prompt can then focus on what needs to be done, while the instructions provide the boundaries within which it should be done.
 
 ### When should you use instructions?
 
@@ -248,23 +237,15 @@ It captures a recognisable method, body of knowledge, or approach that can be ap
 
 A skill does not own the overall workflow. It contributes specialised capability to whoever is performing the work.
 
-Skills are reusable, task-specific capabilities that can be surfaced to an agent when the work matches their scope. A skill usually lives in a folder with a required `SKILL.md`, and may include supporting resources such as scripts, references, and assets.
-
-In many agent setups, skills are selected or loaded only when a specific kind of task comes up. The name and description often help the agent decide when a skill is relevant.
-
 ### What problem do skills solve?
-Skills solve the problem of repeatedly recreating specialised methods, knowledge, and supporting resources.
-Without skills, teams often keep rewriting the same guidance into prompts:
 
-> Review this PR for architecture impact, requirements alignment, and test adequacy.
+Many engineering tasks require more than general reasoning.
 
-A skill lets you package that expertise once and reuse it.
+Reviewing requirements for completeness, assessing architecture impact, evaluating test adequacy, or analysing migration risk each requires a different way of thinking.
 
-For example, instead of telling Copilot how to assess a PR, you could have separate skills for:
-- requirements alignment
-- test adequacy
-- architecture impact
-- security review
+Without reusable skills, that expertise has to be reconstructed every time the task appears.
+
+Skills allow that expertise to be separated from the immediate request and reused where appropriate.
 
 ### When should you use skills?
 
@@ -299,31 +280,31 @@ Skills tend to break down at either extreme: too broad to provide specialist gui
 :::
 
 
-## Agents: Who owns this workflow
+## Agents: Who owns this responsibility?
 
 ### What are agents?
 
-A useful way to think about agents is as responsibility boundaries: role-based AI workers configured around a particular goal or workflow.
+An agent represents a responsibility boundary.
 
-They are useful when you want to separate concerns such as planning, implementation, review, or migration work.
+It is useful when a piece of work benefits from having a distinct goal, role, context, or workflow ownership.
 
-A skill knows how to do something. An agent is responsible for getting something done.
+Instead of asking one general worker to plan, implement, review, test, and validate everything at once, different responsibilities can be separated.
 
-In workflows that support agent handoffs, one specialised agent can pass work to another when its phase is complete.
+A skill knows **how to do something**. An agent is responsible for **getting something done**.
 
 ### What problem do agents solve?
 
-Agents reduce context mixing. Instead of asking one general worker to act as planner, implementer, reviewer, and tester all at once, you give the work a narrower role and a clearer ownership boundary.
+Agents help prevent unrelated responsibilities from becoming mixed together.
+
+When one worker is simultaneously expected to act as planner, developer, reviewer, tester, and architect, the boundaries between those responsibilities become unclear.
+
+Separating those roles can make the purpose, context, and expected outcome of each stage easier to reason about.
+
+The value of an agent therefore comes from the responsibility it owns, not from simply giving it a name or persona.
 
 ### When should you use agents?
 
 Create an agent when the work deserves its own responsibility boundary — for example planning, reviewing, migration, or implementation.
-
-:::note
-
-Agents are valuable because they establish responsibility boundaries, not because they have a persona.
-
-:::
 
 ### When should you NOT use agents?
 
@@ -345,13 +326,17 @@ A long prompt is not, by itself, a reason to create an agent. The agent should i
 
 ### What are hooks?
 
-Hooks are automation triggers that run in response to events or workflow stages. They are distinct from prompts and instructions because they operate at the workflow level instead of the conversation level.
+A hook connects a defined event to an automatic action. 
 
-In workflow tools, hooks often run at strategic points such as task start or completion, before or after a prompt is submitted, or when an agent transitions between phases.
+The important idea is the relationship:
+
+__When this event occurs, perform this action.__
 
 ### What problem do hooks solve?
 
-Hooks automate predefined actions when particular lifecycle events occur. They are useful for checks, logging, validation and other repeatable workflow actions.
+Some workflow behaviour should be reliable rather than optional.  Checks, logging, validation, notifications and other mechanical  actions can easily be forgotten when they depend on someone remembering to request them.
+
+Hooks move that responsibility out of the __conversation__ and into the __worflow__ itself.
 
 :::tip
 
@@ -390,12 +375,14 @@ The important distinction is that MCP does not describe how to perform the work.
 
 It provides access to something the work needs.
 
-MCP is an open standard that lets applications share context and capabilities with LLMs.
-
 ### What problem does MCP solve?
 
-MCP gives AI applications a standard way to access external information and capabilities.
+Useful context and capabilities often live outside the AI system.
+
+A workflow might need to retrieve requirements, query another system, inspect operational data, look up records, or perform an action through an external service.
+
 For example, a requirements analyst agent may need information from a GitHub issue.
+
 Without MCP, the agent may have to rely on a human to copy that context into the conversation manually.
 
 For repeated workflows, manually copying that context into chat becomes inefficient and error-prone.
