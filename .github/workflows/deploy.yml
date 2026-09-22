@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '20 18 * * *'  # Runs every day at 18:20 UTC
+    - cron: '15 07 * * *'  # Runs every day at 07:15 UTC
       timezone: 'Europe/London'
 
 jobs:
