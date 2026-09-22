@@ -74,12 +74,12 @@ const config: Config = {
         {
           to: '/articles', 
           label: 'Articles', 
-          position: 'left'
+          position: 'right',
         },
         {
           to: '/guides', 
           label: 'Guides', 
-          position: 'left'
+          position: 'right'
         },
          {
           to: '/about', 
