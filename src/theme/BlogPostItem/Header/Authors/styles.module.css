@@ -1,0 +1,26 @@
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  gap: 1rem;
+}
+
+.authors {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .metaRow {
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .authors {
+    flex: 1;
+    min-width: 0;
+  }
+}
