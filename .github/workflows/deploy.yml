@@ -4,10 +4,17 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+  schedule:
+    - cron: '17 17 * * *'  # Runs every day at 17:17 UTC
+      timezone: 'Europe/London'
+    - cron: '30 17 * * *' # Runs every day at 17:30 UTC
+      timezone: 'Europe/London'
 
 jobs:
   build:
-    name: Build Docusaurus
+    name: Build Mpho Magoro on Tech
     runs-on: ubuntu-latest
 
     steps:
