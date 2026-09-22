@@ -1,0 +1,70 @@
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+
+  flex-shrink: 0;
+
+  padding: 0.45rem 0.75rem;
+
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: var(--ifm-font-color-base);
+
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.shareButton:hover {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+.shareButton:active {
+  transform: translateY(1px);
+}
+
+.shareButton:focus-visible {
+  outline: 2px solid var(--ifm-color-emphasis-600);
+  outline-offset: 2px;
+}
+
+.shareIcon {
+  width: 17px;
+  height: 17px;
+}
+
+.label {
+  line-height: 1;
+}
+
+/* Compact mobile version */
+@media (max-width: 576px) {
+  .shareButton {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .shareIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
