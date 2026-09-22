@@ -1,0 +1,284 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   ARTICLE PAGE LAYOUT
+   ========================================================= */
+
+.theme-blog-post-page .container {
+  max-width: 1180px;
+}
+
+.theme-blog-post-page article {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.theme-blog-post-page article .markdown {
+  max-width: 760px;
+}
+
+.theme-blog-post-page header h1 {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.25rem;
+}
+
+.theme-blog-post-page header {
+  margin-bottom: 2.5rem;
+}
+
+.theme-blog-post-page header time {
+  color: var(--ifm-color-emphasis-600);
+}
+
+
+.theme-blog-post-page article .markdown > p:first-child {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 2rem;
+}
+
+.theme-blog-post-page article img {
+  border-radius: 16px;
+  width: 100%;
+}
+
+.theme-blog-post-page .table-of-contents {
+  font-size: 0.9rem;
+  border-left: none;
+  padding-left: 0;
+}
+
+.theme-blog-post-page .table-of-contents__link {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.theme-blog-post-page .table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+
+/* Blog author */
+.theme-blog-post-page .avatar {
+  margin-top: 1rem;
+}
+
+.theme-blog-post-page .avatar__name {
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.theme-blog-post-page .avatar__subtitle {
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.theme-blog-post-page header time {
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.theme-blog-post-page header {
+  margin-bottom: 2rem;
+}
+
+.articleTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* =========================================================
+   EDITORIAL TYPOGRAPHY
+   Medium-inspired, but tailored for Mpho Magoro on Tech
+   ========================================================= */
+
+:root {
+  --article-font-serif:
+    "Source Serif 4",
+    "Source Serif Pro",
+    Charter,
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  --article-font-sans:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* Keep navigation and site chrome modern/sans-serif */
+body {
+  font-family: var(--article-font-sans);
+}
+
+/* Article reading column */
+.theme-blog-post-page article .markdown {
+  max-width: 720px;
+  font-family: var(--article-font-serif);
+  font-size: 1.22rem;
+  line-height: 1.72;
+  color: var(--ifm-color-emphasis-900);
+}
+
+/* Paragraph rhythm */
+.theme-blog-post-page article .markdown p {
+  margin: 0 0 1.65rem;
+}
+
+/* Main article title */
+.theme-blog-post-page header h1 {
+  max-width: 900px;
+  font-family: var(--article-font-sans);
+  font-size: clamp(2.75rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+
+/* Section headings stay sans-serif for a technical feel */
+.theme-blog-post-page article .markdown h2,
+.theme-blog-post-page article .markdown h3 {
+  font-family: var(--article-font-sans);
+  color: var(--ifm-color-emphasis-1000);
+}
+
+.theme-blog-post-page article .markdown h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.theme-blog-post-page article .markdown h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Lists should read like prose */
+.theme-blog-post-page article .markdown li {
+  margin-bottom: 0.45rem;
+  line-height: 1.65;
+}
+
+/* Quotes */
+.theme-blog-post-page article blockquote {
+  font-family: var(--article-font-serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-style: italic;
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+/* Metadata stays compact and sans-serif */
+.theme-blog-post-page header time,
+.theme-blog-post-page .avatar__name,
+.theme-blog-post-page .avatar__subtitle {
+  font-family: var(--article-font-sans);
+}
+
+.theme-blog-post-page header time {
+  font-size: 0.88rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.theme-blog-post-page .avatar__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.theme-blog-post-page .avatar__subtitle {
+  font-size: 0.82rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* Better links inside prose */
+.theme-blog-post-page article .markdown a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Inline code should remain technical */
+.theme-blog-post-page article code {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+  font-size: 0.88em;
+}
+
+/* Article title */
+.theme-blog-post-page header h1,
+.theme-blog-post-page header h1 a {
+  color: #1f2328 !important;
+  text-decoration: none;
+}
+
+[data-theme='dark'] .theme-blog-post-page header h1,
+[data-theme='dark'] .theme-blog-post-page header h1 a {
+  color: #f0f0f0 !important;
+}
+
+.theme-blog-post-page article h1,
+.theme-blog-post-page article h2,
+.theme-blog-post-page article h3 {
+  color: #1f2328;
+}
+
+[data-theme='dark'] .theme-blog-post-page article h1,
+[data-theme='dark'] .theme-blog-post-page article h2,
+[data-theme='dark'] .theme-blog-post-page article h3 {
+  color: #f0f0f0;
+}
