@@ -5,6 +5,7 @@ node_modules/
 .docusaurus/
 build/
 .cache-loader/
+.future-posts-temp/
 
 # Production builds
 dist/

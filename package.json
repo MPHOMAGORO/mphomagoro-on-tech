@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "prestart": "node scripts/filter-future-posts.mjs",
     "start": "docusaurus start",
+    "prebuild": "node scripts/filter-future-posts.mjs",
     "build": "docusaurus build",
+    "postbuild": "node scripts/filter-future-posts.mjs restore",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

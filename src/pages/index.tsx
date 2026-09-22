@@ -124,7 +124,7 @@ function Featured() {
               engineering practices that mattered most.
             </p>
 
-            <Link to="/articles/github-copilot-customisation">Read article →</Link>
+            <Link to="/articles">Read all articles →</Link>
           </article>
 
           <article className={styles.featureCard}>
@@ -138,7 +138,7 @@ function Featured() {
               Prompts, instructions, skills, agents, hooks, and MCP explained.
             </p>
 
-            <Link to="/articles/github-copilot-customisation">Read article →</Link>
+            <Link to="/articles">Explore articles →</Link>
           </article>
         </div>
       </div>
