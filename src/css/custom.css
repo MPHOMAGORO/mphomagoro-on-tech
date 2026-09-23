@@ -250,8 +250,6 @@ article a:not(.button):not(.pagination-nav__link):hover {
   border-bottom: 1px solid var(--site-border);
   box-shadow: none;
 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .navbar__inner {
