@@ -1,0 +1,51 @@
+.illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.block polygon {
+  stroke: #ffffff;
+  stroke-opacity: 0.85;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.pipe {
+  stroke-dasharray: 10 14;
+  animation: flow 2.4s linear infinite;
+}
+
+.robot {
+  animation: bob 5s ease-in-out infinite;
+}
+
+.floatSlow {
+  animation: bob 7s ease-in-out infinite;
+}
+
+.floatFast {
+  animation: bob 4.5s ease-in-out infinite reverse;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+[data-theme='dark'] .illustration {
+  filter: saturate(1.1) brightness(0.92);
+}

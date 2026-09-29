@@ -1,73 +1,146 @@
-import type {ReactNode} from 'react';
+import type {ComponentType, ReactNode, SVGProps} from 'react';
+import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
+import HeroIllustration from '@site/src/components/HeroIllustration';
+import {
+  ArrowUpRightIcon,
+  ChipIcon,
+  CodeIcon,
+  CubeIcon,
+  DocumentIcon,
+  RingIcon,
+  SparkleIcon,
+  TerminalIcon,
+} from '@site/src/components/Icons';
+
 import styles from './index.module.css';
 
-const topics = [
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+type Accent = 'blue' | 'violet' | 'mint' | 'peach';
+
+const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}[] = [
+  {
+    label: 'AI Engineering',
+    link: '/articles/tags/ai-engineering',
+    Icon: DocumentIcon,
+    accent: 'blue',
+  },
+  {
+    label: 'GitHub Copilot',
+    link: '/articles/tags/github-copilot',
+    Icon: RingIcon,
+    accent: 'violet',
+  },
+  {
+    label: 'Architecture',
+    link: '/guides/solution-architecture',
+    Icon: CubeIcon,
+    accent: 'peach',
+  },
+  {
+    label: 'Software Engineering',
+    link: '/guides/software-engineering',
+    Icon: CodeIcon,
+    accent: 'mint',
+  },
+];
+
+const latestArticles = [
+  {
+    title: 'How GitHub Copilot Customisation Actually Fits Together',
+    description: 'Prompts, instructions, skills, agents, hooks and MCP — made clearer.',
+    tag: 'GitHub Copilot',
+    date: '23 Sep 2026',
+    dateTime: '2026-09-23',
+    image: '/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.png',
+    link: '/articles/github-copilot-customisation',
+  },
+  {
+    title: 'I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things',
+    description: 'Everyday use meets a few unexpected lessons.',
+    tag: 'AI Engineering',
+    date: '11 Sep 2026',
+    dateTime: '2026-09-11',
+    image: '/img/articles/github-copilot-gh300/hero.png',
+    link: '/articles/gh300-github-copilot-lessons',
+  },
+];
+
+const guides: {
+  title: string;
+  description: string;
+  link: string;
+  Icon: IconComponent;
+  accent: Accent;
+}[] = [
   {
     title: 'AI Engineering',
-    description:
-      'Practical experiments, workflows and lessons from applying AI to real software engineering problems.',
-    link: '/articles/tags/ai-engineering',
+    description: 'Practical patterns for AI-assisted development.',
+    link: '/guides/ai-engineering/introduction',
+    Icon: ChipIcon,
+    accent: 'blue',
   },
   {
     title: 'GitHub Copilot',
-    description:
-      'Prompts, agents, skills and engineering workflows for getting more value from GitHub Copilot.',
-    link: '/articles/tags/github-copilot',
-  },
-  {
-    title: 'Solution Architecture',
-    description:
-      'Architecture decisions, trade-offs, diagrams and techniques for designing maintainable systems.',
-    link: '/guides/solution-architecture',
+    description: 'Understand and shape your coding assistant.',
+    link: '/guides/github-copilot',
+    Icon: TerminalIcon,
+    accent: 'violet',
   },
   {
     title: 'Software Engineering',
-    description:
-      'Engineering practices for APIs, distributed systems, cloud platforms and reliable delivery.',
+    description: 'Build with clarity, quality and intent.',
     link: '/guides/software-engineering',
+    Icon: CodeIcon,
+    accent: 'mint',
+  },
+  {
+    title: 'Solution Architecture',
+    description: 'Explore systems, constraints and trade-offs.',
+    link: '/guides/solution-architecture',
+    Icon: CubeIcon,
+    accent: 'peach',
   },
 ];
 
 function Hero() {
   return (
     <header className={styles.hero}>
-      <div className="container">
-        <div className={styles.heroContent}>
-          <div className={styles.heroEyebrow}>
-            Architecture · AI · Cloud · Engineering
-          </div>
+      <div className={clsx('container', styles.heroGrid)}>
+        <div className={styles.heroCopy}>
+          <span className={styles.badge}>
+            <SparkleIcon className={styles.badgeIcon} />
+            For curious engineers
+          </span>
+
+          <p className={styles.eyebrow}>Mpho Magoro on Tech</p>
 
           <Heading as="h1" className={styles.heroTitle}>
-            Mpho Magoro on Tech
+            Big ideas. Clear code.
+            <span className={styles.gradientText}>A little curiosity.</span>
           </Heading>
 
           <p className={styles.heroSubtitle}>
-            Practical thinking on AI Engineering, Solution Architecture and
-            Software Engineering.
-          </p>
-
-          <p className={styles.heroDescription}>
-            Writing about what I build, what I learn, and the engineering
-            decisions behind modern software systems.
+            Exploring AI, architecture and the decisions that make us better
+            engineers.
           </p>
 
           <div className={styles.heroButtons}>
-            <Link
-              className="button button--primary button--lg"
-              to="/articles">
-              Read Articles
+            <Link className="button button--primary button--lg" to="/articles">
+              Find your next read
+              <ArrowUpRightIcon className={styles.buttonIcon} />
             </Link>
-
-            <Link
-              className="button button--secondary button--lg"
-              to="/guides">
-              Browse Guides
+            <Link className="button button--secondary button--lg" to="/guides">
+              Explore guides
             </Link>
           </div>
+        </div>
+
+        <div className={styles.heroArt}>
+          <HeroIllustration />
         </div>
       </div>
     </header>
@@ -76,105 +149,174 @@ function Hero() {
 
 function Topics() {
   return (
-    <section className={styles.section}>
-      <div className="container">
-        <div className={styles.sectionHeader}>
-          <Heading as="h2">Explore by topic</Heading>
-          <p>
-            Articles and guides covering the areas I work with and study.
+    <section className="container" aria-label="Topics">
+      <nav className={clsx('glass', styles.topicBar)}>
+        <span className={styles.topicLabel}>
+          Topics <span aria-hidden="true">/</span>
+        </span>
+        <ul className={styles.topicList}>
+          {topics.map(({label, link, Icon, accent}) => (
+            <li key={label}>
+              <Link to={link} className={styles.topicChip}>
+                <span className={clsx(styles.iconTile, styles[accent])}>
+                  <Icon />
+                </span>
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  );
+}
+
+function LatestArticles() {
+  return (
+    <section className={clsx('container', styles.section)}>
+      <div className={styles.sectionHeader}>
+        <div>
+          <p className={styles.eyebrow}>Latest articles</p>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Fresh ideas, straight from the keyboard.
+          </Heading>
+        </div>
+        <Link to="/articles" className={styles.arrowLink}>
+          All articles <ArrowUpRightIcon />
+        </Link>
+      </div>
+
+      <div className={styles.articleGrid}>
+        {latestArticles.map((article) => (
+          <Link
+            key={article.link}
+            to={article.link}
+            className={clsx('glass', styles.articleCard)}>
+            <div className={styles.articleImage}>
+              <img src={article.image} alt="" loading="lazy" />
+            </div>
+            <div className={styles.articleBody}>
+              <div className={styles.articleMeta}>
+                <span className={styles.pill}>{article.tag}</span>
+                <span aria-hidden="true" className={styles.metaDash} />
+                <time dateTime={article.dateTime}>{article.date}</time>
+              </div>
+              <Heading as="h3" className={styles.articleTitle}>
+                {article.title}
+              </Heading>
+              <p className={styles.articleDescription}>{article.description}</p>
+              <span className={styles.arrowLink}>
+                Read article <ArrowUpRightIcon />
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Guides() {
+  return (
+    <section className={clsx('container', styles.section)}>
+      <div className={styles.sectionHeader}>
+        <div>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Pick a rabbit hole.
+          </Heading>
+          <p className={styles.sectionLead}>
+            Friendly starting points for deeper technical thinking.
           </p>
         </div>
+        <span className={styles.status}>Growing collection</span>
+      </div>
 
-        <div className={styles.topicGrid}>
-          {topics.map((topic) => (
-            <Link
-              key={topic.title}
-              to={topic.link}
-              className={styles.topicCard}>
-              <Heading as="h3">{topic.title}</Heading>
-              <p>{topic.description}</p>
-              <span className={styles.cardLink}>Explore →</span>
-            </Link>
-          ))}
-        </div>
+      <div className={styles.guideGrid}>
+        {guides.map(({title, description, link, Icon, accent}) => (
+          <Link key={title} to={link} className={clsx('glass', styles.guideCard)}>
+            <span className={clsx(styles.iconTile, styles.iconTileLarge, styles[accent])}>
+              <Icon />
+            </span>
+            <div>
+              <Heading as="h3" className={styles.guideTitle}>
+                {title}
+              </Heading>
+              <p className={styles.guideDescription}>{description}</p>
+              <span className={styles.arrowLink}>
+                Explore guide <ArrowUpRightIcon />
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
 }
 
-function Featured() {
+function AboutTeaser() {
   return (
-    <section className={styles.featuredSection}>
-      <div className="container">
-        <div className={styles.sectionHeader}>
-          <Heading as="h2">Start here</Heading>
-          <p>A few pieces that represent what this site is about.</p>
-        </div>
-
-        <div className={styles.featureGrid}>
-          <article className={styles.featureCard}>
-            <span className={styles.tag}>GitHub Copilot</span>
-
-            <Heading as="h3">
-              I Used GitHub Copilot Every Day — Why I Still Took GH-300
-            </Heading>
-
-            <p>
-              What certification added beyond everyday Copilot usage, and the
-              engineering practices that mattered most.
-            </p>
-
-            <Link to="/articles">Read all articles →</Link>
-          </article>
-
-          <article className={styles.featureCard}>
-            <span className={styles.tag}>AI Engineering</span>
-
-            <Heading as="h3">
-              How GitHub Copilot Customisation Actually Fits Together
-            </Heading>
-
-            <p>
-              Prompts, instructions, skills, agents, hooks, and MCP explained.
-            </p>
-
-            <Link to="/articles">Explore articles →</Link>
-          </article>
-        </div>
+    <section className={clsx('container', styles.section, styles.aboutSection)}>
+      <div className={styles.aboutCopy}>
+        <Heading as="h2" className={styles.sectionTitle}>
+          Hey, I’m Mpho.
+        </Heading>
+        <p className={styles.sectionLead}>
+          Software engineer. Curious builder. Sharing what I learn about AI,
+          architecture and making better engineering decisions.
+        </p>
+        <Link to="/about" className={styles.arrowLink}>
+          More about me <ArrowUpRightIcon />
+        </Link>
       </div>
-    </section>
-  );
-}
 
-function About() {
-  return (
-    <section className={styles.aboutSection}>
-      <div className="container">
-        <div className={styles.about}>
-          <div>
-            <span className={styles.sectionLabel}>ABOUT</span>
-
-            <Heading as="h2">
-              Engineering depth. Architecture thinking.
-            </Heading>
-
-            <p>
-              I'm Mpho Magoro, a senior software engineering and solution
-              architecture professional working across cloud, integration,
-              identity and distributed systems.
-            </p>
-
-            <p>
-              This site is where I document the architecture decisions,
-              engineering workflows and emerging AI practices I find useful.
-            </p>
-
-            <Link to="/about" className={styles.textLink}>
-              More about me →
-            </Link>
-          </div>
-        </div>
-      </div>
+      <svg
+        className={styles.aboutArt}
+        viewBox="0 0 480 180"
+        aria-hidden="true">
+        <defs>
+          <radialGradient id="about-orb" cx="0.35" cy="0.3" r="0.75">
+            <stop offset="0" stopColor="#ffffff" />
+            <stop offset="0.45" stopColor="#9fc2ff" />
+            <stop offset="1" stopColor="#6e58ff" />
+          </radialGradient>
+          <linearGradient id="about-wave" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#6c7bff" stopOpacity="0.2" />
+            <stop offset="0.5" stopColor="#8b5cff" />
+            <stop offset="1" stopColor="#4de3ff" stopOpacity="0.4" />
+          </linearGradient>
+        </defs>
+        <circle cx="300" cy="90" r="88" fill="#c8b8ff" opacity="0.25" />
+        <path
+          d="M10 110 C 90 40, 150 170, 240 100 S 390 40, 470 90"
+          fill="none"
+          stroke="url(#about-wave)"
+          strokeWidth="2.5"
+        />
+        <path
+          d="M10 130 C 110 80, 170 180, 260 120 S 400 80, 470 120"
+          fill="none"
+          stroke="url(#about-wave)"
+          strokeWidth="1.5"
+          opacity="0.6"
+        />
+        <g stroke="#5b61d6" strokeWidth="1" opacity="0.5">
+          <line x1="200" y1="40" x2="200" y2="120" />
+          <line x1="300" y1="30" x2="300" y2="110" />
+          <line x1="390" y1="20" x2="390" y2="80" />
+        </g>
+        <g fill="#2a2f6b">
+          <circle cx="200" cy="120" r="3" />
+          <circle cx="300" cy="110" r="3" />
+          <circle cx="390" cy="80" r="3" />
+        </g>
+        <circle cx="110" cy="100" r="20" fill="url(#about-orb)" />
+        <rect x="370" y="20" width="96" height="60" rx="10" fill="#ffffff" opacity="0.55" />
+        <g fill="#9aa3e8" opacity="0.8">
+          <rect x="384" y="34" width="56" height="5" rx="2.5" />
+          <rect x="384" y="47" width="42" height="5" rx="2.5" />
+          <rect x="384" y="60" width="50" height="5" rx="2.5" />
+        </g>
+      </svg>
     </section>
   );
 }
@@ -185,10 +327,11 @@ export default function Home(): ReactNode {
       title="Mpho Magoro on Tech"
       description="AI Engineering, Solution Architecture and Software Engineering">
       <Hero />
-      <main>
+      <main className={styles.main}>
         <Topics />
-        <Featured />
-        <About />
+        <LatestArticles />
+        <Guides />
+        <AboutTeaser />
       </main>
     </Layout>
   );
