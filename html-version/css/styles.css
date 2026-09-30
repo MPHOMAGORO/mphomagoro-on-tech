@@ -432,6 +432,10 @@ pre {
   transition: color var(--duration) var(--ease);
 }
 
+.site-header .brand__mark {
+  height: 42px;
+}
+
 .brand:hover .brand__mark {
   color: var(--accent-ink);
 }
