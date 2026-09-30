@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-choice="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2 posts tagged with &quot;GitHub Copilot&quot; | Mpho Magoro on Tech</title>
+  <meta name="description" content="GitHub Copilot, agents, skills and AI-assisted engineering.">
+  <link rel="canonical" href="https://mphomagoro.com/articles/tags/github-copilot/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mpho Magoro on Tech">
+  <meta property="og:title" content="2 posts tagged with &quot;GitHub Copilot&quot; | Mpho Magoro on Tech">
+  <meta property="og:description" content="GitHub Copilot, agents, skills and AI-assisted engineering.">
+  <meta property="og:url" content="https://mphomagoro.com/articles/tags/github-copilot/">
+  <meta property="og:image" content="https://mphomagoro.com/img/mpho-magoro-social-card.png">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mphomagoro.com/img/mpho-magoro-social-card.png">
+
+  <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/img/favicon/site.webmanifest">
+  <meta name="theme-color" content="#050505">
+  <link rel="alternate" type="application/rss+xml" href="/articles/rss.xml" title="Mpho Magoro on Tech RSS Feed">
+  <link rel="alternate" type="application/atom+xml" href="/articles/atom.xml" title="Mpho Magoro on Tech Atom Feed">
+
+  <script>
+    (function () {
+      var choice = 'system';
+      try { choice = localStorage.getItem('theme') || 'system'; } catch (e) {}
+      if (choice !== 'light' && choice !== 'dark') choice = 'system';
+      var theme = choice === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : choice;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-theme-choice', choice);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/main.js" defer></script>
+</head>
+<body class="blog-tags-post-list-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main">
+    <div class="navbar__inner">
+      <div class="navbar__items">
+        <button class="navbar__toggle" type="button" aria-label="Toggle navigation bar" aria-expanded="false" aria-controls="navbar-sidebar"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg></button>
+        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
+      </div>
+      <div class="navbar__items navbar__items--right">
+        <a class="navbar__item navbar__link navbar__link--active" aria-current="page" href="/articles/">Articles</a>
+        <a class="navbar__item navbar__link" href="/guides/">Guides</a>
+        <a class="navbar__item navbar__link" href="/about/">About</a>
+        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
+      </div>
+    </div>
+
+    <div class="navbar-sidebar__backdrop" aria-hidden="true"></div>
+    <div class="navbar-sidebar" id="navbar-sidebar">
+      <div class="navbar-sidebar__brand">
+        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
+        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
+        <button type="button" class="navbar-sidebar__close" aria-label="Close navigation bar"><svg viewBox="0 0 15 15" width="21" height="21" aria-hidden="true"><g stroke="currentColor" stroke-width="1.2"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"/></g></svg></button>
+      </div>
+      <div class="navbar-sidebar__items">
+        <div class="navbar-sidebar__item navbar-sidebar__item--primary menu">
+          <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/articles/">Articles</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="/guides/">Guides</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="/about/">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-wrapper" id="main" tabindex="-1">
+    <div class="container margin-vert--lg">
+      <div class="row">
+        <main class="col col--9 col--offset-1">
+          <header class="margin-bottom--xl">
+            <h1>2 posts tagged with &quot;GitHub Copilot&quot;</h1>
+            <p>GitHub Copilot, agents, skills and AI-assisted engineering.</p>
+            <a href="/articles/tags/">View All Tags</a>
+          </header>
+        <article>
+          <header>
+            <h2 class="blog-post-title"><a href="/articles/github-copilot-customisation/">How GitHub Copilot Customisation Actually Fits Together</a></h2>
+            <div class="blog-meta"><time datetime="2026-09-23T06:00:00.000Z">September 23, 2026</time> · 15 min read</div>
+            <div class="blog-author-row">
+            <div class="blog-authors"><div class="blog-author">Mpho Magoro</div></div>
+          </div>
+          </header>
+          <div class="markdown">
+<p><img src="/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.webp" srcset="/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero-960.webp 960w, /img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.webp 1672w" sizes="(max-width: 996px) 100vw, 960px" alt="GitHub Copilot Customisation" width="1672" height="941" decoding="async" loading="lazy" loading="lazy" decoding="async"></p>
+<p>It’s Tuesday morning, 09:00.</p>
+<p>You’re fired up, coffee nearby, and ready to build software.</p>
+<p>You open GitHub Copilot and ask it to help implement a change.</p>
+<p>Before it can really get going, you explain how the application is structured.</p>
+<p>You tell it where the business logic belongs, which patterns the team follows, how tests should be written and which architectural boundaries it needs to respect.</p>
+<p>Copilot gets to work.</p>
+<p>The result is good.</p>
+<p>Later that morning, you open another conversation to work on something else.</p>
+<ul>
+<li>Again, you explain the project structure.</li>
+<li>Again, you mention the coding standards.</li>
+<li>Again, you remind it how your team expects tests to be written.</li>
+<li>Again, you remind it which architectural boundaries it needs to respect.</li>
+</ul>
+<p>At some point, you realise the problem. You are spending a surprising amount of time teaching Copilot how your engineering environment works before asking it to do any actual engineering.</p>
+<ul>
+<li>Some rules should already be available.</li>
+<li>Some expertise should be reusable.</li>
+<li>Some work should have a clear owner.</li>
+<li>Some behaviour should happen automatically.</li>
+<li>Some workflows need access to systems outside Copilot.</li>
+</ul>
+<p>And that is where prompting starts to feel insufficient.</p>
+<p>That is where GitHub Copilot customisation starts to become genuinely useful.</p>
+<h2 id="a-simple-way-to-think-about-copilot-customisation">A simple way to think about Copilot customisation<a class="hash-link" href="#a-simple-way-to-think-about-copilot-customisation" aria-label="Direct link to A simple way to think about Copilot customisation"></a></h2>
+<p>The easiest way to understand the different features is not to start with their implementation.</p>
+<p>Start with the responsibility each one owns.</p>
+<ul>
+<li><strong>Prompt = intent</strong> — what do I want done right now?</li>
+<li><strong>Instructions = constraints</strong> — what rules should consistently apply?</li>
+<li><strong>Skill = expertise</strong> — how should this kind of work be done?</li>
+<li><strong>Agent = responsibility</strong> — who owns this workflow or role?</li>
+<li><strong>Hook = automation</strong> — what should happen automatically at a defined moment?</li>
+<li><strong>MCP = external capability</strong> — what systems, tools, or data does the workflow need access to?</li>
+</ul>
+<p>That distinction matters because these features are not interchangeable.</p>
+<p>A prompt should not become a dumping ground for every project rule.</p>
+<p>An instruction should not try to describe an entire workflow.</p>
+<p>A skill should not become a disguised agent.</p>
+<p>And an agent should not exist simply because a prompt became long.</p>
+<p>The real design question is:</p>
+<blockquote>
+<p><strong>What is the responsibility, and where does that responsibility belong?</strong></p>
+</blockquote>
+<div class="admonition admonition--tip"><div class="admonition__heading"><span class="admonition__icon"><svg aria-hidden="true" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonition__content"><h3 id="quick-decision-framework">Quick decision framework<a class="hash-link" href="#quick-decision-framework" aria-label="Direct link to Quick decision framework"></a></h3><p>Use the smallest mechanism that solves the problem.</p><ul>
+<li>If the guidance is one-off and task-specific, use a <strong>prompt</strong>.</li>
+<li>If it should apply repeatedly without being restated, use <strong>instructions</strong>.</li>
+<li>If it represents reusable specialist expertise, use a <strong>skill</strong>.</li>
+<li>If a worker owns a role or workflow, use an <strong>agent</strong>.</li>
+<li>If something should happen automatically at an event or boundary, use a <strong>hook</strong>.</li>
+<li>If the workflow needs access to an external system, use <strong>MCP</strong>.</li>
+</ul></div></div>
+<h2 id="prompts-what-do-i-want-done-right-now">Prompts: What do I want done right now?<a class="hash-link" href="#prompts-what-do-i-want-done-right-now" aria-label="Direct link to Prompts: What do I want done right now?"></a></h2>
+<p>A prompt expresses immediate intent.</p>
+<p>It tells Copilot what you want to accomplish in the current interaction: review something, explain something, generate something, investigate a problem, or help make a decision.</p>
+<p>The important distinction is that a prompt represents the request, not all of the knowledge, rules, or expertise needed to complete it.</p>
+<h3 id="what-problem-do-prompts-solve">What problem do prompts solve?<a class="hash-link" href="#what-problem-do-prompts-solve" aria-label="Direct link to What problem do prompts solve?"></a></h3>
+<p>AI needs direction.</p>
+<p>Even though relevant context is already available, Copilot still needs to understand the outcome you are trying to achieve.</p>
+<p>A prompt provides that immediate goal.</p>
+<p>The problem starts when the prompt also has to carry every coding standard, architectural rule, testing convention, workflow step, and piece of specialist knowledge required to complete the task.</p>
+<p>That is usually a sign that some of those responsibilities belong elsewhere.</p>
+<h3 id="when-should-you-use-prompts">When should you use prompts?<a class="hash-link" href="#when-should-you-use-prompts" aria-label="Direct link to When should you use prompts?"></a></h3>
+<p>Prompts work best for tasks you intentionally invoke rather than behaviour that should always apply.</p>
+<p><strong>Typical prompt tasks include:</strong></p>
+<ul>
+<li>Generating unit tests according to a standard structure.</li>
+<li>Creating an implementation plan.</li>
+<li>Reviewing an API for security concerns.</li>
+<li>Generating documentation.</li>
+</ul>
+<h3 id="when-should-you-not-use-prompts">When should you NOT use prompts?<a class="hash-link" href="#when-should-you-not-use-prompts" aria-label="Direct link to When should you NOT use prompts?"></a></h3>
+<p>If something should apply all the time, it probably belongs in <strong>instructions</strong>, not a prompt.</p>
+<p>For example:</p>
+<blockquote>
+<p>Use xUnit for all .NET unit tests.</p>
+</blockquote>
+<p>That's a repository convention. You shouldn't have to remember to restate it in every prompt.</p>
+<h3 id="common-mistakes">Common mistakes<a class="hash-link" href="#common-mistakes" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>Prompts become bloated when they start carrying information that should already exist elsewhere.</strong> If you repeatedly paste the same coding conventions, architecture rules, or testing expectations into requests, the problem is probably missing instructions rather than weak prompting.</p>
+<p>Another <strong>mistake</strong> is turning a prompt into an agent simply because the prompt has become long.</p>
+<h2 id="instructions-always-apply-these-rules">Instructions: Always apply these rules<a class="hash-link" href="#instructions-always-apply-these-rules" aria-label="Direct link to Instructions: Always apply these rules"></a></h2>
+<h3 id="what-are-instructions">What are instructions?<a class="hash-link" href="#what-are-instructions" aria-label="Direct link to What are instructions?"></a></h3>
+<p>Instructions provide persistent guidance and constraints that should influence how work is carried out.</p>
+<p>Unlike a prompt, which expresses what you want done now, instructions describe expectations that should remain true across multiple tasks.</p>
+<p>They represent the standing rules of the environment.</p>
+<h3 id="what-problem-do-instructions-solve">What problem do instructions solve?<a class="hash-link" href="#what-problem-do-instructions-solve" aria-label="Direct link to What problem do instructions solve?"></a></h3>
+<p>Without instructions, the same expectations have to be repeatedly communicated.</p>
+<p>Developers end up restating things such as architectural boundaries, testing expectations, naming conventions, security requirements, and preferred patterns every time they start a new task.</p>
+<p>Instructions separate those persistent constraints from the immediate request.</p>
+<p>The prompt can then focus on what needs to be done, while the instructions provide the boundaries within which it should be done.</p>
+<h3 id="when-should-you-use-instructions">When should you use instructions?<a class="hash-link" href="#when-should-you-use-instructions" aria-label="Direct link to When should you use instructions?"></a></h3>
+<p>Instructions make sense when the guidance should follow the work without the developer having to remember to provide it.</p>
+<p>This keeps the context stable and makes the rules easier to apply consistently across work.</p>
+<p><strong>Instructions are a good fit for:</strong></p>
+<ul>
+<li>Naming or coding conventions.</li>
+<li>Testing frameworks and testing expectations.</li>
+<li>Patterns the team uses or avoids.</li>
+<li>Repository architecture and important boundaries.</li>
+<li>Language/framework conventions.</li>
+</ul>
+<h3 id="when-should-you-not-use-instructions">When should you NOT use instructions?<a class="hash-link" href="#when-should-you-not-use-instructions" aria-label="Direct link to When should you NOT use instructions?"></a></h3>
+<ul>
+<li>You only need a task or operation once.</li>
+<li>The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance.</li>
+<li>The task requires specialised tooling or context that should not be treated as a universal rule.</li>
+</ul>
+<h3 id="common-mistakes-1">Common mistakes<a class="hash-link" href="#common-mistakes-1" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>Instruction scope is often too broad.</strong> Guidance should apply only where it is relevant; otherwise unrelated work receives unnecessary constraints.</p>
+<p>Vague principles are another problem: instructions should express actionable constraints.</p>
+<div class="tabs-container"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" id="tabs-4-tab-0" aria-controls="tabs-4-panel-0" aria-selected="true" tabindex="0" class="tabs__item tabs__item--active">✅ Effective</li><li role="tab" id="tabs-4-tab-1" aria-controls="tabs-4-panel-1" aria-selected="false" tabindex="-1" class="tabs__item">⚠️ Ineffective</li></ul><div class="tab-panels"><div role="tabpanel" id="tabs-4-panel-0" aria-labelledby="tabs-4-tab-0" tabindex="0"><p>Do not log authentication tokens.<br>
+New HTTP integrations must use the existing typed HttpClient pattern.<br>
+Use xUnit for new unit tests.<br></p></div><div role="tabpanel" id="tabs-4-panel-1" aria-labelledby="tabs-4-tab-1" tabindex="0" hidden><p>Write high-quality code.<br>
+Make sure the code is secure.<br>
+Follow best practices.</p></div></div></div>
+<p>Instructions guide behaviour; they do not enforce it. If a rule must be guaranteed, it needs an enforcement mechanism rather than relying on AI behaviour alone.</p>
+<h2 id="skills-how-should-this-kind-of-work-be-done">Skills: How should this kind of work be done?<a class="hash-link" href="#skills-how-should-this-kind-of-work-be-done" aria-label="Direct link to Skills: How should this kind of work be done?"></a></h2>
+<h3 id="what-are-skills">What are skills?<a class="hash-link" href="#what-are-skills" aria-label="Direct link to What are skills?"></a></h3>
+<p>A skill packages reusable expertise for a particular kind of work.</p>
+<p>It captures a recognisable method, body of knowledge, or approach that can be applied whenever the same type of problem appears.</p>
+<p>A skill does not own <strong>the overall workflow</strong>. It contributes specialised capability to whoever is performing the work.</p>
+<h3 id="what-problem-do-skills-solve">What problem do skills solve?<a class="hash-link" href="#what-problem-do-skills-solve" aria-label="Direct link to What problem do skills solve?"></a></h3>
+<p>Many engineering tasks require more than general reasoning.</p>
+<p>Reviewing requirements for completeness, assessing architecture impact, evaluating test adequacy, or analysing migration risk each requires a different way of thinking.</p>
+<p>Without reusable skills, that expertise has to be reconstructed every time the task appears.</p>
+<p>Skills allow that expertise to be separated from the immediate request and reused where appropriate.</p>
+<h3 id="when-should-you-use-skills">When should you use skills?<a class="hash-link" href="#when-should-you-use-skills" aria-label="Direct link to When should you use skills?"></a></h3>
+<p>A good skill has a recognisable boundary: it performs a particular kind of specialist work that will be useful more than once.</p>
+<p>The best candidates tend to be specialised, reusable capabilities.</p>
+<p><strong>Good skill boundaries include:</strong></p>
+<ul>
+<li>Requirements completeness assessment.</li>
+<li>Test adequacy assessment.</li>
+<li>Architecture impact analysis.</li>
+<li>Backward-compatibility analysis.</li>
+<li>Migration-risk analysis.</li>
+</ul>
+<h3 id="when-should-you-not-use-skills">When should you NOT use skills?<a class="hash-link" href="#when-should-you-not-use-skills" aria-label="Direct link to When should you NOT use skills?"></a></h3>
+<p>A skill is not necessary when:</p>
+<ul>
+<li>The task is trivial.</li>
+<li>It is only needed once.</li>
+<li>The capability cannot be defined clearly enough to produce consistent results.</li>
+</ul>
+<h3 id="common-mistakes-2">Common mistakes<a class="hash-link" href="#common-mistakes-2" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>Repetition alone does not justify a skill.</strong> A task should also represent reusable expertise with a meaningful boundary.</p>
+<p>Skills tend to break down at either extreme: too broad to provide specialist guidance, or so narrow that they only apply to one ticket or edge case. Another warning sign is when a skill starts coordinating an entire workflow rather than contributing expertise to it.</p>
+<h2 id="agents-who-owns-this-responsibility">Agents: Who owns this responsibility?<a class="hash-link" href="#agents-who-owns-this-responsibility" aria-label="Direct link to Agents: Who owns this responsibility?"></a></h2>
+<h3 id="what-are-agents">What are agents?<a class="hash-link" href="#what-are-agents" aria-label="Direct link to What are agents?"></a></h3>
+<p>An agent represents a responsibility boundary.</p>
+<p>It is useful when a piece of work benefits from having a distinct goal, role, context, or workflow ownership.</p>
+<p>Instead of asking one general worker to plan, implement, review, test, and validate everything at once, different responsibilities can be separated.</p>
+<p>A skill knows <strong>how to do something</strong>. An agent is responsible for <strong>getting something done</strong>.</p>
+<h3 id="what-problem-do-agents-solve">What problem do agents solve?<a class="hash-link" href="#what-problem-do-agents-solve" aria-label="Direct link to What problem do agents solve?"></a></h3>
+<p>Agents help prevent unrelated responsibilities from becoming mixed together.</p>
+<p>When one worker is simultaneously expected to act as planner, developer, reviewer, tester, and architect, the boundaries between those responsibilities become unclear.</p>
+<p>Separating those roles can make the purpose, context, and expected outcome of each stage easier to reason about.</p>
+<p>The value of an agent therefore comes from the responsibility it owns, not from simply giving it a name or persona.</p>
+<h3 id="when-should-you-use-agents">When should you use agents?<a class="hash-link" href="#when-should-you-use-agents" aria-label="Direct link to When should you use agents?"></a></h3>
+<p>Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.</p>
+<p><strong>Good agent responsibilities include:</strong></p>
+<ul>
+<li>Analysing whether requirements are ready for implementation.</li>
+<li>Turning approved requirements into an implementation plan.</li>
+<li>Implementing a defined change.</li>
+<li>Reviewing a pull request and producing findings.</li>
+<li>Coordinating a bounded migration workflow.</li>
+</ul>
+<h3 id="when-should-you-not-use-agents">When should you NOT use agents?<a class="hash-link" href="#when-should-you-not-use-agents" aria-label="Direct link to When should you NOT use agents?"></a></h3>
+<p>A dedicated agent is usually unnecessary when:</p>
+<ul>
+<li>You need reusable expertise. That's probably a skill.</li>
+<li>You are simply repeating the same request. That's probably a prompt.</li>
+<li>A rule should apply everywhere. Those belong in instructions.</li>
+<li>The existing worker already has sufficient responsibility and context for the task.</li>
+</ul>
+<h3 id="common-mistakes-3">Common mistakes<a class="hash-link" href="#common-mistakes-3" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>A long prompt is not, by itself, a reason to create an agent.</strong> The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.</p>
+<p>Another mistake is creating too many agents for responsibilities that do not need to be separated. Every additional boundary introduces coordination and context handoff, so the separation should earn its complexity.</p>
+<h2 id="hooks-what-should-happen-automatically-when-an-event-occurs">Hooks: What should happen automatically when an event occurs?<a class="hash-link" href="#hooks-what-should-happen-automatically-when-an-event-occurs" aria-label="Direct link to Hooks: What should happen automatically when an event occurs?"></a></h2>
+<h3 id="what-are-hooks">What are hooks?<a class="hash-link" href="#what-are-hooks" aria-label="Direct link to What are hooks?"></a></h3>
+<p>A hook connects a defined event to an automatic action.</p>
+<p>The important idea is the relationship:</p>
+<p><strong>When this event occurs, perform this action.</strong></p>
+<h3 id="what-problem-do-hooks-solve">What problem do hooks solve?<a class="hash-link" href="#what-problem-do-hooks-solve" aria-label="Direct link to What problem do hooks solve?"></a></h3>
+<p>Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical actions can easily be forgotten when they depend on someone remembering to request them.</p>
+<p>Hooks move that responsibility out of the <strong>conversation</strong> and into the <strong>workflow</strong> itself.</p>
+<h3 id="when-should-you-use-hooks">When should you use hooks?<a class="hash-link" href="#when-should-you-use-hooks" aria-label="Direct link to When should you use hooks?"></a></h3>
+<p>Hooks earn their place when an action should happen because an event occurred, not because someone remembered to request it.</p>
+<p><strong>Common automated actions include:</strong></p>
+<ul>
+<li>Validation.</li>
+<li>Auditing.</li>
+<li>Logging.</li>
+<li>Pre/post-task checks.</li>
+</ul>
+<h3 id="when-should-you-not-use-hooks">When should you NOT use hooks?<a class="hash-link" href="#when-should-you-not-use-hooks" aria-label="Direct link to When should you NOT use hooks?"></a></h3>
+<p>Avoid hooks when the action is optional or requires judgement.</p>
+<h3 id="common-mistakes-4">Common mistakes<a class="hash-link" href="#common-mistakes-4" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>Hooks become dangerous when they automate something that has not been designed clearly in the first place.</strong> Automation should make a well-understood workflow reliable, not hide ambiguity inside it.</p>
+<p>Another mistake is using hooks for decisions that require judgement. Hooks work best for predictable actions; if the correct response depends on context or interpretation, that responsibility probably belongs elsewhere.</p>
+<h2 id="mcp-what-external-capability-does-the-workflow-need">MCP: What external capability does the workflow need?<a class="hash-link" href="#mcp-what-external-capability-does-the-workflow-need" aria-label="Direct link to MCP: What external capability does the workflow need?"></a></h2>
+<h3 id="what-is-mcp">What is MCP?<a class="hash-link" href="#what-is-mcp" aria-label="Direct link to What is MCP?"></a></h3>
+<p>MCP provides a way for an AI workflow to reach beyond the information and capabilities already available in its immediate context.</p>
+<p>It creates a boundary between the reasoning system and external tools, systems, or sources of information.</p>
+<p>The important distinction is that MCP does not describe how to perform the work.</p>
+<p>It provides access to something the work needs.</p>
+<h3 id="what-problem-does-mcp-solve">What problem does MCP solve?<a class="hash-link" href="#what-problem-does-mcp-solve" aria-label="Direct link to What problem does MCP solve?"></a></h3>
+<p>Useful context and capabilities often live outside the AI system.</p>
+<p>A workflow might need to retrieve requirements, query another system, inspect operational data, look up records, or perform an action through an external service.</p>
+<p>For example, a requirements analyst agent may need information from a GitHub issue.</p>
+<p>Without MCP, the agent may have to rely on a human to copy that context into the conversation manually.</p>
+<p>For repeated workflows, manually copying that context into chat becomes inefficient and error-prone.</p>
+<p>So instead of:</p>
+<blockquote>
+<p>Human → copy user story → paste into Copilot</p>
+</blockquote>
+<p>you can move toward:</p>
+<blockquote>
+<p>Agent → MCP → GitHub</p>
+</blockquote>
+<h3 id="when-should-you-use-mcp">When should you use MCP?<a class="hash-link" href="#when-should-you-use-mcp" aria-label="Direct link to When should you use MCP?"></a></h3>
+<p>MCP becomes relevant when the workflow reaches beyond the context Copilot already has — into another system, data source, or tool.</p>
+<p><strong>Common external capabilities include:</strong></p>
+<ul>
+<li>Retrieving requirements from an issue or work-item system.</li>
+<li>Reading pull request or repository information.</li>
+<li>Querying operational or monitoring data.</li>
+<li>Looking up records in an external system.</li>
+<li>Creating or updating information in another service.</li>
+</ul>
+<h3 id="when-should-you-not-use-mcp">When should you NOT use MCP?<a class="hash-link" href="#when-should-you-not-use-mcp" aria-label="Direct link to When should you NOT use MCP?"></a></h3>
+<ul>
+<li>When built-in capabilities already solve the work.</li>
+<li>When the information is project guidance or reusable methodology that can live in instructions, repository context, or a skill.</li>
+</ul>
+<h3 id="common-mistakes-5">Common mistakes<a class="hash-link" href="#common-mistakes-5" aria-label="Direct link to Common mistakes"></a></h3>
+<p><strong>External capability should be bounded.</strong> Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.</p>
+<p>Another mistake is introducing external access when the required information or capability is already available locally.</p>
+<h2 id="how-it-all-fits-together">How it all fits together<a class="hash-link" href="#how-it-all-fits-together" aria-label="Direct link to How it all fits together"></a></h2>
+<p>Imagine we are running an Italian restaurant.</p>
+<p>A customer places an order:</p>
+<blockquote>
+<p><strong>“Make me a Margherita pizza.”</strong></p>
+</blockquote>
+<p>That order is the equivalent of a <strong>prompt</strong>.</p>
+<p>It tells us what needs to be done right now. The customer does not need to explain how the entire restaurant operates. They simply provide the immediate request.</p>
+<p>But the chef should not make the pizza however they want.</p>
+<p>The restaurant already has a set of standing rules:</p>
+<ul>
+<li>Use fresh ingredients.</li>
+<li>Keep preparation time under 30 minutes.</li>
+<li>Follow the restaurant's food-safety standards.</li>
+<li>Use approved ingredients and suppliers.</li>
+</ul>
+<p>These are the equivalent of <strong>instructions</strong>.</p>
+<p>They do not explain how to make one particular dish. They define the rules and constraints under which the kitchen operates.</p>
+<h3 id="the-recipe-is-the-skill">The recipe is the skill<a class="hash-link" href="#the-recipe-is-the-skill" aria-label="Direct link to The recipe is the skill"></a></h3>
+<p>Now we need the actual know-how for preparing the pizza.</p>
+<p>The Margherita recipe describes how to prepare the dough, add the ingredients, bake the pizza and finish the dish.</p>
+<p>The restaurant may also have a separate Carbonara recipe with a different preparation method.</p>
+<p>These recipes are the equivalent of <strong>skills</strong>.</p>
+<p><strong>Each skill packages reusable expertise for a particular kind of task.</strong></p>
+<p>The kitchen does not need to relearn how to make a Margherita or Carbonara every time someone orders one.</p>
+<h3 id="the-chef-is-the-agent">The chef is the agent<a class="hash-link" href="#the-chef-is-the-agent" aria-label="Direct link to The chef is the agent"></a></h3>
+<p>The <strong>agent</strong> is the chef.</p>
+<p>The chef receives the order, works within the restaurant's standing rules, selects the appropriate recipe and performs the work.</p>
+<p>A recipe knows how a dish should be made.</p>
+<p>The chef owns the responsibility for getting it made.</p>
+<p>But recipes alone are not enough. Some capabilities exist outside the chef's environment.</p>
+<h3 id="hooks-are-the-kitchens-automatic-actions">Hooks are the kitchen's automatic actions<a class="hash-link" href="#hooks-are-the-kitchens-automatic-actions" aria-label="Direct link to Hooks are the kitchen's automatic actions"></a></h3>
+<p>Imagine that when an order is marked ready, the front-of-house team is automatically notified and the order status is updated.</p>
+<p>That is the equivalent of a <strong>hook</strong>.</p>
+<p>Nobody has to remember to request the action. It happens because a defined event occurred.</p>
+<p>The hook is not the order, the rule, or the recipe. <strong>It connects an event to an automatic action.</strong></p>
+<h3 id="mcp-connects-the-kitchen-to-the-outside-world">MCP connects the kitchen to the outside world<a class="hash-link" href="#mcp-connects-the-kitchen-to-the-outside-world" aria-label="Direct link to MCP connects the kitchen to the outside world"></a></h3>
+<p>Now imagine the chef discovers that the kitchen needs information from somewhere else.</p>
+<p>They may need to check ingredient stock, look up a customer's allergy information, or place an order with an approved supplier.</p>
+<p>Those external capabilities are not skills.</p>
+<p>Knowing how to make a pizza does not give the chef access to an inventory or supplier system.</p>
+<p>For our restaurant, imagine we have:</p>
+<p><strong>Inventory MCP server</strong>
+Allows the chef to:</p>
+<ul>
+<li>Check ingredient stock.</li>
+<li>Find ingredient locations.</li>
+<li>Update stock levels.</li>
+</ul>
+<p><strong>Supplier MCP server</strong>
+Allows the chef to:</p>
+<ul>
+<li>Find approved suppliers.</li>
+<li>Check ingredient availability.</li>
+<li>Place an ingredient order.</li>
+</ul>
+<h3 id="putting-the-pieces-together">Putting the pieces together<a class="hash-link" href="#putting-the-pieces-together" aria-label="Direct link to Putting the pieces together"></a></h3>
+<p>A customer says:</p>
+<blockquote>
+<p><strong>“Make me a Margherita pizza.”</strong></p>
+</blockquote>
+<p>The chef receives the <strong>prompt</strong>, follows the restaurant's <strong>instructions</strong>, applies the <strong>Margherita pizza skill</strong>.</p>
+<p>Defined hooks can automatically perform actions when particular events occur.</p>
+<p>The chef checks the inventory system through an <strong>MCP server</strong> and discovers that fresh mozzarella is available.</p>
+<p>The chef then prepares the pizza.</p>
+<p>The <strong>agent</strong> coordinates all of this.</p>
+<p>A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's order does not need to contain the entire recipe.</p>
+<p>Each piece has its own responsibility.</p>
+<p>The strength of the system comes from <strong>combining them rather than trying to force everything into one giant prompt</strong>.</p>
+<h2 id="final-takeaway">Final takeaway<a class="hash-link" href="#final-takeaway" aria-label="Direct link to Final takeaway"></a></h2>
+<p>The goal of Copilot customisation is not to use more features. It is to design better boundaries.</p>
+<p>The important question is not simply:</p>
+<blockquote>
+<p>"What feature should I use?"</p>
+</blockquote>
+<p>Instead, ask:</p>
+<blockquote>
+<p><strong>"What is its scope?"</strong></p>
+<p><strong>"Who owns the responsibility?"</strong></p>
+<p><strong>"Where does it belong?"</strong></p>
+</blockquote>
+<p>Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.</p>
+<p>They start looking like parts of a system.</p>
+<p>Prompts express intent. Instructions define constraints. Skills package expertise. Agents own responsibility. Hooks automate events. MCP provides external capability.</p>
+<p>And that is where GitHub Copilot customisation becomes much more useful.</p>
+          </div>
+          <footer class="row blog-post-footer">
+            <div class="col"><b>Tags:</b><ul class="tags-inline"><li><a class="tag-chip" rel="tag" title="Building practical AI-powered software systems." href="/articles/tags/ai-engineering/">AI Engineering</a></li><li><a class="tag-chip" rel="tag" title="GitHub Copilot, agents, skills and AI-assisted engineering." href="/articles/tags/github-copilot/">GitHub Copilot</a></li></ul></div>
+          </footer>
+        </article>
+
+        <article>
+          <header>
+            <h2 class="blog-post-title"><a href="/articles/gh300-github-copilot-lessons/">I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things</a></h2>
+            <div class="blog-meta"><time datetime="2026-09-11T00:00:00.000Z">September 11, 2026</time> · 11 min read</div>
+            <div class="blog-author-row">
+            <div class="blog-authors"><div class="blog-author">Mpho Magoro</div></div>
+          </div>
+          </header>
+          <div class="markdown">
+<p><img src="/img/articles/github-copilot-gh300/hero.webp" srcset="/img/articles/github-copilot-gh300/hero-960.webp 960w, /img/articles/github-copilot-gh300/hero.webp 1672w" sizes="(max-width: 996px) 100vw, 960px" alt="GitHub Copilot and GH-300" width="1672" height="941" decoding="async" loading="lazy" loading="lazy" decoding="async"></p>
+<p>I had already been using GitHub Copilot regularly before I decided to take the GH-300 certification.</p>
+<p>It was part of my normal development workflow. I used it to generate code, explain unfamiliar code, refactor existing solutions, explore implementation approaches, write tests and reduce repetition in everyday engineering work.</p>
+<p>So when I first looked at the GitHub Copilot certification, I had a very obvious question:</p>
+<p><strong>If I already use Copilot every day, what exactly am I going to learn from an exam about it?</strong></p>
+<p>It had been a while since I had completed a formal certification, and I had started to think they were not always necessary. At the same time, I also knew that certifications can be useful when they force you to think more deliberately about a tool you already use well.</p>
+<p>That question turned out to be the reason the certification was useful.</p>
+<p>Using a tool frequently and understanding how to use it deliberately are not the same thing.</p>
+<p>GH-300 pushed me past the "I know how to prompt this tool" stage and into the larger question of how AI fits into real software engineering work: context, instructions, governance, accountability and workflow design.</p>
+<p>There were plenty of topics in the exam that went beyond my day-to-day usage, and that was exactly why it was valuable.</p>
+          </div>
+          <footer class="row blog-post-footer">
+            <div class="col col--9"><b>Tags:</b><ul class="tags-inline"><li><a class="tag-chip" rel="tag" title="Building practical AI-powered software systems." href="/articles/tags/ai-engineering/">AI Engineering</a></li><li><a class="tag-chip" rel="tag" title="GitHub Copilot, agents, skills and AI-assisted engineering." href="/articles/tags/github-copilot/">GitHub Copilot</a></li></ul></div><div class="col col--3 blog-read-more"><a aria-label="Read more about I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things" href="/articles/gh300-github-copilot-lessons/"><b>Read more</b></a></div>
+          </footer>
+        </article>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <p class="footer__copyright">© <span data-current-year>2026</span> Mpho Magoro on Tech</p>
+    </div>
+  </footer>
+</body>
+</html>

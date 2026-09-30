@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-theme-choice="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things | Mpho Magoro on Tech</title>
+  <meta name="description" content="What studying for GH-300 taught me despite already using GitHub Copilot professionally.">
+  <link rel="canonical" href="https://mphomagoro.com/articles/gh300-github-copilot-lessons/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mpho Magoro on Tech">
+  <meta property="og:title" content="I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things | Mpho Magoro on Tech">
+  <meta property="og:description" content="What studying for GH-300 taught me despite already using GitHub Copilot professionally.">
+  <meta property="og:url" content="https://mphomagoro.com/articles/gh300-github-copilot-lessons/">
+  <meta property="og:image" content="https://mphomagoro.com/img/articles/github-copilot-gh300/hero.jpg">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mphomagoro.com/img/articles/github-copilot-gh300/hero.jpg">
+  <meta property="article:published_time" content="2026-09-11T00:00:00.000Z">
+  <meta property="article:author" content="Mpho Magoro">
+  <meta property="article:tag" content="AI Engineering">
+  <meta property="article:tag" content="GitHub Copilot">
+
+  <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/img/favicon/site.webmanifest">
+  <meta name="theme-color" content="#050505">
+  <link rel="alternate" type="application/rss+xml" href="/articles/rss.xml" title="Mpho Magoro on Tech RSS Feed">
+  <link rel="alternate" type="application/atom+xml" href="/articles/atom.xml" title="Mpho Magoro on Tech Atom Feed">
+
+  <script>
+    (function () {
+      var choice = 'system';
+      try { choice = localStorage.getItem('theme') || 'system'; } catch (e) {}
+      if (choice !== 'light' && choice !== 'dark') choice = 'system';
+      var theme = choice === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : choice;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-theme-choice', choice);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/main.js" defer></script>
+</head>
+<body class="blog-post-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <nav class="navbar" aria-label="Main">
+    <div class="navbar__inner">
+      <div class="navbar__items">
+        <button class="navbar__toggle" type="button" aria-label="Toggle navigation bar" aria-expanded="false" aria-controls="navbar-sidebar"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg></button>
+        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
+      </div>
+      <div class="navbar__items navbar__items--right">
+        <a class="navbar__item navbar__link navbar__link--active" aria-current="page" href="/articles/">Articles</a>
+        <a class="navbar__item navbar__link" href="/guides/">Guides</a>
+        <a class="navbar__item navbar__link" href="/about/">About</a>
+        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
+      </div>
+    </div>
+
+    <div class="navbar-sidebar__backdrop" aria-hidden="true"></div>
+    <div class="navbar-sidebar" id="navbar-sidebar">
+      <div class="navbar-sidebar__brand">
+        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
+        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
+        <button type="button" class="navbar-sidebar__close" aria-label="Close navigation bar"><svg viewBox="0 0 15 15" width="21" height="21" aria-hidden="true"><g stroke="currentColor" stroke-width="1.2"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"/></g></svg></button>
+      </div>
+      <div class="navbar-sidebar__items">
+        <div class="navbar-sidebar__item navbar-sidebar__item--primary menu">
+          <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/articles/">Articles</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="/guides/">Guides</a></li>
+            <li class="menu__list-item"><a class="menu__link" href="/about/">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-wrapper" id="main" tabindex="-1">
+    <div class="container margin-vert--lg">
+      <div class="row">
+        <main class="col col--9 col--offset-1">
+          <article>
+            <header>
+              <h1>I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things</h1>
+              <div class="blog-meta"><time datetime="2026-09-11T00:00:00.000Z">September 11, 2026</time> · 11 min read</div>
+              <div class="blog-author-row">
+            <div class="blog-authors"><div class="blog-author">Mpho Magoro</div></div>
+            <button type="button" class="share-button" data-title="I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things" aria-label="Share this article" title="Share this article"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 8L12 4L16 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 11V19C6 19.5523 6.44772 20 7 20H17C17.5523 20 18 19.5523 18 19V11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="share-button__label">Share</span></button>
+          </div>
+            </header>
+            <div class="markdown">
+<p><img src="/img/articles/github-copilot-gh300/hero.webp" srcset="/img/articles/github-copilot-gh300/hero-960.webp 960w, /img/articles/github-copilot-gh300/hero.webp 1672w" sizes="(max-width: 996px) 100vw, 960px" alt="GitHub Copilot and GH-300" width="1672" height="941" decoding="async" fetchpriority="high" loading="lazy" decoding="async"></p>
+<p>I had already been using GitHub Copilot regularly before I decided to take the GH-300 certification.</p>
+<p>It was part of my normal development workflow. I used it to generate code, explain unfamiliar code, refactor existing solutions, explore implementation approaches, write tests and reduce repetition in everyday engineering work.</p>
+<p>So when I first looked at the GitHub Copilot certification, I had a very obvious question:</p>
+<p><strong>If I already use Copilot every day, what exactly am I going to learn from an exam about it?</strong></p>
+<p>It had been a while since I had completed a formal certification, and I had started to think they were not always necessary. At the same time, I also knew that certifications can be useful when they force you to think more deliberately about a tool you already use well.</p>
+<p>That question turned out to be the reason the certification was useful.</p>
+<p>Using a tool frequently and understanding how to use it deliberately are not the same thing.</p>
+<p>GH-300 pushed me past the "I know how to prompt this tool" stage and into the larger question of how AI fits into real software engineering work: context, instructions, governance, accountability and workflow design.</p>
+<p>There were plenty of topics in the exam that went beyond my day-to-day usage, and that was exactly why it was valuable.</p>
+<!-- -->
+<hr>
+<h2 id="i-thought-daily-use-meant-i-already-understood-copilot">I Thought Daily Use Meant I Already Understood Copilot<a class="hash-link" href="#i-thought-daily-use-meant-i-already-understood-copilot" aria-label="Direct link to I Thought Daily Use Meant I Already Understood Copilot"></a></h2>
+<p>Before studying for GH-300, my use of Copilot was mostly practical.</p>
+<p>I would open VS Code, describe what I wanted, review the generated code and continue working. That alone had real value. It could help me generate repetitive implementation code, write unit tests, explain unfamiliar code, suggest refactoring ideas, generate documentation and troubleshoot errors.</p>
+<p>For an experienced engineer, the benefit is not always dramatic in a single interaction. It is the cumulative effect of reducing low-value typing and getting a useful first draft faster.</p>
+<p>But that practical usage also creates a false sense of confidence.</p>
+<p>You can become very good at using Copilot as an autocomplete engine without becoming particularly good at <strong>engineering with AI</strong>. That distinction became more important to me over time.</p>
+<p>The more I used Copilot, the more I realised that my real question was not "How do I get code from the tool?" It was "How do I design an environment where the tool is more useful, more reliable and more aligned with engineering standards?"</p>
+<p>That is where GH-300 started to change my thinking.</p>
+<hr>
+<h2 id="lesson-1-productivity-isnt-the-same-as-ai-engineering">Lesson 1: Productivity Isn't the Same as AI Engineering<a class="hash-link" href="#lesson-1-productivity-isnt-the-same-as-ai-engineering" aria-label="Direct link to Lesson 1: Productivity Isn't the Same as AI Engineering"></a></h2>
+<p>One of the first gaps I noticed was between being productive and being deliberate.</p>
+<p>If you use Copilot every day, it is easy to treat it like a fast code generator. You ask for a function, a test, a refactor or a sketch of an implementation, review it and move on. That can be productive, but it is not the same as engineering with AI.</p>
+<p>The difference shows up when the task is more complex than "generate a method".</p>
+<p>A typical workflow might look like this:</p>
+<blockquote>
+<p>Implement this feature.</p>
+</blockquote>
+<blockquote>
+<p>Write tests for this class.</p>
+</blockquote>
+<blockquote>
+<p>Refactor this method.</p>
+</blockquote>
+<p>These prompts can work, but they place most of the responsibility for understanding the requirements, architecture and risk on the model.</p>
+<p>A stronger approach is to provide the same kinds of constraints an experienced engineer would normally consider before implementation:</p>
+<ul>
+<li>what the requirement really is;</li>
+<li>what architectural constraints apply;</li>
+<li>what patterns are already established in the repository;</li>
+<li>what files should not change;</li>
+<li>what security or compliance boundaries exist;</li>
+<li>what testing expectations are required;</li>
+<li>what would count as an unacceptable outcome.</li>
+</ul>
+<p>That is the real shift GH-300 prompted in me: the developer’s job is increasingly the design of the environment in which the AI operates, not simply the wording of the next prompt.</p>
+<p>This matters because AI does not just accelerate implementation. It changes the distribution of effort across the engineering process.</p>
+<p>The more capable the system becomes, the more important good requirements, clear context and sound judgement become.</p>
+<hr>
+<h2 id="lesson-2-context-matters-more-than-clever-prompts">Lesson 2: Context Matters More Than Clever Prompts<a class="hash-link" href="#lesson-2-context-matters-more-than-clever-prompts" aria-label="Direct link to Lesson 2: Context Matters More Than Clever Prompts"></a></h2>
+<p>One of the biggest changes in my thinking after GH-300 was that I stopped viewing Copilot purely as a prompt-and-response tool.</p>
+<p>The more important capability is not raw prompting. It is <strong>context</strong>.</p>
+<p>A prompt does not exist in isolation. It sits inside a larger environment: the current file, nearby code, repository context, instructions, chat history, open files, standards and the task you are trying to complete. The model is not receiving only the sentence you typed. It is reasoning from a broader set of signals.</p>
+<p>That is why context engineering matters so much.</p>
+<p>A useful AI-assisted workflow is not the one with the cleverest prompt. It is the one with the right context, in the right form, under the right constraints.</p>
+<p>This is the point where the engineering discipline becomes more subtle.</p>
+<p>You are no longer asking only, "What should I type?" You are asking, "What information should the assistant have access to, what should it be prevented from seeing, and how do I structure the environment so the output is useful?"</p>
+<p>This is also where governance starts to become practical instead of abstract. The best AI workflow is not the one that exposes everything to the model. It is the one that provides the right context, under the right controls, for the right purpose.</p>
+<hr>
+<h2 id="lesson-3-customisation-turns-copilot-into-an-engineering-tool">Lesson 3: Customisation Turns Copilot Into an Engineering Tool<a class="hash-link" href="#lesson-3-customisation-turns-copilot-into-an-engineering-tool" aria-label="Direct link to Lesson 3: Customisation Turns Copilot Into an Engineering Tool"></a></h2>
+<p>Once I started thinking in terms of environment design, I began to see a very different role for Copilot.</p>
+<p>Instead of repeatedly explaining the same engineering expectations over and over, those expectations can be encoded into the development environment itself: repository instructions, reusable prompt files, custom agents, specialised skills, architecture constraints, testing expectations and review workflows.</p>
+<p>This changes the relationship between the developer and the assistant.</p>
+<p>Instead of saying:</p>
+<blockquote>
+<p>Please remember we use this architecture pattern.</p>
+</blockquote>
+<p>every time, the objective becomes:</p>
+<blockquote>
+<p>How do I make that knowledge part of the environment?</p>
+</blockquote>
+<p>That is a much more scalable approach.</p>
+<p>It also reduces friction. If the workflow already knows the standards, the engineer does not need to rediscover them in every interaction. That makes the system more consistent, more reusable and easier to govern.</p>
+<p>This is where customisation becomes a real engineering capability rather than just a feature to play with.</p>
+<p>The interesting part is not that Copilot can answer a question. It is that Copilot can increasingly act as a participant in a workflow that has been designed around clear rules, context and responsibility.</p>
+<p>That is the beginning of AI-assisted engineering, not just AI-assisted prompting.</p>
+<hr>
+<h2 id="lesson-4-governance-belongs-inside-the-workflow">Lesson 4: Governance Belongs Inside the Workflow<a class="hash-link" href="#lesson-4-governance-belongs-inside-the-workflow" aria-label="Direct link to Lesson 4: Governance Belongs Inside the Workflow"></a></h2>
+<p>The governance topics in GH-300 were some of the most useful parts of the exam for me because they made AI adoption feel concrete.</p>
+<p>One of the clearest examples was <strong>content exclusion</strong>. It is important to decide which repositories, folders or files should be unavailable to Copilot in certain contexts, especially when they contain confidential information, regulated data, security-sensitive logic or contractual restrictions.</p>
+<p>The key question is not simply, "Can Copilot access this code?" It is also, "Should it access this code, under what conditions, and who is responsible for that decision?"</p>
+<p>That is a governance question, not just a configuration question.</p>
+<p>The same idea applies more broadly to responsible AI. The principles of fairness, reliability and safety, privacy and security, inclusiveness, transparency and accountability are not separate from software engineering. They are part of the quality bar for AI-assisted development.</p>
+<p>Copilot can accelerate delivery, but it does not remove the need for review, validation or human judgement. In fact, as output speed increases, review quality matters even more.</p>
+<p>The most useful lesson was that responsible AI starts before the prompt is written. It begins with deciding what information is allowed into the workflow and how the output will be checked before it becomes part of the system.</p>
+<p>That is the organisational reality behind AI use: governance is not a final approval stage added at the end. It is a design consideration from the start.</p>
+<hr>
+<h2 id="lesson-5-faster-coding-makes-requirements-more-important">Lesson 5: Faster Coding Makes Requirements More Important<a class="hash-link" href="#lesson-5-faster-coding-makes-requirements-more-important" aria-label="Direct link to Lesson 5: Faster Coding Makes Requirements More Important"></a></h2>
+<p>This was the biggest practical lesson for me.</p>
+<p>Copilot can generate code quickly. That is useful when the direction is correct, and dangerous when it is not.</p>
+<p>A vague requirement that previously led to a developer implementing the wrong thing over two days may now lead to the wrong implementation being produced in twenty minutes. The bottleneck has moved.</p>
+<p>As implementation becomes faster, activities such as requirements analysis, architecture, constraint identification and validation become more valuable, not less.</p>
+<p>This is where AI changes the engineering process in a very concrete way.</p>
+<p>Before AI, a weak requirement often produced slow failure. The cost of wrong implementation was mainly the cost of time and iteration. With AI, a weak requirement can now be turned into a plausible-looking solution much faster. That can make poor decisions more expensive, not less.</p>
+<p>This is one of the strongest arguments for engineering discipline in an AI-assisted world.</p>
+<p>Good requirements, clear boundaries, real trade-off analysis and architecture review are not optional extras. They are the constraints that prevent speed from creating new kinds of failure.</p>
+<p>AI does not remove the need for engineering judgement. It increases the value of it.</p>
+<hr>
+<h2 id="lesson-6-ai-makes-engineering-judgement-more-valuable">Lesson 6: AI Makes Engineering Judgement More Valuable<a class="hash-link" href="#lesson-6-ai-makes-engineering-judgement-more-valuable" aria-label="Direct link to Lesson 6: AI Makes Engineering Judgement More Valuable"></a></h2>
+<p>The certification also reinforced something I already suspected from daily use: the ability to generate code is becoming less scarce, while the ability to decide whether the code should exist in the first place remains scarce.</p>
+<p>An experienced engineer still has to evaluate the problem, the trade-offs and the risk.</p>
+<p>That includes asking whether the proposed solution actually solves the real problem, whether there is a simpler approach, whether the implementation fits the architecture, whether the security model makes sense, whether the operational cost is acceptable and whether the generated code is maintainable.</p>
+<p>Copilot can help with each of those activities, but it cannot remove accountability from the engineer.</p>
+<p>The role shifts from producing every line manually to directing, constraining, evaluating and integrating the output.</p>
+<p>That is what makes judgement so valuable.</p>
+<p>The AI system can accelerate the work, but humans remain the ones responsible for deciding whether the output is appropriate, safe and aligned with organisational intent.</p>
+<p>In many ways, AI raises the bar for good engineering judgement rather than lowering it.</p>
+<hr>
+<h2 id="what-gh-300-changed-for-me">What GH-300 Changed for Me<a class="hash-link" href="#what-gh-300-changed-for-me" aria-label="Direct link to What GH-300 Changed for Me"></a></h2>
+<div><img src="/img/articles/github-copilot-gh300/github-copilot.svg" alt="GitHub Copilot certification badge" width="180" loading="lazy" decoding="async"></div>
+<p>I did not take GH-300 because I needed someone to teach me how to open Copilot Chat.</p>
+<p>I took it because I wanted a more structured understanding of a tool that was becoming increasingly important in my engineering workflow.</p>
+<p>The certification gave me a vocabulary for concepts I had already been bumping into through practice: context engineering, prompt processing, custom instructions, reusable skills, AI-assisted review and governance-aware workflow design.</p>
+<p>More importantly, it pushed me toward the next set of questions I wanted to explore.</p>
+<p>I became more interested in:</p>
+<ul>
+<li>context engineering</li>
+<li>instructions, skills and specialised agents</li>
+<li>AI-assisted requirements and architecture analysis</li>
+<li>AI-assisted PR review</li>
+<li>governance-aware engineering workflows</li>
+</ul>
+<p>That is what made the exam valuable to me: not that it taught me a new prompt trick, but that it created a structure for thinking about the broader engineering system around AI.</p>
+<hr>
+<h2 id="final-thoughts">Final Thoughts<a class="hash-link" href="#final-thoughts" aria-label="Direct link to Final Thoughts"></a></h2>
+<p>Copilot started as a way for me to write code faster. I now see it increasingly as a platform for building AI-assisted engineering workflows designed around context, constraints and human judgement.</p>
+<p>AI may reduce the cost of producing code, but it does not reduce the importance of understanding the problem, choosing the right design or deciding whether the result should exist at all.</p>
+<p>What happens to software engineering when producing code becomes dramatically cheaper, but understanding the right thing to build does not?</p>
+<p>That is the question I want to keep exploring.</p>
+            </div>
+            <footer class="blog-post-footer">
+              <b>Tags:</b><ul class="tags-inline"><li><a class="tag-chip" rel="tag" title="Building practical AI-powered software systems." href="/articles/tags/ai-engineering/">AI Engineering</a></li><li><a class="tag-chip" rel="tag" title="GitHub Copilot, agents, skills and AI-assisted engineering." href="/articles/tags/github-copilot/">GitHub Copilot</a></li></ul>
+            </footer>
+          </article>
+          <nav class="pagination-nav" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/articles/github-copilot-customisation/"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">How GitHub Copilot Customisation Actually Fits Together</div></a></nav>
+        </main>
+        <div class="col col--2 toc-col">
+          <nav class="toc" aria-label="On this page">
+            <ul class="table-of-contents"><li><a href="#i-thought-daily-use-meant-i-already-understood-copilot" class="table-of-contents__link">I Thought Daily Use Meant I Already Understood Copilot</a></li><li><a href="#lesson-1-productivity-isnt-the-same-as-ai-engineering" class="table-of-contents__link">Lesson 1: Productivity Isn't the Same as AI Engineering</a></li><li><a href="#lesson-2-context-matters-more-than-clever-prompts" class="table-of-contents__link">Lesson 2: Context Matters More Than Clever Prompts</a></li><li><a href="#lesson-3-customisation-turns-copilot-into-an-engineering-tool" class="table-of-contents__link">Lesson 3: Customisation Turns Copilot Into an Engineering Tool</a></li><li><a href="#lesson-4-governance-belongs-inside-the-workflow" class="table-of-contents__link">Lesson 4: Governance Belongs Inside the Workflow</a></li><li><a href="#lesson-5-faster-coding-makes-requirements-more-important" class="table-of-contents__link">Lesson 5: Faster Coding Makes Requirements More Important</a></li><li><a href="#lesson-6-ai-makes-engineering-judgement-more-valuable" class="table-of-contents__link">Lesson 6: AI Makes Engineering Judgement More Valuable</a></li><li><a href="#what-gh-300-changed-for-me" class="table-of-contents__link">What GH-300 Changed for Me</a></li><li><a href="#final-thoughts" class="table-of-contents__link">Final Thoughts</a></li></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <p class="footer__copyright">© <span data-current-year>2026</span> Mpho Magoro on Tech</p>
+    </div>
+  </footer>
+</body>
+</html>

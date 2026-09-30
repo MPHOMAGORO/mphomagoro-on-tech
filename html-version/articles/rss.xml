@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Mpho Magoro on Tech Blog</title>
+        <link>https://mphomagoro.com/articles</link>
+        <description>Mpho Magoro on Tech Blog</description>
+        <lastBuildDate>Wed, 23 Sep 2026 06:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[How GitHub Copilot Customisation Actually Fits Together]]></title>
+            <link>https://mphomagoro.com/articles/github-copilot-customisation</link>
+            <guid>https://mphomagoro.com/articles/github-copilot-customisation</guid>
+            <pubDate>Wed, 23 Sep 2026 06:00:00 GMT</pubDate>
+            <description><![CDATA[Prompts, instructions, skills, agents, hooks, and MCP explained.]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="GitHub Copilot Customisation" src="https://mphomagoro.com/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.jpg" width="1672" height="941" class="img_ev3q"></p>
+<p>It’s Tuesday morning, 09:00.</p>
+<p>You’re fired up, coffee nearby, and ready to build software.</p>
+<p>You open GitHub Copilot and ask it to help implement a change.</p>
+<p>Before it can really get going, you explain how the application is structured.</p>
+<p>You tell it where the business logic belongs, which patterns the team follows, how tests should be written and which architectural boundaries it needs to respect.</p>
+<p>Copilot gets to work.</p>
+<p>The result is good.</p>
+<p>Later that morning, you open another conversation to work on something else.</p>
+<ul>
+<li class="">Again, you explain the project structure.</li>
+<li class="">Again, you mention the coding standards.</li>
+<li class="">Again, you remind it how your team expects tests to be written.</li>
+<li class="">Again, you remind it which architectural boundaries it needs to respect.</li>
+</ul>
+<p>At some point, you realise the problem. You are spending a surprising amount of time teaching Copilot how your engineering environment works before asking it to do any actual engineering.</p>
+<ul>
+<li class="">Some rules should already be available.</li>
+<li class="">Some expertise should be reusable.</li>
+<li class="">Some work should have a clear owner.</li>
+<li class="">Some behaviour should happen automatically.</li>
+<li class="">Some workflows need access to systems outside Copilot.</li>
+</ul>
+<p>And that is where prompting starts to feel insufficient.</p>
+<p>That is where GitHub Copilot customisation starts to become genuinely useful.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-simple-way-to-think-about-copilot-customisation">A simple way to think about Copilot customisation<a href="https://mphomagoro.com/articles/github-copilot-customisation#a-simple-way-to-think-about-copilot-customisation" class="hash-link" aria-label="Direct link to A simple way to think about Copilot customisation" title="Direct link to A simple way to think about Copilot customisation" translate="no">​</a></h2>
+<p>The easiest way to understand the different features is not to start with their implementation.</p>
+<p>Start with the responsibility each one owns.</p>
+<ul>
+<li class=""><strong>Prompt = intent</strong> — what do I want done right now?</li>
+<li class=""><strong>Instructions = constraints</strong> — what rules should consistently apply?</li>
+<li class=""><strong>Skill = expertise</strong> — how should this kind of work be done?</li>
+<li class=""><strong>Agent = responsibility</strong> — who owns this workflow or role?</li>
+<li class=""><strong>Hook = automation</strong> — what should happen automatically at a defined moment?</li>
+<li class=""><strong>MCP = external capability</strong> — what systems, tools, or data does the workflow need access to?</li>
+</ul>
+<p>That distinction matters because these features are not interchangeable.</p>
+<p>A prompt should not become a dumping ground for every project rule.</p>
+<p>An instruction should not try to describe an entire workflow.</p>
+<p>A skill should not become a disguised agent.</p>
+<p>And an agent should not exist simply because a prompt became long.</p>
+<p>The real design question is:</p>
+<blockquote>
+<p><strong>What is the responsibility, and where does that responsibility belong?</strong></p>
+</blockquote>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="quick-decision-framework">Quick decision framework<a href="https://mphomagoro.com/articles/github-copilot-customisation#quick-decision-framework" class="hash-link" aria-label="Direct link to Quick decision framework" title="Direct link to Quick decision framework" translate="no">​</a></h3><p>Use the smallest mechanism that solves the problem.</p><ul>
+<li class="">If the guidance is one-off and task-specific, use a <strong>prompt</strong>.</li>
+<li class="">If it should apply repeatedly without being restated, use <strong>instructions</strong>.</li>
+<li class="">If it represents reusable specialist expertise, use a <strong>skill</strong>.</li>
+<li class="">If a worker owns a role or workflow, use an <strong>agent</strong>.</li>
+<li class="">If something should happen automatically at an event or boundary, use a <strong>hook</strong>.</li>
+<li class="">If the workflow needs access to an external system, use <strong>MCP</strong>.</li>
+</ul></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="prompts-what-do-i-want-done-right-now">Prompts: What do I want done right now?<a href="https://mphomagoro.com/articles/github-copilot-customisation#prompts-what-do-i-want-done-right-now" class="hash-link" aria-label="Direct link to Prompts: What do I want done right now?" title="Direct link to Prompts: What do I want done right now?" translate="no">​</a></h2>
+<p>A prompt expresses immediate intent.</p>
+<p>It tells Copilot what you want to accomplish in the current interaction: review something, explain something, generate something, investigate a problem, or help make a decision.</p>
+<p>The important distinction is that a prompt represents the request, not all of the knowledge, rules, or expertise needed to complete it.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-do-prompts-solve">What problem do prompts solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-do-prompts-solve" class="hash-link" aria-label="Direct link to What problem do prompts solve?" title="Direct link to What problem do prompts solve?" translate="no">​</a></h3>
+<p>AI needs direction.</p>
+<p>Even though relevant context is already available, Copilot still needs to understand the outcome you are trying to achieve.</p>
+<p>A prompt provides that immediate goal.</p>
+<p>The problem starts when the prompt also has to carry every coding standard, architectural rule, testing convention, workflow step, and piece of specialist knowledge required to complete the task.</p>
+<p>That is usually a sign that some of those responsibilities belong elsewhere.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-prompts">When should you use prompts?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-prompts" class="hash-link" aria-label="Direct link to When should you use prompts?" title="Direct link to When should you use prompts?" translate="no">​</a></h3>
+<p>Prompts work best for tasks you intentionally invoke rather than behaviour that should always apply.</p>
+<p><strong>Typical prompt tasks include:</strong></p>
+<ul>
+<li class="">Generating unit tests according to a standard structure.</li>
+<li class="">Creating an implementation plan.</li>
+<li class="">Reviewing an API for security concerns.</li>
+<li class="">Generating documentation.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-prompts">When should you NOT use prompts?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-prompts" class="hash-link" aria-label="Direct link to When should you NOT use prompts?" title="Direct link to When should you NOT use prompts?" translate="no">​</a></h3>
+<p>If something should apply all the time, it probably belongs in <strong>instructions</strong>, not a prompt.</p>
+<p>For example:</p>
+<blockquote>
+<p>Use xUnit for all .NET unit tests.</p>
+</blockquote>
+<p>That's a repository convention. You shouldn't have to remember to restate it in every prompt.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>Prompts become bloated when they start carrying information that should already exist elsewhere.</strong> If you repeatedly paste the same coding conventions, architecture rules, or testing expectations into requests, the problem is probably missing instructions rather than weak prompting.</p>
+<p>Another <strong>mistake</strong> is turning a prompt into an agent simply because the prompt has become long.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="instructions-always-apply-these-rules">Instructions: Always apply these rules<a href="https://mphomagoro.com/articles/github-copilot-customisation#instructions-always-apply-these-rules" class="hash-link" aria-label="Direct link to Instructions: Always apply these rules" title="Direct link to Instructions: Always apply these rules" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-are-instructions">What are instructions?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-are-instructions" class="hash-link" aria-label="Direct link to What are instructions?" title="Direct link to What are instructions?" translate="no">​</a></h3>
+<p>Instructions provide persistent guidance and constraints that should influence how work is carried out.</p>
+<p>Unlike a prompt, which expresses what you want done now, instructions describe expectations that should remain true across multiple tasks.</p>
+<p>They represent the standing rules of the environment.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-do-instructions-solve">What problem do instructions solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-do-instructions-solve" class="hash-link" aria-label="Direct link to What problem do instructions solve?" title="Direct link to What problem do instructions solve?" translate="no">​</a></h3>
+<p>Without instructions, the same expectations have to be repeatedly communicated.</p>
+<p>Developers end up restating things such as architectural boundaries, testing expectations, naming conventions, security requirements, and preferred patterns every time they start a new task.</p>
+<p>Instructions separate those persistent constraints from the immediate request.</p>
+<p>The prompt can then focus on what needs to be done, while the instructions provide the boundaries within which it should be done.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-instructions">When should you use instructions?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-instructions" class="hash-link" aria-label="Direct link to When should you use instructions?" title="Direct link to When should you use instructions?" translate="no">​</a></h3>
+<p>Instructions make sense when the guidance should follow the work without the developer having to remember to provide it.</p>
+<p>This keeps the context stable and makes the rules easier to apply consistently across work.</p>
+<p><strong>Instructions are a good fit for:</strong></p>
+<ul>
+<li class="">Naming or coding conventions.</li>
+<li class="">Testing frameworks and testing expectations.</li>
+<li class="">Patterns the team uses or avoids.</li>
+<li class="">Repository architecture and important boundaries.</li>
+<li class="">Language/framework conventions.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-instructions">When should you NOT use instructions?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-instructions" class="hash-link" aria-label="Direct link to When should you NOT use instructions?" title="Direct link to When should you NOT use instructions?" translate="no">​</a></h3>
+<ul>
+<li class="">You only need a task or operation once.</li>
+<li class="">The behaviour is a multi-step workflow that needs orchestration rather than persistent guidance.</li>
+<li class="">The task requires specialised tooling or context that should not be treated as a universal rule.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes-1">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes-1" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>Instruction scope is often too broad.</strong> Guidance should apply only where it is relevant; otherwise unrelated work receives unnecessary constraints.</p>
+<p>Vague principles are another problem: instructions should express actionable constraints.</p>
+<div class="theme-tabs-container tabs-container tabList__CuJ"><ul role="tablist" aria-orientation="horizontal" class="tabs"><li role="tab" tabindex="0" aria-selected="true" class="tabs__item tabItem_LNqP tabs__item--active">✅ Effective</li><li role="tab" tabindex="-1" aria-selected="false" class="tabs__item tabItem_LNqP">⚠️ Ineffective</li></ul><div class="margin-top--md"><div role="tabpanel" class="tabItem_Ymn6"><p>Do not log authentication tokens.<br>
+New HTTP integrations must use the existing typed HttpClient pattern.<br>
+Use xUnit for new unit tests.<br></p></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>Write high-quality code.<br>
+Make sure the code is secure.<br>
+Follow best practices.</p></div></div></div>
+<p>Instructions guide behaviour; they do not enforce it. If a rule must be guaranteed, it needs an enforcement mechanism rather than relying on AI behaviour alone.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="skills-how-should-this-kind-of-work-be-done">Skills: How should this kind of work be done?<a href="https://mphomagoro.com/articles/github-copilot-customisation#skills-how-should-this-kind-of-work-be-done" class="hash-link" aria-label="Direct link to Skills: How should this kind of work be done?" title="Direct link to Skills: How should this kind of work be done?" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-are-skills">What are skills?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-are-skills" class="hash-link" aria-label="Direct link to What are skills?" title="Direct link to What are skills?" translate="no">​</a></h3>
+<p>A skill packages reusable expertise for a particular kind of work.</p>
+<p>It captures a recognisable method, body of knowledge, or approach that can be applied whenever the same type of problem appears.</p>
+<p>A skill does not own <strong>the overall workflow</strong>. It contributes specialised capability to whoever is performing the work.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-do-skills-solve">What problem do skills solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-do-skills-solve" class="hash-link" aria-label="Direct link to What problem do skills solve?" title="Direct link to What problem do skills solve?" translate="no">​</a></h3>
+<p>Many engineering tasks require more than general reasoning.</p>
+<p>Reviewing requirements for completeness, assessing architecture impact, evaluating test adequacy, or analysing migration risk each requires a different way of thinking.</p>
+<p>Without reusable skills, that expertise has to be reconstructed every time the task appears.</p>
+<p>Skills allow that expertise to be separated from the immediate request and reused where appropriate.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-skills">When should you use skills?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-skills" class="hash-link" aria-label="Direct link to When should you use skills?" title="Direct link to When should you use skills?" translate="no">​</a></h3>
+<p>A good skill has a recognisable boundary: it performs a particular kind of specialist work that will be useful more than once.</p>
+<p>The best candidates tend to be specialised, reusable capabilities.</p>
+<p><strong>Good skill boundaries include:</strong></p>
+<ul>
+<li class="">Requirements completeness assessment.</li>
+<li class="">Test adequacy assessment.</li>
+<li class="">Architecture impact analysis.</li>
+<li class="">Backward-compatibility analysis.</li>
+<li class="">Migration-risk analysis.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-skills">When should you NOT use skills?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-skills" class="hash-link" aria-label="Direct link to When should you NOT use skills?" title="Direct link to When should you NOT use skills?" translate="no">​</a></h3>
+<p>A skill is not necessary when:</p>
+<ul>
+<li class="">The task is trivial.</li>
+<li class="">It is only needed once.</li>
+<li class="">The capability cannot be defined clearly enough to produce consistent results.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes-2">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes-2" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>Repetition alone does not justify a skill.</strong> A task should also represent reusable expertise with a meaningful boundary.</p>
+<p>Skills tend to break down at either extreme: too broad to provide specialist guidance, or so narrow that they only apply to one ticket or edge case. Another warning sign is when a skill starts coordinating an entire workflow rather than contributing expertise to it.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="agents-who-owns-this-responsibility">Agents: Who owns this responsibility?<a href="https://mphomagoro.com/articles/github-copilot-customisation#agents-who-owns-this-responsibility" class="hash-link" aria-label="Direct link to Agents: Who owns this responsibility?" title="Direct link to Agents: Who owns this responsibility?" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-are-agents">What are agents?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-are-agents" class="hash-link" aria-label="Direct link to What are agents?" title="Direct link to What are agents?" translate="no">​</a></h3>
+<p>An agent represents a responsibility boundary.</p>
+<p>It is useful when a piece of work benefits from having a distinct goal, role, context, or workflow ownership.</p>
+<p>Instead of asking one general worker to plan, implement, review, test, and validate everything at once, different responsibilities can be separated.</p>
+<p>A skill knows <strong>how to do something</strong>. An agent is responsible for <strong>getting something done</strong>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-do-agents-solve">What problem do agents solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-do-agents-solve" class="hash-link" aria-label="Direct link to What problem do agents solve?" title="Direct link to What problem do agents solve?" translate="no">​</a></h3>
+<p>Agents help prevent unrelated responsibilities from becoming mixed together.</p>
+<p>When one worker is simultaneously expected to act as planner, developer, reviewer, tester, and architect, the boundaries between those responsibilities become unclear.</p>
+<p>Separating those roles can make the purpose, context, and expected outcome of each stage easier to reason about.</p>
+<p>The value of an agent therefore comes from the responsibility it owns, not from simply giving it a name or persona.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-agents">When should you use agents?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-agents" class="hash-link" aria-label="Direct link to When should you use agents?" title="Direct link to When should you use agents?" translate="no">​</a></h3>
+<p>Create an agent when the work deserves its own responsibility boundary — for example, planning, reviewing, migration, or implementation.</p>
+<p><strong>Good agent responsibilities include:</strong></p>
+<ul>
+<li class="">Analysing whether requirements are ready for implementation.</li>
+<li class="">Turning approved requirements into an implementation plan.</li>
+<li class="">Implementing a defined change.</li>
+<li class="">Reviewing a pull request and producing findings.</li>
+<li class="">Coordinating a bounded migration workflow.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-agents">When should you NOT use agents?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-agents" class="hash-link" aria-label="Direct link to When should you NOT use agents?" title="Direct link to When should you NOT use agents?" translate="no">​</a></h3>
+<p>A dedicated agent is usually unnecessary when:</p>
+<ul>
+<li class="">You need reusable expertise. That's probably a skill.</li>
+<li class="">You are simply repeating the same request. That's probably a prompt.</li>
+<li class="">A rule should apply everywhere. Those belong in instructions.</li>
+<li class="">The existing worker already has sufficient responsibility and context for the task.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes-3">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes-3" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>A long prompt is not, by itself, a reason to create an agent.</strong> The agent should introduce a meaningful responsibility, context, toolset, or workflow boundary.</p>
+<p>Another mistake is creating too many agents for responsibilities that do not need to be separated. Every additional boundary introduces coordination and context handoff, so the separation should earn its complexity.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="hooks-what-should-happen-automatically-when-an-event-occurs">Hooks: What should happen automatically when an event occurs?<a href="https://mphomagoro.com/articles/github-copilot-customisation#hooks-what-should-happen-automatically-when-an-event-occurs" class="hash-link" aria-label="Direct link to Hooks: What should happen automatically when an event occurs?" title="Direct link to Hooks: What should happen automatically when an event occurs?" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-are-hooks">What are hooks?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-are-hooks" class="hash-link" aria-label="Direct link to What are hooks?" title="Direct link to What are hooks?" translate="no">​</a></h3>
+<p>A hook connects a defined event to an automatic action.</p>
+<p>The important idea is the relationship:</p>
+<p><strong>When this event occurs, perform this action.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-do-hooks-solve">What problem do hooks solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-do-hooks-solve" class="hash-link" aria-label="Direct link to What problem do hooks solve?" title="Direct link to What problem do hooks solve?" translate="no">​</a></h3>
+<p>Some workflow behaviour should be reliable rather than optional. Checks, logging, validation, notifications and other mechanical actions can easily be forgotten when they depend on someone remembering to request them.</p>
+<p>Hooks move that responsibility out of the <strong>conversation</strong> and into the <strong>workflow</strong> itself.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-hooks">When should you use hooks?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-hooks" class="hash-link" aria-label="Direct link to When should you use hooks?" title="Direct link to When should you use hooks?" translate="no">​</a></h3>
+<p>Hooks earn their place when an action should happen because an event occurred, not because someone remembered to request it.</p>
+<p><strong>Common automated actions include:</strong></p>
+<ul>
+<li class="">Validation.</li>
+<li class="">Auditing.</li>
+<li class="">Logging.</li>
+<li class="">Pre/post-task checks.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-hooks">When should you NOT use hooks?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-hooks" class="hash-link" aria-label="Direct link to When should you NOT use hooks?" title="Direct link to When should you NOT use hooks?" translate="no">​</a></h3>
+<p>Avoid hooks when the action is optional or requires judgement.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes-4">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes-4" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>Hooks become dangerous when they automate something that has not been designed clearly in the first place.</strong> Automation should make a well-understood workflow reliable, not hide ambiguity inside it.</p>
+<p>Another mistake is using hooks for decisions that require judgement. Hooks work best for predictable actions; if the correct response depends on context or interpretation, that responsibility probably belongs elsewhere.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mcp-what-external-capability-does-the-workflow-need">MCP: What external capability does the workflow need?<a href="https://mphomagoro.com/articles/github-copilot-customisation#mcp-what-external-capability-does-the-workflow-need" class="hash-link" aria-label="Direct link to MCP: What external capability does the workflow need?" title="Direct link to MCP: What external capability does the workflow need?" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-is-mcp">What is MCP?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-is-mcp" class="hash-link" aria-label="Direct link to What is MCP?" title="Direct link to What is MCP?" translate="no">​</a></h3>
+<p>MCP provides a way for an AI workflow to reach beyond the information and capabilities already available in its immediate context.</p>
+<p>It creates a boundary between the reasoning system and external tools, systems, or sources of information.</p>
+<p>The important distinction is that MCP does not describe how to perform the work.</p>
+<p>It provides access to something the work needs.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-problem-does-mcp-solve">What problem does MCP solve?<a href="https://mphomagoro.com/articles/github-copilot-customisation#what-problem-does-mcp-solve" class="hash-link" aria-label="Direct link to What problem does MCP solve?" title="Direct link to What problem does MCP solve?" translate="no">​</a></h3>
+<p>Useful context and capabilities often live outside the AI system.</p>
+<p>A workflow might need to retrieve requirements, query another system, inspect operational data, look up records, or perform an action through an external service.</p>
+<p>For example, a requirements analyst agent may need information from a GitHub issue.</p>
+<p>Without MCP, the agent may have to rely on a human to copy that context into the conversation manually.</p>
+<p>For repeated workflows, manually copying that context into chat becomes inefficient and error-prone.</p>
+<p>So instead of:</p>
+<blockquote>
+<p>Human → copy user story → paste into Copilot</p>
+</blockquote>
+<p>you can move toward:</p>
+<blockquote>
+<p>Agent → MCP → GitHub</p>
+</blockquote>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-use-mcp">When should you use MCP?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-use-mcp" class="hash-link" aria-label="Direct link to When should you use MCP?" title="Direct link to When should you use MCP?" translate="no">​</a></h3>
+<p>MCP becomes relevant when the workflow reaches beyond the context Copilot already has — into another system, data source, or tool.</p>
+<p><strong>Common external capabilities include:</strong></p>
+<ul>
+<li class="">Retrieving requirements from an issue or work-item system.</li>
+<li class="">Reading pull request or repository information.</li>
+<li class="">Querying operational or monitoring data.</li>
+<li class="">Looking up records in an external system.</li>
+<li class="">Creating or updating information in another service.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="when-should-you-not-use-mcp">When should you NOT use MCP?<a href="https://mphomagoro.com/articles/github-copilot-customisation#when-should-you-not-use-mcp" class="hash-link" aria-label="Direct link to When should you NOT use MCP?" title="Direct link to When should you NOT use MCP?" translate="no">​</a></h3>
+<ul>
+<li class="">When built-in capabilities already solve the work.</li>
+<li class="">When the information is project guidance or reusable methodology that can live in instructions, repository context, or a skill.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="common-mistakes-5">Common mistakes<a href="https://mphomagoro.com/articles/github-copilot-customisation#common-mistakes-5" class="hash-link" aria-label="Direct link to Common mistakes" title="Direct link to Common mistakes" translate="no">​</a></h3>
+<p><strong>External capability should be bounded.</strong> Give a workflow only the access it genuinely needs to fulfil its responsibility. This keeps access aligned with the boundary of the work.</p>
+<p>Another mistake is introducing external access when the required information or capability is already available locally.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-it-all-fits-together">How it all fits together<a href="https://mphomagoro.com/articles/github-copilot-customisation#how-it-all-fits-together" class="hash-link" aria-label="Direct link to How it all fits together" title="Direct link to How it all fits together" translate="no">​</a></h2>
+<p>Imagine we are running an Italian restaurant.</p>
+<p>A customer places an order:</p>
+<blockquote>
+<p><strong>“Make me a Margherita pizza.”</strong></p>
+</blockquote>
+<p>That order is the equivalent of a <strong>prompt</strong>.</p>
+<p>It tells us what needs to be done right now. The customer does not need to explain how the entire restaurant operates. They simply provide the immediate request.</p>
+<p>But the chef should not make the pizza however they want.</p>
+<p>The restaurant already has a set of standing rules:</p>
+<ul>
+<li class="">Use fresh ingredients.</li>
+<li class="">Keep preparation time under 30 minutes.</li>
+<li class="">Follow the restaurant's food-safety standards.</li>
+<li class="">Use approved ingredients and suppliers.</li>
+</ul>
+<p>These are the equivalent of <strong>instructions</strong>.</p>
+<p>They do not explain how to make one particular dish. They define the rules and constraints under which the kitchen operates.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-recipe-is-the-skill">The recipe is the skill<a href="https://mphomagoro.com/articles/github-copilot-customisation#the-recipe-is-the-skill" class="hash-link" aria-label="Direct link to The recipe is the skill" title="Direct link to The recipe is the skill" translate="no">​</a></h3>
+<p>Now we need the actual know-how for preparing the pizza.</p>
+<p>The Margherita recipe describes how to prepare the dough, add the ingredients, bake the pizza and finish the dish.</p>
+<p>The restaurant may also have a separate Carbonara recipe with a different preparation method.</p>
+<p>These recipes are the equivalent of <strong>skills</strong>.</p>
+<p><strong>Each skill packages reusable expertise for a particular kind of task.</strong></p>
+<p>The kitchen does not need to relearn how to make a Margherita or Carbonara every time someone orders one.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-chef-is-the-agent">The chef is the agent<a href="https://mphomagoro.com/articles/github-copilot-customisation#the-chef-is-the-agent" class="hash-link" aria-label="Direct link to The chef is the agent" title="Direct link to The chef is the agent" translate="no">​</a></h3>
+<p>The <strong>agent</strong> is the chef.</p>
+<p>The chef receives the order, works within the restaurant's standing rules, selects the appropriate recipe and performs the work.</p>
+<p>A recipe knows how a dish should be made.</p>
+<p>The chef owns the responsibility for getting it made.</p>
+<p>But recipes alone are not enough. Some capabilities exist outside the chef's environment.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hooks-are-the-kitchens-automatic-actions">Hooks are the kitchen's automatic actions<a href="https://mphomagoro.com/articles/github-copilot-customisation#hooks-are-the-kitchens-automatic-actions" class="hash-link" aria-label="Direct link to Hooks are the kitchen's automatic actions" title="Direct link to Hooks are the kitchen's automatic actions" translate="no">​</a></h3>
+<p>Imagine that when an order is marked ready, the front-of-house team is automatically notified and the order status is updated.</p>
+<p>That is the equivalent of a <strong>hook</strong>.</p>
+<p>Nobody has to remember to request the action. It happens because a defined event occurred.</p>
+<p>The hook is not the order, the rule, or the recipe. <strong>It connects an event to an automatic action.</strong></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mcp-connects-the-kitchen-to-the-outside-world">MCP connects the kitchen to the outside world<a href="https://mphomagoro.com/articles/github-copilot-customisation#mcp-connects-the-kitchen-to-the-outside-world" class="hash-link" aria-label="Direct link to MCP connects the kitchen to the outside world" title="Direct link to MCP connects the kitchen to the outside world" translate="no">​</a></h3>
+<p>Now imagine the chef discovers that the kitchen needs information from somewhere else.</p>
+<p>They may need to check ingredient stock, look up a customer's allergy information, or place an order with an approved supplier.</p>
+<p>Those external capabilities are not skills.</p>
+<p>Knowing how to make a pizza does not give the chef access to an inventory or supplier system.</p>
+<p>For our restaurant, imagine we have:</p>
+<p><strong>Inventory MCP server</strong>
+Allows the chef to:</p>
+<ul>
+<li class="">Check ingredient stock.</li>
+<li class="">Find ingredient locations.</li>
+<li class="">Update stock levels.</li>
+</ul>
+<p><strong>Supplier MCP server</strong>
+Allows the chef to:</p>
+<ul>
+<li class="">Find approved suppliers.</li>
+<li class="">Check ingredient availability.</li>
+<li class="">Place an ingredient order.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="putting-the-pieces-together">Putting the pieces together<a href="https://mphomagoro.com/articles/github-copilot-customisation#putting-the-pieces-together" class="hash-link" aria-label="Direct link to Putting the pieces together" title="Direct link to Putting the pieces together" translate="no">​</a></h3>
+<p>A customer says:</p>
+<blockquote>
+<p><strong>“Make me a Margherita pizza.”</strong></p>
+</blockquote>
+<p>The chef receives the <strong>prompt</strong>, follows the restaurant's <strong>instructions</strong>, applies the <strong>Margherita pizza skill</strong>.</p>
+<p>Defined hooks can automatically perform actions when particular events occur.</p>
+<p>The chef checks the inventory system through an <strong>MCP server</strong> and discovers that fresh mozzarella is available.</p>
+<p>The chef then prepares the pizza.</p>
+<p>The <strong>agent</strong> coordinates all of this.</p>
+<p>A recipe cannot check the stockroom. A stock-management system does not know how to make a pizza. Restaurant rules do not tell the chef what the customer ordered. And the customer's order does not need to contain the entire recipe.</p>
+<p>Each piece has its own responsibility.</p>
+<p>The strength of the system comes from <strong>combining them rather than trying to force everything into one giant prompt</strong>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-takeaway">Final takeaway<a href="https://mphomagoro.com/articles/github-copilot-customisation#final-takeaway" class="hash-link" aria-label="Direct link to Final takeaway" title="Direct link to Final takeaway" translate="no">​</a></h2>
+<p>The goal of Copilot customisation is not to use more features. It is to design better boundaries.</p>
+<p>The important question is not simply:</p>
+<blockquote>
+<p>"What feature should I use?"</p>
+</blockquote>
+<p>Instead, ask:</p>
+<blockquote>
+<p><strong>"What is its scope?"</strong></p>
+<p><strong>"Who owns the responsibility?"</strong></p>
+<p><strong>"Where does it belong?"</strong></p>
+</blockquote>
+<p>Once those boundaries are clear, the customisation features stop looking like a collection of overlapping options.</p>
+<p>They start looking like parts of a system.</p>
+<p>Prompts express intent. Instructions define constraints. Skills package expertise. Agents own responsibility. Hooks automate events. MCP provides external capability.</p>
+<p>And that is where GitHub Copilot customisation becomes much more useful.</p>]]></content:encoded>
+            <category>AI Engineering</category>
+            <category>GitHub Copilot</category>
+        </item>
+        <item>
+            <title><![CDATA[I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things]]></title>
+            <link>https://mphomagoro.com/articles/gh300-github-copilot-lessons</link>
+            <guid>https://mphomagoro.com/articles/gh300-github-copilot-lessons</guid>
+            <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[What studying for GH-300 taught me despite already using GitHub Copilot professionally.]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="GitHub Copilot and GH-300" src="https://mphomagoro.com/img/articles/github-copilot-gh300/hero.jpg" width="1672" height="941" class="img_ev3q"></p>
+<p>I had already been using GitHub Copilot regularly before I decided to take the GH-300 certification.</p>
+<p>It was part of my normal development workflow. I used it to generate code, explain unfamiliar code, refactor existing solutions, explore implementation approaches, write tests and reduce repetition in everyday engineering work.</p>
+<p>So when I first looked at the GitHub Copilot certification, I had a very obvious question:</p>
+<p><strong>If I already use Copilot every day, what exactly am I going to learn from an exam about it?</strong></p>
+<p>It had been a while since I had completed a formal certification, and I had started to think they were not always necessary. At the same time, I also knew that certifications can be useful when they force you to think more deliberately about a tool you already use well.</p>
+<p>That question turned out to be the reason the certification was useful.</p>
+<p>Using a tool frequently and understanding how to use it deliberately are not the same thing.</p>
+<p>GH-300 pushed me past the "I know how to prompt this tool" stage and into the larger question of how AI fits into real software engineering work: context, instructions, governance, accountability and workflow design.</p>
+<p>There were plenty of topics in the exam that went beyond my day-to-day usage, and that was exactly why it was valuable.</p>
+<!-- -->
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="i-thought-daily-use-meant-i-already-understood-copilot">I Thought Daily Use Meant I Already Understood Copilot<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#i-thought-daily-use-meant-i-already-understood-copilot" class="hash-link" aria-label="Direct link to I Thought Daily Use Meant I Already Understood Copilot" title="Direct link to I Thought Daily Use Meant I Already Understood Copilot" translate="no">​</a></h2>
+<p>Before studying for GH-300, my use of Copilot was mostly practical.</p>
+<p>I would open VS Code, describe what I wanted, review the generated code and continue working. That alone had real value. It could help me generate repetitive implementation code, write unit tests, explain unfamiliar code, suggest refactoring ideas, generate documentation and troubleshoot errors.</p>
+<p>For an experienced engineer, the benefit is not always dramatic in a single interaction. It is the cumulative effect of reducing low-value typing and getting a useful first draft faster.</p>
+<p>But that practical usage also creates a false sense of confidence.</p>
+<p>You can become very good at using Copilot as an autocomplete engine without becoming particularly good at <strong>engineering with AI</strong>. That distinction became more important to me over time.</p>
+<p>The more I used Copilot, the more I realised that my real question was not "How do I get code from the tool?" It was "How do I design an environment where the tool is more useful, more reliable and more aligned with engineering standards?"</p>
+<p>That is where GH-300 started to change my thinking.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-1-productivity-isnt-the-same-as-ai-engineering">Lesson 1: Productivity Isn't the Same as AI Engineering<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-1-productivity-isnt-the-same-as-ai-engineering" class="hash-link" aria-label="Direct link to Lesson 1: Productivity Isn't the Same as AI Engineering" title="Direct link to Lesson 1: Productivity Isn't the Same as AI Engineering" translate="no">​</a></h2>
+<p>One of the first gaps I noticed was between being productive and being deliberate.</p>
+<p>If you use Copilot every day, it is easy to treat it like a fast code generator. You ask for a function, a test, a refactor or a sketch of an implementation, review it and move on. That can be productive, but it is not the same as engineering with AI.</p>
+<p>The difference shows up when the task is more complex than "generate a method".</p>
+<p>A typical workflow might look like this:</p>
+<blockquote>
+<p>Implement this feature.</p>
+</blockquote>
+<blockquote>
+<p>Write tests for this class.</p>
+</blockquote>
+<blockquote>
+<p>Refactor this method.</p>
+</blockquote>
+<p>These prompts can work, but they place most of the responsibility for understanding the requirements, architecture and risk on the model.</p>
+<p>A stronger approach is to provide the same kinds of constraints an experienced engineer would normally consider before implementation:</p>
+<ul>
+<li class="">what the requirement really is;</li>
+<li class="">what architectural constraints apply;</li>
+<li class="">what patterns are already established in the repository;</li>
+<li class="">what files should not change;</li>
+<li class="">what security or compliance boundaries exist;</li>
+<li class="">what testing expectations are required;</li>
+<li class="">what would count as an unacceptable outcome.</li>
+</ul>
+<p>That is the real shift GH-300 prompted in me: the developer’s job is increasingly the design of the environment in which the AI operates, not simply the wording of the next prompt.</p>
+<p>This matters because AI does not just accelerate implementation. It changes the distribution of effort across the engineering process.</p>
+<p>The more capable the system becomes, the more important good requirements, clear context and sound judgement become.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-2-context-matters-more-than-clever-prompts">Lesson 2: Context Matters More Than Clever Prompts<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-2-context-matters-more-than-clever-prompts" class="hash-link" aria-label="Direct link to Lesson 2: Context Matters More Than Clever Prompts" title="Direct link to Lesson 2: Context Matters More Than Clever Prompts" translate="no">​</a></h2>
+<p>One of the biggest changes in my thinking after GH-300 was that I stopped viewing Copilot purely as a prompt-and-response tool.</p>
+<p>The more important capability is not raw prompting. It is <strong>context</strong>.</p>
+<p>A prompt does not exist in isolation. It sits inside a larger environment: the current file, nearby code, repository context, instructions, chat history, open files, standards and the task you are trying to complete. The model is not receiving only the sentence you typed. It is reasoning from a broader set of signals.</p>
+<p>That is why context engineering matters so much.</p>
+<p>A useful AI-assisted workflow is not the one with the cleverest prompt. It is the one with the right context, in the right form, under the right constraints.</p>
+<p>This is the point where the engineering discipline becomes more subtle.</p>
+<p>You are no longer asking only, "What should I type?" You are asking, "What information should the assistant have access to, what should it be prevented from seeing, and how do I structure the environment so the output is useful?"</p>
+<p>This is also where governance starts to become practical instead of abstract. The best AI workflow is not the one that exposes everything to the model. It is the one that provides the right context, under the right controls, for the right purpose.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-3-customisation-turns-copilot-into-an-engineering-tool">Lesson 3: Customisation Turns Copilot Into an Engineering Tool<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-3-customisation-turns-copilot-into-an-engineering-tool" class="hash-link" aria-label="Direct link to Lesson 3: Customisation Turns Copilot Into an Engineering Tool" title="Direct link to Lesson 3: Customisation Turns Copilot Into an Engineering Tool" translate="no">​</a></h2>
+<p>Once I started thinking in terms of environment design, I began to see a very different role for Copilot.</p>
+<p>Instead of repeatedly explaining the same engineering expectations over and over, those expectations can be encoded into the development environment itself: repository instructions, reusable prompt files, custom agents, specialised skills, architecture constraints, testing expectations and review workflows.</p>
+<p>This changes the relationship between the developer and the assistant.</p>
+<p>Instead of saying:</p>
+<blockquote>
+<p>Please remember we use this architecture pattern.</p>
+</blockquote>
+<p>every time, the objective becomes:</p>
+<blockquote>
+<p>How do I make that knowledge part of the environment?</p>
+</blockquote>
+<p>That is a much more scalable approach.</p>
+<p>It also reduces friction. If the workflow already knows the standards, the engineer does not need to rediscover them in every interaction. That makes the system more consistent, more reusable and easier to govern.</p>
+<p>This is where customisation becomes a real engineering capability rather than just a feature to play with.</p>
+<p>The interesting part is not that Copilot can answer a question. It is that Copilot can increasingly act as a participant in a workflow that has been designed around clear rules, context and responsibility.</p>
+<p>That is the beginning of AI-assisted engineering, not just AI-assisted prompting.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-4-governance-belongs-inside-the-workflow">Lesson 4: Governance Belongs Inside the Workflow<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-4-governance-belongs-inside-the-workflow" class="hash-link" aria-label="Direct link to Lesson 4: Governance Belongs Inside the Workflow" title="Direct link to Lesson 4: Governance Belongs Inside the Workflow" translate="no">​</a></h2>
+<p>The governance topics in GH-300 were some of the most useful parts of the exam for me because they made AI adoption feel concrete.</p>
+<p>One of the clearest examples was <strong>content exclusion</strong>. It is important to decide which repositories, folders or files should be unavailable to Copilot in certain contexts, especially when they contain confidential information, regulated data, security-sensitive logic or contractual restrictions.</p>
+<p>The key question is not simply, "Can Copilot access this code?" It is also, "Should it access this code, under what conditions, and who is responsible for that decision?"</p>
+<p>That is a governance question, not just a configuration question.</p>
+<p>The same idea applies more broadly to responsible AI. The principles of fairness, reliability and safety, privacy and security, inclusiveness, transparency and accountability are not separate from software engineering. They are part of the quality bar for AI-assisted development.</p>
+<p>Copilot can accelerate delivery, but it does not remove the need for review, validation or human judgement. In fact, as output speed increases, review quality matters even more.</p>
+<p>The most useful lesson was that responsible AI starts before the prompt is written. It begins with deciding what information is allowed into the workflow and how the output will be checked before it becomes part of the system.</p>
+<p>That is the organisational reality behind AI use: governance is not a final approval stage added at the end. It is a design consideration from the start.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-5-faster-coding-makes-requirements-more-important">Lesson 5: Faster Coding Makes Requirements More Important<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-5-faster-coding-makes-requirements-more-important" class="hash-link" aria-label="Direct link to Lesson 5: Faster Coding Makes Requirements More Important" title="Direct link to Lesson 5: Faster Coding Makes Requirements More Important" translate="no">​</a></h2>
+<p>This was the biggest practical lesson for me.</p>
+<p>Copilot can generate code quickly. That is useful when the direction is correct, and dangerous when it is not.</p>
+<p>A vague requirement that previously led to a developer implementing the wrong thing over two days may now lead to the wrong implementation being produced in twenty minutes. The bottleneck has moved.</p>
+<p>As implementation becomes faster, activities such as requirements analysis, architecture, constraint identification and validation become more valuable, not less.</p>
+<p>This is where AI changes the engineering process in a very concrete way.</p>
+<p>Before AI, a weak requirement often produced slow failure. The cost of wrong implementation was mainly the cost of time and iteration. With AI, a weak requirement can now be turned into a plausible-looking solution much faster. That can make poor decisions more expensive, not less.</p>
+<p>This is one of the strongest arguments for engineering discipline in an AI-assisted world.</p>
+<p>Good requirements, clear boundaries, real trade-off analysis and architecture review are not optional extras. They are the constraints that prevent speed from creating new kinds of failure.</p>
+<p>AI does not remove the need for engineering judgement. It increases the value of it.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lesson-6-ai-makes-engineering-judgement-more-valuable">Lesson 6: AI Makes Engineering Judgement More Valuable<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#lesson-6-ai-makes-engineering-judgement-more-valuable" class="hash-link" aria-label="Direct link to Lesson 6: AI Makes Engineering Judgement More Valuable" title="Direct link to Lesson 6: AI Makes Engineering Judgement More Valuable" translate="no">​</a></h2>
+<p>The certification also reinforced something I already suspected from daily use: the ability to generate code is becoming less scarce, while the ability to decide whether the code should exist in the first place remains scarce.</p>
+<p>An experienced engineer still has to evaluate the problem, the trade-offs and the risk.</p>
+<p>That includes asking whether the proposed solution actually solves the real problem, whether there is a simpler approach, whether the implementation fits the architecture, whether the security model makes sense, whether the operational cost is acceptable and whether the generated code is maintainable.</p>
+<p>Copilot can help with each of those activities, but it cannot remove accountability from the engineer.</p>
+<p>The role shifts from producing every line manually to directing, constraining, evaluating and integrating the output.</p>
+<p>That is what makes judgement so valuable.</p>
+<p>The AI system can accelerate the work, but humans remain the ones responsible for deciding whether the output is appropriate, safe and aligned with organisational intent.</p>
+<p>In many ways, AI raises the bar for good engineering judgement rather than lowering it.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-gh-300-changed-for-me">What GH-300 Changed for Me<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#what-gh-300-changed-for-me" class="hash-link" aria-label="Direct link to What GH-300 Changed for Me" title="Direct link to What GH-300 Changed for Me" translate="no">​</a></h2>
+<div><img src="https://mphomagoro.com/img/articles/github-copilot-gh300/github-copilot.svg" alt="GitHub Copilot certification badge" width="180"></div>
+<p>I did not take GH-300 because I needed someone to teach me how to open Copilot Chat.</p>
+<p>I took it because I wanted a more structured understanding of a tool that was becoming increasingly important in my engineering workflow.</p>
+<p>The certification gave me a vocabulary for concepts I had already been bumping into through practice: context engineering, prompt processing, custom instructions, reusable skills, AI-assisted review and governance-aware workflow design.</p>
+<p>More importantly, it pushed me toward the next set of questions I wanted to explore.</p>
+<p>I became more interested in:</p>
+<ul>
+<li class="">context engineering</li>
+<li class="">instructions, skills and specialised agents</li>
+<li class="">AI-assisted requirements and architecture analysis</li>
+<li class="">AI-assisted PR review</li>
+<li class="">governance-aware engineering workflows</li>
+</ul>
+<p>That is what made the exam valuable to me: not that it taught me a new prompt trick, but that it created a structure for thinking about the broader engineering system around AI.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-thoughts">Final Thoughts<a href="https://mphomagoro.com/articles/gh300-github-copilot-lessons#final-thoughts" class="hash-link" aria-label="Direct link to Final Thoughts" title="Direct link to Final Thoughts" translate="no">​</a></h2>
+<p>Copilot started as a way for me to write code faster. I now see it increasingly as a platform for building AI-assisted engineering workflows designed around context, constraints and human judgement.</p>
+<p>AI may reduce the cost of producing code, but it does not reduce the importance of understanding the problem, choosing the right design or deciding whether the result should exist at all.</p>
+<p>What happens to software engineering when producing code becomes dramatically cheaper, but understanding the right thing to build does not?</p>
+<p>That is the question I want to keep exploring.</p>]]></content:encoded>
+            <category>AI Engineering</category>
+            <category>GitHub Copilot</category>
+        </item>
+    </channel>
+</rss>
