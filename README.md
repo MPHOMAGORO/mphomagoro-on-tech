@@ -103,3 +103,13 @@ Repository overview:
 ## Licence
 
 Unless otherwise stated, the source code and written content in this repository remain the property of the author.
+
+## Copyright
+
+© 2026 Mpho Magoro. All rights reserved.
+
+The source code and original content in this repository are not licensed
+for reuse, redistribution, or modification unless explicitly stated
+otherwise.
+
+See [COPYRIGHT.md](./COPYRIGHT.md) for details.
