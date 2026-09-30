@@ -91,7 +91,7 @@ const config: Config = {
   footer: {
     style: 'light',
     links: [],
-    copyright: `© ${new Date().getFullYear()} © 2026 Mpho Magoro. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Mpho Magoro. All rights reserved.`,
   },
     prism: {
       theme: prismThemes.github,
