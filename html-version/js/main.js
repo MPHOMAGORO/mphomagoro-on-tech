@@ -1,5 +1,5 @@
 /* =========================================================
-   MPHOMAGORO.COM — standalone HTML version
+   MPHO MAGORO — ON TECH
    Small, dependency-free behaviour for the static pages.
    ========================================================= */
 
@@ -8,168 +8,208 @@
 
   var root = document.documentElement;
   var body = document.body;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* -------------------------------------------------------
-     Theme: system → light → dark → system
-     The initial theme is applied by an inline script in <head>
-     so the page never flashes the wrong colours.
+     Theme — dark by default, light on request.
+     The initial theme is applied by an inline script in <head>.
      ------------------------------------------------------- */
 
-  var THEME_KEY = 'theme';
-  var THEME_ORDER = ['system', 'light', 'dark'];
-  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-  function readChoice() {
-    try {
-      var stored = localStorage.getItem(THEME_KEY);
-      return stored === 'light' || stored === 'dark' ? stored : 'system';
-    } catch (error) {
-      return 'system';
-    }
+  function currentTheme() {
+    return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
   }
 
-  function writeChoice(choice) {
-    try {
-      if (choice === 'system') {
-        localStorage.removeItem(THEME_KEY);
-      } else {
-        localStorage.setItem(THEME_KEY, choice);
-      }
-    } catch (error) {
-      // Storage can be unavailable (private mode); the choice still applies to this page.
-    }
-  }
-
-  function applyTheme(choice) {
-    var theme = choice === 'system' ? (darkQuery.matches ? 'dark' : 'light') : choice;
-
-    root.setAttribute('data-theme', theme);
-    root.setAttribute('data-theme-choice', choice);
-
+  function syncThemeButtons() {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
     document.querySelectorAll('.theme-toggle').forEach(function (button) {
-      var label = 'Switch between dark and light mode (currently ' + choice + ' mode)';
-      button.setAttribute('aria-label', label);
-      button.setAttribute('title', choice + ' mode');
+      button.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+      button.setAttribute('title', 'Switch to ' + next + ' theme');
     });
   }
-
-  var themeChoice = readChoice();
-  applyTheme(themeChoice);
 
   document.querySelectorAll('.theme-toggle').forEach(function (button) {
     button.addEventListener('click', function () {
-      var next = THEME_ORDER[(THEME_ORDER.indexOf(themeChoice) + 1) % THEME_ORDER.length];
-      themeChoice = next;
-      writeChoice(next);
-      applyTheme(next);
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch (error) {
+        // Storage can be unavailable; the theme still applies to this page.
+      }
+      syncThemeButtons();
     });
   });
 
-  darkQuery.addEventListener('change', function () {
-    if (themeChoice === 'system') {
-      applyTheme('system');
-    }
-  });
+  syncThemeButtons();
 
   /* -------------------------------------------------------
-     Mobile navigation drawer
+     Header border once the page scrolls
      ------------------------------------------------------- */
 
-  var toggle = document.querySelector('.navbar__toggle');
-  var sidebar = document.getElementById('navbar-sidebar');
-  var backdrop = document.querySelector('.navbar-sidebar__backdrop');
-  var sidebarItems = document.querySelector('.navbar-sidebar__items');
-  var hasSecondary = !!document.querySelector('.navbar-sidebar__item--secondary');
+  var header = document.querySelector('.site-header');
 
-  function setPanel(secondary) {
-    if (!sidebarItems) {
+  function onScrollHeader() {
+    if (header) {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
+  }
+
+  window.addEventListener('scroll', onScrollHeader, { passive: true });
+  onScrollHeader();
+
+  /* -------------------------------------------------------
+     Mobile menu
+     ------------------------------------------------------- */
+
+  var menuToggle = document.querySelector('.menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+
+  function setMenu(open, returnFocus) {
+    if (!menuToggle || !menu) {
       return;
     }
 
-    sidebarItems.classList.toggle('navbar-sidebar__items--show-secondary', secondary);
-  }
+    body.classList.toggle('is-menu-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.querySelector('.menu-toggle__label').textContent = open ? 'Close' : 'Menu';
 
-  function openNav() {
-    body.classList.add('is-nav-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    sidebar.removeAttribute('inert');
-    setPanel(hasSecondary);
-
-    // Wait a frame so the drawer is no longer visibility: hidden before focusing into it.
-    window.requestAnimationFrame(function () {
+    if (open) {
+      menu.removeAttribute('inert');
       window.requestAnimationFrame(function () {
-        var firstFocusable = sidebar.querySelector('.navbar-sidebar__close');
-        if (firstFocusable) {
-          firstFocusable.focus();
+        var first = menu.querySelector('a, button');
+        if (first) {
+          first.focus();
         }
       });
-    });
-  }
-
-  function closeNav(returnFocus) {
-    if (!body.classList.contains('is-nav-open')) {
-      return;
-    }
-
-    body.classList.remove('is-nav-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    sidebar.setAttribute('inert', '');
-
-    if (returnFocus) {
-      toggle.focus();
+    } else {
+      menu.setAttribute('inert', '');
+      if (returnFocus) {
+        menuToggle.focus();
+      }
     }
   }
 
-  if (toggle && sidebar) {
-    sidebar.setAttribute('inert', '');
+  if (menuToggle && menu) {
+    menu.setAttribute('inert', '');
 
-    toggle.addEventListener('click', openNav);
-
-    sidebar.querySelector('.navbar-sidebar__close').addEventListener('click', function () {
-      closeNav(true);
+    menuToggle.addEventListener('click', function () {
+      setMenu(!body.classList.contains('is-menu-open'), false);
     });
 
-    if (backdrop) {
-      backdrop.addEventListener('click', function () {
-        closeNav(true);
+    // Close after choosing an in-page link
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        setMenu(false, false);
       });
-    }
-
-    var back = sidebar.querySelector('.navbar-sidebar__back');
-    if (back) {
-      back.addEventListener('click', function () {
-        setPanel(false);
-      });
-    }
+    });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        closeNav(true);
+      if (event.key === 'Escape' && body.classList.contains('is-menu-open')) {
+        setMenu(false, true);
       }
     });
 
-    window.matchMedia('(min-width: 997px)').addEventListener('change', function (event) {
+    window.matchMedia('(min-width: 901px)').addEventListener('change', function (event) {
       if (event.matches) {
-        closeNav(false);
+        setMenu(false, false);
       }
     });
   }
 
   /* -------------------------------------------------------
-     Docs sidebar categories
+     Home: highlight the nav item for the section in view
      ------------------------------------------------------- */
 
-  document.querySelectorAll('.menu__link--sublist').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var expanded = button.getAttribute('aria-expanded') === 'true';
-      var list = document.getElementById(button.getAttribute('aria-controls'));
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('[data-spy]'));
 
-      button.setAttribute('aria-expanded', String(!expanded));
-      if (list) {
-        list.hidden = expanded;
+  if (spyLinks.length) {
+    var spyTicking = false;
+
+    // The active item is the tracked section that spans the middle of the viewport.
+    function updateSpy() {
+      spyTicking = false;
+      var middle = window.innerHeight * 0.5;
+
+      spyLinks.forEach(function (link) {
+        var target = document.getElementById(link.getAttribute('data-spy'));
+        var rect = target ? target.getBoundingClientRect() : null;
+        var active = !!rect && rect.top <= middle && rect.bottom > middle;
+        link.classList.toggle('is-active', active);
+      });
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!spyTicking) {
+        spyTicking = true;
+        window.requestAnimationFrame(updateSpy);
       }
+    }, { passive: true });
+
+    updateSpy();
+  }
+
+  /* -------------------------------------------------------
+     Reveal on scroll (content is visible without JavaScript)
+     ------------------------------------------------------- */
+
+  var revealItems = document.querySelectorAll('[data-reveal]');
+
+  if (revealItems.length && 'IntersectionObserver' in window && !reduceMotion.matches) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
     });
-  });
+  } else {
+    revealItems.forEach(function (item) {
+      item.classList.add('is-visible');
+    });
+  }
+
+  /* -------------------------------------------------------
+     Architecture diagram: a request moves through the tiers
+     while the diagram is on screen.
+     ------------------------------------------------------- */
+
+  var arch = document.querySelector('.arch');
+
+  if (arch && 'IntersectionObserver' in window && !reduceMotion.matches) {
+    var steps = Array.prototype.slice.call(arch.querySelectorAll('[data-step]'));
+    var stepTimer = null;
+    var stepIndex = 0;
+
+    function tick() {
+      var active = Number(steps[stepIndex].getAttribute('data-step'));
+      steps.forEach(function (node) {
+        node.classList.toggle('is-active', Number(node.getAttribute('data-step')) === active);
+      });
+      stepIndex = (stepIndex + 1) % steps.length;
+    }
+
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        arch.classList.toggle('is-live', entry.isIntersecting);
+
+        if (entry.isIntersecting && !stepTimer) {
+          tick();
+          stepTimer = window.setInterval(tick, 1100);
+        } else if (!entry.isIntersecting && stepTimer) {
+          window.clearInterval(stepTimer);
+          stepTimer = null;
+          steps.forEach(function (node) {
+            node.classList.remove('is-active');
+          });
+        }
+      });
+    }, { threshold: 0.35 }).observe(arch);
+  }
 
   /* -------------------------------------------------------
      Share button (articles)
@@ -198,7 +238,7 @@
       }
 
       navigator.clipboard.writeText(url).then(function () {
-        label.textContent = 'Copied';
+        label.textContent = 'Link copied';
         clearTimeout(resetTimer);
         resetTimer = setTimeout(function () {
           label.textContent = 'Share';
@@ -261,12 +301,10 @@
   });
 
   /* -------------------------------------------------------
-     Table of contents highlight
+     Table of contents: mark the section being read
      ------------------------------------------------------- */
 
-  var tocLinks = Array.prototype.slice.call(
-    document.querySelectorAll('.toc .table-of-contents__link')
-  );
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc .toc__link'));
 
   if (tocLinks.length) {
     var headings = tocLinks.map(function (link) {
@@ -278,21 +316,23 @@
     function highlightToc() {
       ticking = false;
 
-      var offset = parseInt(getComputedStyle(root).getPropertyValue('--navbar-height'), 10) || 68;
+      var offset = (header ? header.offsetHeight : 64) + 32;
       var activeIndex = -1;
 
       headings.forEach(function (heading, index) {
-        if (heading && heading.getBoundingClientRect().top <= offset + 10) {
+        if (heading && heading.getBoundingClientRect().top <= offset) {
           activeIndex = index;
         }
       });
 
-      if (activeIndex === -1 && headings[0] && headings[0].getBoundingClientRect().top < window.innerHeight / 2) {
-        activeIndex = 0;
-      }
-
       tocLinks.forEach(function (link, index) {
-        link.classList.toggle('table-of-contents__link--active', index === activeIndex);
+        var active = index === activeIndex;
+        link.classList.toggle('is-active', active);
+        if (active) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
       });
     }
 
@@ -307,25 +347,20 @@
   }
 
   /* -------------------------------------------------------
-     Back to top (guides)
+     Guides navigation categories
      ------------------------------------------------------- */
 
-  var backToTop = document.querySelector('.back-to-top');
+  document.querySelectorAll('.guide-nav__link--category').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var expanded = button.getAttribute('aria-expanded') === 'true';
+      var list = document.getElementById(button.getAttribute('aria-controls'));
 
-  if (backToTop) {
-    var lastScroll = window.scrollY;
-
-    window.addEventListener('scroll', function () {
-      var current = window.scrollY;
-      var visible = current > 300 && current < lastScroll;
-      backToTop.classList.toggle('back-to-top--visible', visible);
-      lastScroll = current;
-    }, { passive: true });
-
-    backToTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0 });
+      button.setAttribute('aria-expanded', String(!expanded));
+      if (list) {
+        list.hidden = expanded;
+      }
     });
-  }
+  });
 
   /* -------------------------------------------------------
      Footer year
@@ -337,7 +372,6 @@
 
   /* -------------------------------------------------------
      Google Analytics — production domain only
-     (matches the gtag configuration in docusaurus.config.ts)
      ------------------------------------------------------- */
 
   if (window.location.hostname === 'mphomagoro.com') {

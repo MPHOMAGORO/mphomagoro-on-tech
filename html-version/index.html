@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light" data-theme-choice="system">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,192 +17,572 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://mphomagoro.com/img/mpho-magoro-social-card.png">
 
-  <link rel="icon" href="/img/favicon/favicon.ico" sizes="any">
+  <link rel="icon" href="/img/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/img/favicon/favicon.svg" type="image/svg+xml">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/img/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/img/favicon/site.webmanifest">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" content="#0c0c0b">
   <link rel="alternate" type="application/rss+xml" href="/articles/rss.xml" title="Mpho Magoro on Tech RSS Feed">
   <link rel="alternate" type="application/atom+xml" href="/articles/atom.xml" title="Mpho Magoro on Tech Atom Feed">
 
   <script>
     (function () {
-      var choice = 'system';
-      try { choice = localStorage.getItem('theme') || 'system'; } catch (e) {}
-      if (choice !== 'light' && choice !== 'dark') choice = 'system';
-      var theme = choice === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : choice;
-      document.documentElement.setAttribute('data-theme', theme);
-      document.documentElement.setAttribute('data-theme-choice', choice);
+      var root = document.documentElement;
+      var theme = 'dark';
+      try { theme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark'; } catch (e) {}
+      root.setAttribute('data-theme', theme);
+      root.classList.add('js');
     })();
   </script>
 
+  <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/home.css">
   <script src="/js/main.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-  <nav class="navbar" aria-label="Main">
-    <div class="navbar__inner">
-      <div class="navbar__items">
-        <button class="navbar__toggle" type="button" aria-label="Toggle navigation bar" aria-expanded="false" aria-controls="navbar-sidebar"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg></button>
-        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
-      </div>
-      <div class="navbar__items navbar__items--right">
-        <a class="navbar__item navbar__link" href="/articles/">Articles</a>
-        <a class="navbar__item navbar__link" href="/guides/">Guides</a>
-        <a class="navbar__item navbar__link" href="/about/">About</a>
-        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
-      </div>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-current="page"><svg class="brand__mark" viewBox="72.11 74.19 61.68 50.11" aria-hidden="true" focusable="false"><use href="/img/logo.svg#mark"></use></svg><span class="brand__name">Mpho Magoro</span> <span class="brand__suffix">/ on tech</span></a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="#systems" data-spy="systems">Systems</a></li>
+            <li><a class="site-nav__link" href="#ai" data-spy="ai">AI</a></li>
+            <li><a class="site-nav__link" href="/articles/">Writing</a></li>
+            <li><a class="site-nav__link" href="/guides/">Guides</a></li>
+            <li><a class="site-nav__link" href="/about/">About</a></li>
+        </ul>
+        <button class="icon-button theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-toggle__bars" aria-hidden="true"></span>
+          <span class="menu-toggle__label">Menu</span>
+        </button>
+      </nav>
     </div>
+  </header>
 
-    <div class="navbar-sidebar__backdrop" aria-hidden="true"></div>
-    <div class="navbar-sidebar" id="navbar-sidebar">
-      <div class="navbar-sidebar__brand">
-        <a class="navbar__brand" href="/"><b class="navbar__title">Mpho Magoro on Tech</b></a>
-        <button class="theme-toggle" type="button" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg class="theme-toggle__icon--light" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg class="theme-toggle__icon--dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg class="theme-toggle__icon--system" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button>
-        <button type="button" class="navbar-sidebar__close" aria-label="Close navigation bar"><svg viewBox="0 0 15 15" width="21" height="21" aria-hidden="true"><g stroke="currentColor" stroke-width="1.2"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"/></g></svg></button>
+  <div class="mobile-menu" id="mobile-menu">
+    <nav aria-label="Mobile">
+      <ul class="mobile-menu__list">
+          <li><a class="mobile-menu__link" href="#systems"><span class="label">01</span>Systems</a></li>
+          <li><a class="mobile-menu__link" href="#ai"><span class="label">02</span>AI</a></li>
+          <li><a class="mobile-menu__link" href="/articles/"><span class="label">03</span>Writing</a></li>
+          <li><a class="mobile-menu__link" href="/guides/"><span class="label">04</span>Guides</a></li>
+          <li><a class="mobile-menu__link" href="/about/"><span class="label">05</span>About</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <span class="label">Theme</span>
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+
+  <main id="content" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__frame">
+          <div class="hero__grid" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+          <div class="hero__top" data-hero>
+            <span class="label"><span class="label__num">00</span> Mpho Magoro — on tech</span>
+            <span class="label">Architecture · AI · Cloud · Engineering</span>
+          </div>
+
+          <h1 class="hero__title" id="hero-title" data-hero style="--hero-delay: 120ms">
+            <span class="hero__title-line">Engineering depth<span class="accent-dot">.</span></span>
+            <span class="hero__title-line hero__title-line--muted">Architecture thinking.</span>
+          </h1>
+
+          <div class="hero__intro" data-hero style="--hero-delay: 260ms">
+            <p>I’m <strong>Mpho Magoro</strong>, a senior software engineering and solution architecture professional working across cloud, integration, identity and distributed systems.</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="/articles/">Read the writing <span class="button__arrow" aria-hidden="true">→</span></a>
+              <a class="button button--ghost" href="/guides/">Browse guides <span class="button__arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <dl class="spec" data-hero style="--hero-delay: 380ms">
+            <div class="spec__row">
+              <dt>Practice</dt>
+              <dd>Software engineering &amp; solution architecture</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Domains</dt>
+              <dd>Cloud · Integration · Identity · Distributed systems</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Writing on</dt>
+              <dd>AI engineering, architecture, software engineering</dd>
+            </div>
+            <div class="spec__row">
+              <dt>Latest</dt>
+              <dd><span class="status-dot" aria-hidden="true"></span><a href="/articles/github-copilot-customisation/">How GitHub Copilot Customisation Actually Fits Together</a></dd>
+            </div>
+          </dl>
+        </div>
       </div>
-      <div class="navbar-sidebar__items">
-        <div class="navbar-sidebar__item navbar-sidebar__item--primary menu">
-          <ul class="menu__list">
-            <li class="menu__list-item"><a class="menu__link" href="/articles/">Articles</a></li>
-            <li class="menu__list-item"><a class="menu__link" href="/guides/">Guides</a></li>
-            <li class="menu__list-item"><a class="menu__link" href="/about/">About</a></li>
+    </section>
+
+    <section class="section" id="approach" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">01</span> Approach</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="visually-hidden" id="approach-title">Approach</h2>
+            <p class="statement">My work sits at the intersection of <em>software delivery, system design and practical AI adoption</em> — with an emphasis on making technical work <em>clearer, more reliable and easier to reason about.</em></p>
+          </div>
+        </div>
+
+        <ul class="pillars">
+          <li class="pillar" data-reveal>
+            <span class="label">Delivery</span>
+            <h3>Software engineering</h3>
+            <p>The practical engineering habits that keep software systems reliable, maintainable and understandable.</p>
+          </li>
+          <li class="pillar" data-reveal style="--reveal-delay: 80ms">
+            <span class="label">Design</span>
+            <h3>Solution architecture</h3>
+            <p>Translating architecture into practical decisions teams can use in real projects.</p>
+          </li>
+          <li class="pillar" data-reveal style="--reveal-delay: 160ms">
+            <span class="label">Adoption</span>
+            <h3>AI engineering</h3>
+            <p>Practical experiments, workflows and lessons from applying AI to real software engineering problems.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="practice" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">02</span> Practice</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="section-head__title" id="practice-title">Areas of practice</h2>
+            <p class="section-head__lead">Articles and guides covering the areas I work with and study.</p>
+          </div>
+        </div>
+
+        <ol class="practice">
+          <li class="practice__item" data-reveal style="--reveal-delay: 0ms">
+            <span class="practice__num">01</span>
+            <h3 class="practice__title">Software Engineering</h3>
+            <p class="practice__desc">Engineering practices for APIs, distributed systems, cloud platforms and reliable delivery.</p>
+            <a class="arrow-link" href="/guides/software-engineering/">Guide<span class="visually-hidden"> on Software Engineering</span></a>
+          </li>
+          <li class="practice__item" data-reveal style="--reveal-delay: 70ms">
+            <span class="practice__num">02</span>
+            <h3 class="practice__title">Solution Architecture</h3>
+            <p class="practice__desc">Architecture decisions, trade-offs, diagrams and techniques for designing maintainable systems.</p>
+            <a class="arrow-link" href="/guides/solution-architecture/">Guide<span class="visually-hidden"> on Solution Architecture</span></a>
+          </li>
+          <li class="practice__item" data-reveal style="--reveal-delay: 140ms">
+            <span class="practice__num">03</span>
+            <h3 class="practice__title">AI Engineering</h3>
+            <p class="practice__desc">Practical experiments, workflows and lessons from applying AI to real software engineering problems.</p>
+            <a class="arrow-link" href="/articles/tags/ai-engineering/">Articles<span class="visually-hidden"> on AI Engineering</span></a>
+          </li>
+          <li class="practice__item" data-reveal style="--reveal-delay: 0ms">
+            <span class="practice__num">04</span>
+            <h3 class="practice__title">Cloud & Integration</h3>
+            <p class="practice__desc">Working across cloud, integration, identity and distributed systems.</p>
+          </li>
+          <li class="practice__item" data-reveal style="--reveal-delay: 70ms">
+            <span class="practice__num">05</span>
+            <h3 class="practice__title">Context Engineering</h3>
+            <p class="practice__desc">Designing context, instructions and knowledge for AI systems.</p>
+          </li>
+          <li class="practice__item" data-reveal style="--reveal-delay: 140ms">
+            <span class="practice__num">06</span>
+            <h3 class="practice__title">AI-assisted Engineering</h3>
+            <p class="practice__desc">Prompts, agents, skills and engineering workflows for getting more value from GitHub Copilot.</p>
+            <a class="arrow-link" href="/articles/tags/github-copilot/">Articles<span class="visually-hidden"> on AI-assisted Engineering</span></a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="systems" aria-labelledby="systems-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">03</span> Systems</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="section-head__title" id="systems-title">Structure systems for change over time.</h2>
+            <p class="section-head__lead">The goal is not to produce abstract theory, but to translate architecture into practical decisions teams can use in real projects.</p>
+          </div>
+        </div>
+
+        <div class="arch-layout">
+          <figure class="arch-figure" data-reveal>
+            <div class="arch" role="img" aria-label="Illustrative architecture. Clients pass through an identity boundary to an API and integration layer, which also connects to external systems. That layer fans out to services, events and AI, which all share a data tier. Everything sits inside a cloud platform boundary.">
+              <span class="arch__boundary label">Cloud platform</span>
+              <span class="arch__region label">Illustrative</span>
+
+              <div class="arch__tier">
+                <div class="node" data-step="1"><span class="node__name">Clients</span><span class="node__meta">apps · users · partners</span></div>
+              </div>
+              <div class="arch__link"></div>
+              <div class="arch__tier">
+                <div class="node node--gate" data-step="2"><span class="node__name">Identity</span><span class="node__meta">authentication · authorisation</span></div>
+              </div>
+              <div class="arch__link"></div>
+              <div class="arch__tier arch__tier--api">
+                <div class="node" data-step="3"><span class="node__name">API &amp; integration</span><span class="node__meta">contracts between systems</span></div>
+                <div class="node node--ext"><span class="node__name">External systems</span><span class="node__meta">integration boundary</span></div>
+              </div>
+              <svg class="arch__split" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M150 0V20M50 20H250M50 20V40M150 20V40M250 20V40"/>
+                <path class="flow" d="M150 0V20H50V40M150 20V40M150 20H250V40"/>
+              </svg>
+              <div class="arch__tier arch__tier--three">
+                <div class="node" data-step="4"><span class="node__name">Services</span><span class="node__meta">domain logic</span></div>
+                <div class="node" data-step="4"><span class="node__name">Events</span><span class="node__meta">async flow</span></div>
+                <div class="node" data-step="4"><span class="node__name">AI</span><span class="node__meta">context · tools</span></div>
+              </div>
+              <svg class="arch__split" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M50 0V20M150 0V40M250 0V20M50 20H250"/>
+                <path class="flow" d="M50 0V20H150V40M250 0V20H150"/>
+              </svg>
+              <div class="arch__tier">
+                <div class="node" data-step="5"><span class="node__name">Data</span><span class="node__meta">state that outlives a request</span></div>
+              </div>
+            </div>
+
+            <figcaption>
+              <div class="arch-legend" aria-hidden="true">
+                <span class="arch-legend__item label"><span class="arch-legend__swatch"></span>Request path</span>
+                <span class="arch-legend__item label"><span class="arch-legend__swatch arch-legend__swatch--dashed"></span>Boundary</span>
+                <span class="arch-legend__item label"><span class="arch-legend__swatch arch-legend__swatch--flow"></span>Flow</span>
+              </div>
+              <p class="arch-caption">An illustration of the boundaries this work spans — cloud, integration, identity and distributed systems — not a specific production system.</p>
+            </figcaption>
+          </figure>
+
+          <div class="arch-aside" data-reveal style="--reveal-delay: 120ms">
+            <p class="label arch-aside__label">Questions that shape the design</p>
+            <ol class="questions">
+              <li>How to structure systems for change over time.</li>
+              <li>How to evaluate trade-offs between simplicity, flexibility and operational cost.</li>
+              <li>How architectural decisions support delivery and long-term maintainability.</li>
+              <li>How to document decisions in a way that helps teams work effectively.</li>
+            </ol>
+            <a class="arrow-link" href="/guides/solution-architecture/">Solution architecture guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ai" aria-labelledby="ai-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">04</span> AI engineering</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="section-head__title" id="ai-title">Context, constraints and human judgement.</h2>
+            <p class="section-head__lead">Copilot started as a way for me to write code faster. I now see it increasingly as a platform for building AI-assisted engineering workflows designed around context, constraints and human judgement.</p>
+          </div>
+        </div>
+
+        <ol class="stack" aria-label="Where each responsibility belongs">
+          <li class="stack__row" data-reveal style="--reveal-delay: 0ms">
+            <span class="stack__key label"><span class="label__num">01</span> Prompt</span>
+            <span class="stack__role">Intent</span>
+            <span class="stack__question">What do I want done right now?</span>
+            <span class="stack__when"><strong>Use when</strong> the guidance is one-off and task-specific.</span>
+          </li>
+          <li class="stack__row" data-reveal style="--reveal-delay: 50ms">
+            <span class="stack__key label"><span class="label__num">02</span> Instructions</span>
+            <span class="stack__role">Constraints</span>
+            <span class="stack__question">What rules should consistently apply?</span>
+            <span class="stack__when"><strong>Use when</strong> it should apply repeatedly without being restated.</span>
+          </li>
+          <li class="stack__row" data-reveal style="--reveal-delay: 100ms">
+            <span class="stack__key label"><span class="label__num">03</span> Skill</span>
+            <span class="stack__role">Expertise</span>
+            <span class="stack__question">How should this kind of work be done?</span>
+            <span class="stack__when"><strong>Use when</strong> it represents reusable specialist expertise.</span>
+          </li>
+          <li class="stack__row" data-reveal style="--reveal-delay: 150ms">
+            <span class="stack__key label"><span class="label__num">04</span> Agent</span>
+            <span class="stack__role">Responsibility</span>
+            <span class="stack__question">Who owns this workflow or role?</span>
+            <span class="stack__when"><strong>Use when</strong> a worker owns a role or workflow.</span>
+          </li>
+          <li class="stack__row" data-reveal style="--reveal-delay: 200ms">
+            <span class="stack__key label"><span class="label__num">05</span> Hook</span>
+            <span class="stack__role">Automation</span>
+            <span class="stack__question">What should happen automatically at a defined moment?</span>
+            <span class="stack__when"><strong>Use when</strong> something should happen automatically at an event or boundary.</span>
+          </li>
+          <li class="stack__row" data-reveal style="--reveal-delay: 250ms">
+            <span class="stack__key label"><span class="label__num">06</span> MCP</span>
+            <span class="stack__role">External capability</span>
+            <span class="stack__question">What systems, tools, or data does the workflow need access to?</span>
+            <span class="stack__when"><strong>Use when</strong> the workflow needs access to an external system.</span>
+          </li>
+        </ol>
+
+        <div class="stack-foot" data-reveal>
+          <p>Use the smallest mechanism that solves the problem. The goal is not to use more features — it is to design better boundaries.</p>
+          <a class="arrow-link" href="/articles/github-copilot-customisation/">Read the full breakdown</a>
+        </div>
+
+        <div class="ai-lower">
+          <figure class="quote" data-reveal>
+            <blockquote>
+              <p>The ability to generate code is becoming less scarce, while the ability to decide whether the code should exist in the first place remains scarce.</p>
+            </blockquote>
+            <figcaption><a class="arrow-link" href="/articles/gh300-github-copilot-lessons/">From the GH-300 lessons</a></figcaption>
+          </figure>
+
+          <div class="principles" data-reveal style="--reveal-delay: 100ms">
+            <p class="label">What GH-300 reinforced</p>
+            <ol>
+              <li>Productivity isn’t the same as AI engineering.</li>
+              <li>Context matters more than clever prompts.</li>
+              <li>Customisation turns Copilot into an engineering tool.</li>
+              <li>Governance belongs inside the workflow.</li>
+              <li>Faster coding makes requirements more important.</li>
+              <li>AI makes engineering judgement more valuable.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="writing" aria-labelledby="writing-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">05</span> Writing</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="section-head__title" id="writing-title">Featured writing</h2>
+            <p class="section-head__lead">A few pieces that represent what this site is about.</p>
+          </div>
+        </div>
+
+        <article class="feature" aria-labelledby="feature-1">
+          <a class="feature__media" href="/articles/github-copilot-customisation/" tabindex="-1" aria-hidden="true" data-reveal>
+            <img src="/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.webp" srcset="/img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero-960.webp 960w, /img/articles/prompts-vs-instructions-vs-skills-vs-agents/hero.webp 1672w" sizes="(max-width: 900px) 100vw, 58vw" alt="" width="1672" height="941" decoding="async" loading="lazy">
+          </a>
+          <div class="feature__body" data-reveal style="--reveal-delay: 100ms">
+            <ul class="article-meta">
+              <li><time datetime="2026-09-23T06:00:00.000Z">23 Sep 2026</time></li>
+              <li>15 min read</li>
+            </ul>
+            <h3 class="feature__title" id="feature-1"><a href="/articles/github-copilot-customisation/">How GitHub Copilot Customisation Actually Fits Together</a></h3>
+            <dl class="flow">
+              <dt class="label">Problem</dt>
+              <dd>You are spending a surprising amount of time teaching Copilot how your engineering environment works before asking it to do any actual engineering.</dd>
+              <dt class="label">Structure</dt>
+              <dd>Prompts express intent. Instructions define constraints. Skills package expertise. Agents own responsibility. Hooks automate events. MCP provides external capability.</dd>
+              <dt class="label">Takeaway</dt>
+              <dd><strong>What is the responsibility, and where does that responsibility belong?</strong></dd>
+            </dl>
+            <a class="arrow-link" href="/articles/github-copilot-customisation/">Read article</a>
+          </div>
+        </article>
+
+        <article class="feature feature--reverse" aria-labelledby="feature-2">
+          <a class="feature__media" href="/articles/gh300-github-copilot-lessons/" tabindex="-1" aria-hidden="true" data-reveal>
+            <img src="/img/articles/github-copilot-gh300/hero.webp" srcset="/img/articles/github-copilot-gh300/hero-960.webp 960w, /img/articles/github-copilot-gh300/hero.webp 1672w" sizes="(max-width: 900px) 100vw, 58vw" alt="" width="1672" height="941" decoding="async" loading="lazy">
+          </a>
+          <div class="feature__body" data-reveal style="--reveal-delay: 100ms">
+            <ul class="article-meta">
+              <li><time datetime="2026-09-11T00:00:00.000Z">11 Sep 2026</time></li>
+              <li>11 min read</li>
+            </ul>
+            <h3 class="feature__title" id="feature-2"><a href="/articles/gh300-github-copilot-lessons/">I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things</a></h3>
+            <dl class="flow">
+              <dt class="label">Question</dt>
+              <dd>If I already use Copilot every day, what exactly am I going to learn from an exam about it?</dd>
+              <dt class="label">Finding</dt>
+              <dd>Using a tool frequently and understanding how to use it deliberately are not the same thing.</dd>
+              <dt class="label">Takeaway</dt>
+              <dd><strong>AI may reduce the cost of producing code, but it does not reduce the importance of understanding the problem.</strong></dd>
+            </dl>
+            <a class="arrow-link" href="/articles/gh300-github-copilot-lessons/">Read article</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="journal" aria-labelledby="journal-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__index" data-reveal>
+            <span class="label"><span class="label__num">06</span> Journal</span>
+          </div>
+          <div class="section-head__body" data-reveal style="--reveal-delay: 80ms">
+            <h2 class="section-head__title" id="journal-title">Articles and guides</h2>
+            <p class="section-head__lead">Practical thinking on AI Engineering, Solution Architecture and Software Engineering.</p>
+          </div>
+        </div>
+
+        <div class="journal">
+          <div class="journal__articles" data-reveal>
+            <div class="journal__head">
+              <h3 class="label">Articles</h3>
+              <a class="arrow-link" href="/articles/">All writing</a>
+            </div>
+            <ol class="entry-list">
+            <li class="entry">
+              <a class="entry__link" href="/articles/github-copilot-customisation/">
+                <span class="entry__date label"><time datetime="2026-09-23T06:00:00.000Z">23 Sep 2026</time></span>
+                <span class="entry__main">
+                  <h4 class="entry__title">How GitHub Copilot Customisation Actually Fits Together</h4>
+                  <p class="entry__desc">Prompts, instructions, skills, agents, hooks, and MCP explained.</p>
+                </span>
+                <span class="entry__side">
+                  <span class="label">15 min</span>
+                  <span class="entry__arrow" aria-hidden="true">→</span>
+                </span>
+              </a>
+            </li>
+            <li class="entry">
+              <a class="entry__link" href="/articles/gh300-github-copilot-lessons/">
+                <span class="entry__date label"><time datetime="2026-09-11T00:00:00.000Z">11 Sep 2026</time></span>
+                <span class="entry__main">
+                  <h4 class="entry__title">I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things</h4>
+                  <p class="entry__desc">What studying for GH-300 taught me despite already using GitHub Copilot professionally.</p>
+                </span>
+                <span class="entry__side">
+                  <span class="label">11 min</span>
+                  <span class="entry__arrow" aria-hidden="true">→</span>
+                </span>
+              </a>
+            </li>
+            </ol>
+          </div>
+
+          <div class="journal__guides" data-reveal style="--reveal-delay: 100ms">
+            <div class="journal__head">
+              <h3 class="label">Guides</h3>
+              <a class="arrow-link" href="/guides/">All guides</a>
+            </div>
+            <ol class="guide-list">
+              <li><a href="/guides/ai-engineering/introduction/"><span class="guide-list__title">AI Engineering</span><span class="entry__arrow" aria-hidden="true">→</span><span class="guide-list__desc">Guides for designing and building AI-powered systems.</span></a></li>
+              <li><a href="/guides/github-copilot/"><span class="guide-list__title">GitHub Copilot</span><span class="entry__arrow" aria-hidden="true">→</span><span class="guide-list__desc">Practical guides covering Copilot agents, skills, instructions, and AI-assisted engineering workflows.</span></a></li>
+              <li><a href="/guides/solution-architecture/"><span class="guide-list__title">Solution Architecture</span><span class="entry__arrow" aria-hidden="true">→</span><span class="guide-list__desc">Architecture patterns, decision-making, trade-offs, and solution design.</span></a></li>
+              <li><a href="/guides/software-engineering/"><span class="guide-list__title">Software Engineering</span><span class="entry__arrow" aria-hidden="true">→</span><span class="guide-list__desc">Engineering practices, software design, testing, delivery, and developer productivity.</span></a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about">
+          <div class="about__name" data-reveal>
+            <span class="label"><span class="label__num">07</span> About</span>
+            <svg class="about__mark" viewBox="72.11 74.19 61.68 50.11" aria-hidden="true" focusable="false"><use href="/img/logo.svg#mark"></use></svg>
+            <h2 id="about-title">Mpho Magoro</h2>
+            <p class="label">Software engineering · Solution architecture</p>
+          </div>
+
+          <div class="about__body" data-reveal style="--reveal-delay: 100ms">
+            <p>I’m Mpho Magoro, a senior software engineering and solution architecture professional working across cloud, integration, identity and distributed systems.</p>
+            <p>This site is where I document the architecture decisions, engineering workflows and emerging AI practices I find useful.</p>
+            <dl class="facts">
+            <div class="facts__row">
+              <dt>Focus</dt>
+              <dd>Cloud, integration, identity and distributed systems</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Writing on</dt>
+              <dd>AI engineering, solution architecture and software engineering</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Recent</dt>
+              <dd><a class="text-link" href="/articles/gh300-github-copilot-lessons/">GH-300 — GitHub Copilot certification</a></dd>
+            </div>
+            <div class="facts__row">
+              <dt>Exploring next</dt>
+              <dd>
+                <ul>
+                  <li>Context engineering</li>
+                  <li>Instructions, skills and specialised agents</li>
+                  <li>AI-assisted requirements and architecture analysis</li>
+                  <li>AI-assisted PR review</li>
+                  <li>Governance-aware engineering workflows</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="container">
+        <span class="label" data-reveal><span class="label__num">08</span> Next</span>
+        <h2 class="closing__question" id="closing-title" data-reveal style="--reveal-delay: 80ms">What happens to software engineering when <em>producing code becomes dramatically cheaper</em>, but <em>understanding the right thing to build</em> does not?</h2>
+        <p class="closing__note" data-reveal style="--reveal-delay: 140ms">That is the question I want to keep exploring.</p>
+        <div class="closing__actions" data-reveal style="--reveal-delay: 200ms">
+          <a class="button button--primary" href="/articles/">Read the writing <span class="button__arrow" aria-hidden="true">→</span></a>
+          <a class="button button--ghost" href="/articles/rss.xml">Subscribe via RSS <span class="button__arrow" aria-hidden="true">→</span></a>
+          <a class="arrow-link" href="https://github.com/MPHOMAGORO">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <a class="brand" href="/"><svg class="brand__mark" viewBox="72.11 74.19 61.68 50.11" aria-hidden="true" focusable="false"><use href="/img/logo.svg#mark"></use></svg><span class="brand__name">Mpho Magoro</span> <span class="brand__suffix">/ on tech</span></a>
+          <p>Practical thinking on AI Engineering, Solution Architecture and Software Engineering.</p>
+        </div>
+
+        <div class="site-footer__col">
+          <p class="label">Site</p>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/articles/">Writing</a></li>
+            <li><a href="/guides/">Guides</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <p class="label">Topics</p>
+          <ul>
+            <li><a href="/articles/tags/ai-engineering/">AI Engineering</a></li>
+            <li><a href="/articles/tags/github-copilot/">GitHub Copilot</a></li>
+            <li><a href="/guides/solution-architecture/">Architecture</a></li>
+            <li><a href="/guides/software-engineering/">Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <p class="label">Follow</p>
+          <ul>
+            <li><a href="/articles/rss.xml">RSS</a></li>
+            <li><a href="/articles/atom.xml">Atom</a></li>
+            <li><a href="https://github.com/MPHOMAGORO">GitHub</a></li>
           </ul>
         </div>
       </div>
-    </div>
-  </nav>
 
-  <div class="main-wrapper" id="main" tabindex="-1">
-    <header class="home-hero">
-      <div class="container">
-        <div class="home-hero__content">
-          <div class="home-hero__eyebrow">
-            Architecture · AI · Cloud · Engineering
-          </div>
-
-          <h1 class="home-hero__title">Mpho Magoro on Tech</h1>
-
-          <p class="home-hero__subtitle">
-            Practical thinking on AI Engineering, Solution Architecture and
-            Software Engineering.
-          </p>
-
-          <p class="home-hero__description">
-            Writing about what I build, what I learn, and the engineering
-            decisions behind modern software systems.
-          </p>
-
-          <div class="home-hero__buttons">
-            <a class="button button--primary button--lg" href="/articles/">Read Articles</a>
-            <a class="button button--secondary button--lg" href="/guides/">Browse Guides</a>
-          </div>
-        </div>
+      <div class="site-footer__bottom">
+        <span class="label">© <span data-current-year>2026</span> Mpho Magoro on Tech</span>
+        <a class="label" href="https://github.com/MPHOMAGORO/mphomagoro-on-tech">Plain HTML, CSS and a little JavaScript</a>
       </div>
-    </header>
-
-    <main>
-      <section class="home-section" aria-labelledby="topics-heading">
-        <div class="container">
-          <div class="home-section-header">
-            <h2 id="topics-heading">Explore by topic</h2>
-            <p>Articles and guides covering the areas I work with and study.</p>
-          </div>
-
-          <div class="topic-grid">
-            <a class="topic-card" href="/articles/tags/ai-engineering/">
-              <h3>AI Engineering</h3>
-              <p>Practical experiments, workflows and lessons from applying AI to real software engineering problems.</p>
-              <span class="topic-card__link">Explore →</span>
-            </a>
-
-            <a class="topic-card" href="/articles/tags/github-copilot/">
-              <h3>GitHub Copilot</h3>
-              <p>Prompts, agents, skills and engineering workflows for getting more value from GitHub Copilot.</p>
-              <span class="topic-card__link">Explore →</span>
-            </a>
-
-            <a class="topic-card" href="/guides/solution-architecture/">
-              <h3>Solution Architecture</h3>
-              <p>Architecture decisions, trade-offs, diagrams and techniques for designing maintainable systems.</p>
-              <span class="topic-card__link">Explore →</span>
-            </a>
-
-            <a class="topic-card" href="/guides/software-engineering/">
-              <h3>Software Engineering</h3>
-              <p>Engineering practices for APIs, distributed systems, cloud platforms and reliable delivery.</p>
-              <span class="topic-card__link">Explore →</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-featured" aria-labelledby="featured-heading">
-        <div class="container">
-          <div class="home-section-header">
-            <h2 id="featured-heading">Start here</h2>
-            <p>A few pieces that represent what this site is about.</p>
-          </div>
-
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span class="feature-card__tag">GitHub Copilot</span>
-
-              <h3>I Used GitHub Copilot Every Day — Why I Still Took GH-300</h3>
-
-              <p>
-                What certification added beyond everyday Copilot usage, and the
-                engineering practices that mattered most.
-              </p>
-
-              <a href="/articles/">Read all articles →</a>
-            </article>
-
-            <article class="feature-card">
-              <span class="feature-card__tag">AI Engineering</span>
-
-              <h3>How GitHub Copilot Customisation Actually Fits Together</h3>
-
-              <p>Prompts, instructions, skills, agents, hooks, and MCP explained.</p>
-
-              <a href="/articles/">Explore articles →</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-about" aria-labelledby="about-heading">
-        <div class="container">
-          <div class="home-about__inner">
-            <span class="home-about__label">ABOUT</span>
-
-            <h2 id="about-heading">Engineering depth. Architecture thinking.</h2>
-
-            <p>
-              I'm Mpho Magoro, a senior software engineering and solution
-              architecture professional working across cloud, integration,
-              identity and distributed systems.
-            </p>
-
-            <p>
-              This site is where I document the architecture decisions,
-              engineering workflows and emerging AI practices I find useful.
-            </p>
-
-            <a class="home-about__link" href="/about/">More about me →</a>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <footer class="footer">
-    <div class="footer__container">
-      <p class="footer__copyright">© <span data-current-year>2026</span> Mpho Magoro on Tech</p>
     </div>
   </footer>
 </body>
