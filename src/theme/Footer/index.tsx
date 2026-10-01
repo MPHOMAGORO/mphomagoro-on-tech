@@ -24,7 +24,7 @@ export default function Footer(): ReactNode {
           <strong>Mpho Magoro on Tech</strong>
           <span className={styles.divider} aria-hidden="true" />
           <span className={styles.meta}>
-            © {new Date().getFullYear()} · mphomagoro.com
+            © {new Date().getFullYear()} · mphomagoro.com. All rights reserved.
           </span>
         </div>
 

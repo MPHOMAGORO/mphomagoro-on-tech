@@ -73,7 +73,8 @@ const config: Config = {
   themeConfig: {
     image: 'img/mpho-magoro-social-card.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'Mpho Magoro',

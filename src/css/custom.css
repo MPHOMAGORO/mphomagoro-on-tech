@@ -389,6 +389,7 @@ article a:not(.button):not(.pagination-nav__link):not(.tag):hover {
 /* Theme toggle as a small glass pill */
 .navbar [class*='colorModeToggle'] {
   margin-left: 0.5rem;
+  margin-right: 0.4rem;
   padding-left: 0.75rem;
   border-left: 1px solid var(--site-border-strong);
 }

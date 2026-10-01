@@ -113,19 +113,18 @@ function Hero() {
         <div className={styles.heroCopy}>
           <span className={styles.badge}>
             <SparkleIcon className={styles.badgeIcon} />
-            For curious engineers
+          Architecture · AI · Cloud · Engineering
           </span>
 
           <p className={styles.eyebrow}>Mpho Magoro on Tech</p>
 
           <Heading as="h1" className={styles.heroTitle}>
-            Big ideas. Clear code.
+            Big ideas. Better decisions.
             <span className={styles.gradientText}>A little curiosity.</span>
           </Heading>
 
           <p className={styles.heroSubtitle}>
-            Exploring AI, architecture and the decisions that make us better
-            engineers.
+     Practical thinking on AI Engineering, Solution Architecture and Software Engineering.
           </p>
 
           <div className={styles.heroButtons}>
@@ -261,8 +260,7 @@ function AboutTeaser() {
           Hey, I’m Mpho.
         </Heading>
         <p className={styles.sectionLead}>
-          Software engineer. Curious builder. Sharing what I learn about AI,
-          architecture and making better engineering decisions.
+         Writing about what I build, what I learn, and the engineering decisions behind modern software systems.
         </p>
         <Link to="/about" className={styles.arrowLink}>
           More about me <ArrowUpRightIcon />
