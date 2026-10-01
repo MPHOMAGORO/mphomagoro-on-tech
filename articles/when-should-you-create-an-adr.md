@@ -15,8 +15,6 @@ slug: when-to-create-an-adr
 
 ![When to create an ADR](/img/articles/when-to-create-an-adr/crossroads.png)
 
-## Introduction
-
 Imagine you are a climber preparing to reach Everest Base Camp. 
 
 There are several legitimate routes:
