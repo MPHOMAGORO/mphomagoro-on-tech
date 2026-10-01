@@ -23,7 +23,7 @@ There are several legitimate routes:
 - The Classic Everest Base Camp route,
 - Gokyo Lakes and Cho La Pass,
 - The Three Passes Trek,
-- the Historic Jiri route.
+- The Historic Jiri route.
 
 All ultimately move toward a similar destination, but they differ in time, difficulty, scenery, altitude exposure, risk, logistics and experience required.
 
