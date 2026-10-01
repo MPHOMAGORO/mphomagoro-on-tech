@@ -78,7 +78,7 @@ const guides: {
 }[] = [
   {
     title: 'AI Engineering',
-    description: 'Practical patterns for AI-assisted development.',
+    description: 'Practical patterns experiments, workflows and lessons from applying AI in software engineering problems.',
     link: '/guides/ai-engineering/introduction',
     Icon: ChipIcon,
     accent: 'blue',
@@ -92,14 +92,14 @@ const guides: {
   },
   {
     title: 'Software Engineering',
-    description: 'Build with clarity, quality and intent.',
+    description: 'Engineering practices for building scalable and maintainable software.',
     link: '/guides/software-engineering',
     Icon: CodeIcon,
     accent: 'mint',
   },
   {
     title: 'Solution Architecture',
-    description: 'Explore systems, constraints and trade-offs.',
+    description: 'Architecture decisions, trade-offs and best practices.',
     link: '/guides/solution-architecture',
     Icon: CubeIcon,
     accent: 'peach',
