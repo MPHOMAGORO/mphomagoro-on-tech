@@ -36,7 +36,7 @@ const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}
   },
   {
     label: 'Architecture',
-    link: '/guides/solution-architecture',
+    link: '/articles/tags/solution-architecture',
     Icon: CubeIcon,
     accent: 'peach',
   },
@@ -49,6 +49,15 @@ const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}
 ];
 
 const latestArticles = [
+  {
+    title: 'When Should You Create An ADR',
+    description: 'Everyday use meets a few unexpected lessons.',
+    tag: 'Solution Architecture',
+    date: '30 Sep 2026',
+    dateTime: '2026-09-30',
+    image: '/img/articles/when-to-create-an-adr/crossroads.png',
+    link: '/articles/when-to-create-an-adr',
+  },
   {
     title: 'How GitHub Copilot Customisation Actually Fits Together',
     description: 'Prompts, instructions, skills, agents, hooks and MCP — made clearer.',
