@@ -21,6 +21,13 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap',
+      type: 'text/css',
+    },
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -66,10 +73,15 @@ const config: Config = {
   themeConfig: {
     image: 'img/mpho-magoro-social-card.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Mpho Magoro on Tech', 
+      title: 'Mpho Magoro',
+      logo: {
+        alt: 'Mpho Magoro on Tech',
+        src: 'img/mm-mark.svg',
+      },
       items: [
         {
           to: '/articles', 
