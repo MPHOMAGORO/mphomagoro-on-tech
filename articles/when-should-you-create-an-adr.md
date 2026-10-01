@@ -24,5 +24,3 @@ There are several legitimate routes:
 - The Historic Jiri route.
 
 All ultimately move toward a similar destination, but they differ in time, difficulty, scenery, altitude exposure, risk, logistics and experience required.
-
-## Not Every Decision Needs A Record
