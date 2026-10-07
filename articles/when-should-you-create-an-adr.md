@@ -59,15 +59,16 @@ __Which decisions are significant enough to deserve an ADR?__
 
 The term "Architecture Decision Record" was coined by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
 
-An Architecture Decision Record is commonly described as a short, immutable document that captures and explains a significant architectural decision. It records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
+An Architecture Decision Record is commonly described as a short, immutable document that captures and explains a significant architectural decision. It typically records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
 
 Its purpose is simple: preserve the reasoning behind a decision before the context fades.
 
 In other words, an ADR helps future readers understand why the trade-off was acceptable at the time.
 
-:::important
+:::important Important rule
 
-If the decision is changed, a new superseding ADR is often created and linked to the previous version. In many teams, the original ADR is left unchanged.
+If the decision is changed, a new superseding ADR should be created.
+The original ADR must remain unchanged.  This preserves the evolution of the architectural reasoning.
 
 :::
 
@@ -75,7 +76,7 @@ If the decision is changed, a new superseding ADR is often created and linked to
 
 A useful rule is to ask:
 
-> Would losing the reasoning behind this decision create confusion, rework, risk, or a bad future decision?
+> "Would losing the reasoning behind this decision create confusion, rework, risk, or a bad future decision?"
 
 If the answer is yes, the decision likely deserves an ADR.
 
@@ -118,6 +119,30 @@ These are usually good candidates for a ticket, PR, or design note, but not nece
 
 ## Borderline Cases
 
+Sometimes the same technical choice may or may not deserve an ADR dependending on its scope, consequences, and how difficult it would to be to reverse.
+
+### 1. A Practcal Example: Introducing a new authentication library
+
+If one service replaces an authentication library with another while keeping the same authentication model, a dedicated adr MAY BE UNNECESSARY.
+
+But if the decision establish how dozens of services authenticate, determines the organisation's idenitty provider, the reasoning probably deserves to be preserved.
+
+### 2. A Practcal Example: Changing an API
+
+Adding another endpoint to an existing API probably does not deserve an adr.
+
+Changing the integration model from synchronous REST calls to asynchronous messaging probably does.
+That choice changes failure handling, consistency, observability and how systems interact.
+
+
+### 3. Introducing Regis
+
+Using Redis as a temporary cache inside one application may simply be an implementation detail.
+Using Redis as shared infrastructure for distributed caching, session storage, coordination, or communication between multiple services is different. 
+The decision introduces an operational dependency and architectural consequences that could affect several systems.
+
+The technology has not changed. The significance of the decision has.
+
 
 ## When not to create one
 
@@ -137,7 +162,7 @@ An ADR is not about documenting every technical choice. It is about preserving t
 
 When a decision has real trade-offs, long-lived consequences, or a high chance of being misunderstood later, write it down. That is what makes an ADR valuable.
 
-The goal is not to record the final outcome alone. The goal is to preserve the thinking that made that outcome reasonable at the time.
+__The goal is not to record the final outcome alone. The goal is to preserve the thinking that made that outcome reasonable at the time.__
 
 :::note
 
