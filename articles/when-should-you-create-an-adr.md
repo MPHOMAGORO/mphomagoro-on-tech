@@ -15,6 +15,10 @@ slug: when-to-create-an-adr
 
 ![When to create an ADR](/img/articles/when-to-create-an-adr/crossroads.png)
 
+::: note
+This article focuses on when a decision is worth recording. Choosing an ADR format and writing one are separate questions.
+:::
+
 Imagine you are a climber preparing to trek to Everest Base Camp.
 
 There is more than one way to get there. You could take the Classic Everest Base Camp route, follow the Gokyo Lakes and Cho La Pass variant, tackle the Three Passes Trek, or take the historic route from Jiri.
@@ -51,6 +55,7 @@ That leads to the more difficult question:
 
 __Which decisions are significant enough to deserve an ADR?__
 
+
 <!-- truncate -->
 
 ## What is an ADR?
@@ -63,7 +68,7 @@ Its purpose is simple: preserve the reasoning behind a decision before the conte
 
 In other words, an ADR helps future readers understand why the trade-off was acceptable at the time.
 
-:::note
+:::important
 
 If the decision is changed, a new superseding ADR is often created and linked to the previous version. In many teams, the original ADR is left unchanged.
 
