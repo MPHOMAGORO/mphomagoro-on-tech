@@ -121,21 +121,21 @@ These are usually good candidates for a ticket, PR, or design note, but not nece
 
 Sometimes the same technical choice may or may not deserve an ADR dependending on its scope, consequences, and how difficult it would to be to reverse.
 
-### 1. A Practcal Example: Introducing a new authentication library
+### 1. Practical Example: Introducing a new authentication library
 
-If one service replaces an authentication library with another while keeping the same authentication model, a dedicated adr MAY BE UNNECESSARY.
+If one service replaces an authentication library with another while keeping the same authentication model, a dedicated ADR may be unnecessary.
 
 But if the decision establish how dozens of services authenticate, determines the organisation's idenitty provider, the reasoning probably deserves to be preserved.
 
-### 2. A Practcal Example: Changing an API
+### 2. Practical Example: Changing an API
 
-Adding another endpoint to an existing API probably does not deserve an adr.
+Adding another endpoint to an existing API probably does not deserve an ADR.
 
 Changing the integration model from synchronous REST calls to asynchronous messaging probably does.
 That choice changes failure handling, consistency, observability and how systems interact.
 
 
-### 3. Introducing Regis
+### 3. Practical Example: Introducing Regis
 
 Using Redis as a temporary cache inside one application may simply be an implementation detail.
 Using Redis as shared infrastructure for distributed caching, session storage, coordination, or communication between multiple services is different. 
