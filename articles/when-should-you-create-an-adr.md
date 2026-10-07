@@ -65,12 +65,26 @@ Do not modify the existing ADR.
 
 ## When should you create one?
 
-An ADR should be written whenever a decision of significant impact is made.
-It up to the team to align on what defines significant impact. It could be a decision that is not easily reversible.
+It is advised to  create an ADR whenever a decision of significant impact is made. And it is up to the team to align on what defines significant impact. But I think the most important question is:
+
+> Would losing the reasoning behind the decision create confusion, rework, risk, or a bad future decision?
 
 ## Signals that a decision is ADR-worthy
 
+A few things to look out for that make a decision ADR-worthy:
+
+- There are multiple credible options
+- reversing it later would be expensive or disruptive
+- someone is likely to challenge the decision later.
+- the choice affects multiple teams, systems, or services
+
+
 ## When not to create one
+
+The important counterpoint is that not every technical decision deserves an ADR.
+
+For example, naming a class, choosing a minor library or following an already establish pattern.
+
 
 ## Final takeaway
 
