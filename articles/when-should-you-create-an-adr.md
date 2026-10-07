@@ -59,8 +59,10 @@ An Architecture Decision Record is a short immutable document that captures and 
 It typically records the context of the decision, the options considered, the status, the decision that was made, the consequences that follow from it and more recently the stakeholders involved in the decision.
 
 :::note
+
 If the decision is changed, another superseding ADR must be created and linked to the previous version.
 Do not modify the existing ADR.
+
 :::
 
 ## When should you create one?
@@ -74,9 +76,9 @@ It is advised to  create an ADR whenever a decision of significant impact is mad
 A few things to look out for that make a decision ADR-worthy:
 
 - There are multiple credible options
-- reversing it later would be expensive or disruptive
-- someone is likely to challenge the decision later.
-- the choice affects multiple teams, systems, or services
+- Reversing it later would be expensive or disruptive
+- Someone is likely to challenge the decision later.
+- The choice affects multiple teams, systems, or services
 
 
 ## When not to create one
@@ -88,6 +90,6 @@ For example, naming a class, choosing a minor library or following an already es
 
 ## Final takeaway
 
-The important thing to document is what you decided not to do and what was considered.
+
 
 
