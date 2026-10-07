@@ -57,7 +57,7 @@ __Which decisions are significant enough to deserve an ADR?__
 
 The term "Architecture Decision Record" was coined by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
 
-An Architecture Decision Record is a short, immutable document that captures and explains a significant architectural decision. It records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
+An Architecture Decision Record is commonly described as a short, immutable document that captures and explains a significant architectural decision. It records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
 
 Its purpose is simple: preserve the reasoning behind a decision before the context fades.
 
@@ -65,7 +65,7 @@ In other words, an ADR helps future readers understand why the trade-off was acc
 
 :::note
 
-If the decision is changed, a new superseding ADR should be created and linked to the previous one. Do not modify the original ADR.
+If the decision is changed, a new superseding ADR is often created and linked to the previous version. In many teams, the original ADR is left unchanged.
 
 :::
 
@@ -77,7 +77,7 @@ A useful rule is to ask:
 
 If the answer is yes, the decision likely deserves an ADR.
 
-This is a better test than asking whether a decision is merely "important." Some decisions are important, but not all of them are worth recording in a formal decision log. The real question is whether the reasoning is likely to matter later, not whether the decision was technically significant in the moment.
+This is a better test than asking whether a decision is merely "important." Some decisions are important, but not all of them are worth recording in a formal decision log. The real question is whether the reasoning is likely to matter later, rather than whether the decision was technically significant in the moment.
 
 ## ADR-worthy signals
 
@@ -92,7 +92,7 @@ A few signs usually indicate that a decision is worth capturing:
 
 If the decision could reasonably be debated later, it is usually worth recording.
 
-This is the practical threshold: if the reasoning behind the decision might be questioned again, it is worth preserving.
+This is the practical threshold: if the reasoning behind the decision might be questioned again, it is usually worth preserving.
 
 ## Practical examples
 
@@ -119,6 +119,8 @@ These are usually good candidates for a ticket, PR, or design note, but not nece
 The important counterpoint is that not every technical decision deserves an ADR.
 
 An ADR is not a record of every choice. It is a record of the decisions that reshape the system or create non-trivial trade-offs. If a decision is local, reversible, obvious, and unlikely to be misunderstood later, then it usually does not warrant the overhead.
+
+This is a useful rule of thumb, rather than a rigid standard.
 
 The threshold is not "is this a technical decision?" It is "would the reasoning matter later?"
 
