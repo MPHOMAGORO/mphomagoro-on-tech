@@ -15,9 +15,6 @@ slug: when-to-create-an-adr
 
 ![When to create an ADR](/img/articles/when-to-create-an-adr/crossroads.png)
 
-::: note
-This article focuses on when a decision is worth recording. Choosing an ADR format and writing one are separate questions.
-:::
 
 Imagine you are a climber preparing to trek to Everest Base Camp.
 
@@ -139,6 +136,10 @@ When a decision has real trade-offs, long-lived consequences, or a high chance o
 
 The goal is not to record the final outcome alone. The goal is to preserve the thinking that made that outcome reasonable at the time.
 
+:::note
 
+This article focuses on when a decision is worth recording. Choosing an ADR format and writing one are separate questions.
+
+:::
 
 
