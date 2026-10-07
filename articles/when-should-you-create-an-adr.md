@@ -67,8 +67,7 @@ In other words, an ADR helps future readers understand why the trade-off was acc
 
 :::important Important rule
 
-If the decision is changed, a new superseding ADR should be created.
-The original ADR must remain unchanged.  This preserves the evolution of the architectural reasoning.
+A common practice is to create a new superseding ADR and leave the original unchanged, preserving the evolution of the architectural reasoning
 
 :::
 
@@ -119,15 +118,15 @@ These are usually good candidates for a ticket, PR, or design note, but not nece
 
 ## Borderline Cases
 
-Sometimes the same technical choice may or may not deserve an ADR dependending on its scope, consequences, and how difficult it would to be to reverse.
+Sometimes the same technical choice may or may not deserve an ADR depending on its scope, consequences, and how difficult it would be to reverse.
 
-### 1. Practical Example: Introducing a new authentication library
+### 1. Introducing a new authentication library
 
 If one service replaces an authentication library with another while keeping the same authentication model, a dedicated ADR may be unnecessary.
 
-But if the decision establish how dozens of services authenticate, determines the organisation's idenitty provider, the reasoning probably deserves to be preserved.
+But if the decision establish how dozens of services authenticate, determines the organisation's identity provider, the reasoning probably deserves to be preserved.
 
-### 2. Practical Example: Changing an API
+### 2. Changing an API
 
 Adding another endpoint to an existing API probably does not deserve an ADR.
 
@@ -135,7 +134,7 @@ Changing the integration model from synchronous REST calls to asynchronous messa
 That choice changes failure handling, consistency, observability and how systems interact.
 
 
-### 3. Practical Example: Introducing Regis
+### 3. Introducing Redis
 
 Using Redis as a temporary cache inside one application may simply be an implementation detail.
 Using Redis as shared infrastructure for distributed caching, session storage, coordination, or communication between multiple services is different. 
