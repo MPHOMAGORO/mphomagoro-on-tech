@@ -36,7 +36,7 @@ const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}
   },
   {
     label: 'Architecture',
-    link: '/articles/tags/solution-architecture',
+    link: '/articles/tags/architecture',
     Icon: CubeIcon,
     accent: 'peach',
   },
@@ -52,7 +52,7 @@ const latestArticles = [
   {
     title: 'When Should You Create An ADR',
     description: 'Everyday use meets a few unexpected lessons.',
-    tag: 'Solution Architecture',
+    tag: 'Architecture',
     date: '30 Sep 2026',
     dateTime: '2026-09-30',
     image: '/img/articles/when-to-create-an-adr/crossroads.png',
@@ -332,7 +332,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title="Mpho Magoro on Tech"
-      description="AI Engineering, Solution Architecture and Software Engineering">
+      description="AI Engineering, Architecture and Software Engineering">
       <Hero />
       <main className={styles.main}>
         <Topics />
