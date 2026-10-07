@@ -67,7 +67,9 @@ Do not modify the existing ADR.
 
 ## When should you create one?
 
-It is advised to  create an ADR whenever a decision of significant impact is made. And it is up to the team to align on what defines significant impact. But I think the most important question is:
+It is advised to  create an ADR whenever a decision of significant impact is made. And it is up to the team to align on what defines significant impact. 
+
+But I think the most important question is:
 
 > Would losing the reasoning behind the decision create confusion, rework, risk, or a bad future decision?
 
