@@ -71,7 +71,7 @@ If the decision is changed, a new superseding ADR is often created and linked to
 
 :::
 
-## The key question: when is a decision worth recording?
+## When is a decision worth recording? 
 
 A useful rule is to ask:
 
@@ -116,6 +116,9 @@ These are examples where the trade-offs are meaningful and the reasoning matters
 
 These are usually good candidates for a ticket, PR, or design note, but not necessarily a dedicated ADR.
 
+## Borderline Cases
+
+
 ## When not to create one
 
 The important counterpoint is that not every technical decision deserves an ADR.
@@ -143,3 +146,6 @@ This article focuses on when a decision is worth recording. Choosing an ADR form
 :::
 
 
+## References
+- Michael Nygard - [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
+- ADR GitHub -  [ADR GitHub Organisation](https://adr.github.io/)
