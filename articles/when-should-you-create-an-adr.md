@@ -36,7 +36,7 @@ Architecture decisions have the same problem.
 
 Months or years after a system has been built, someone might ask:
 
-> “Why did we choose a relational database over a NoSQL Database?”
+> “Why did we choose a relational database over a NoSQL database?”
 >
 > "Why did we build this capability rather than buy a SaaS product?"
 >
