@@ -58,21 +58,19 @@ __Which decisions are significant enough to deserve an ADR?__
 
 The term "Architecture Decision Record" was coined by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
 
-An Architecture Decision Record is commonly described as a short, immutable document that captures and explains a significant architectural decision. It typically records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
+An Architecture Decision Record is commonly described as a short document that captures and explains a significant architectural decision. It typically records the context behind the decision, the options considered, the decision that was made, the consequences that followed, and often the stakeholders involved.
 
 Its purpose is simple: preserve the reasoning behind a decision before the context fades.
 
 In other words, an ADR helps future readers understand why the trade-off was acceptable at the time.
 
-:::important Important rule
+:::note
 
-A common practice is to create a new superseding ADR and leave the original unchanged, preserving the evolution of the architectural reasoning.
+A common pattern is to create a new superseding ADR when a decision changes and leave the original unchanged. This preserves the reasoning behind the original decision while preserving the evolution of the architecture.
 
 :::
 
 ## When is a decision worth recording?
-
-A quick checklist: if the decision has long-term consequences, affects more than one team or service, or would be costly or disruptive to reverse, it is worth recording.
 
 A useful rule is to ask:
 
@@ -81,6 +79,7 @@ A useful rule is to ask:
 If the answer is yes, the decision likely deserves an ADR.
 
 This is a better test than asking whether a decision is merely "important." Some decisions are important, but not all of them are worth recording in a formal decision log. The real question is whether the reasoning is likely to matter later, rather than whether the decision was technically significant in the moment.
+
 
 ## ADR-worthy signals
 
@@ -93,8 +92,6 @@ A few signs usually indicate that a decision is worth capturing:
 - The decision may be challenged later by someone who was not involved at the time
 - The decision shapes long-term system direction, cost, performance, or risk
 
-If the decision could reasonably be debated later, it is often worth recording. A practical test is whether the reasoning behind it might be questioned again later.
-
 ## Practical examples
 
 ### Decisions that usually deserve an ADR
@@ -102,7 +99,6 @@ If the decision could reasonably be debated later, it is often worth recording. 
 - For a system that needs strong consistency, reporting, and transactional guarantees, a relational database is usually the better fit, even though it gives up the flexible schema evolution that NoSQL can offer.
 - Building an internal platform capability gives the team control and long-term flexibility, but it costs time, focus, and operational burden compared with buying a SaaS product.
 - Azure App Service was the right choice when the priority was operational speed and simplicity, even though it gives up some of the customisation and control that AKS provides.
-- Event-driven integration was chosen to reduce coupling across ownership boundaries, but it introduced eventual consistency, more complex observability, and a harder debugging experience.
 
 These are examples where the trade-offs are meaningful and the reasoning matters years later.
 
