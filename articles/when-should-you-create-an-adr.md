@@ -100,10 +100,10 @@ If the decision could reasonably be debated later, it is often worth recording. 
 
 ### Decisions that usually deserve an ADR
 
-- Choosing a relational database over a NoSQL database for a system that needs strong consistency, reporting, and transactional guarantees; the trade-off is between operational simplicity and flexible schema evolution versus transactional safety and predictable analytics.
-- Building an internal platform capability instead of buying a SaaS product; the trade-off is control and long-term flexibility versus speed, team focus, and reduced operational burden.
-- Choosing Azure App Service instead of AKS for a workload that prioritises simplicity and operational speed over deep control; the trade-off is reduced operational overhead versus less customisation and lower platform flexibility.
-- Adopting an event-driven architecture for integration between services with different ownership boundaries; the trade-off is loose coupling and clearer service boundaries versus increased operational complexity, eventual consistency, and harder debugging.
+- For a system that needs strong consistency, reporting, and transactional guarantees, a relational database is usually the better fit, even though it gives up the flexible schema evolution that NoSQL can offer.
+- Building an internal platform capability gives the team control and long-term flexibility, but it costs time, focus, and operational burden compared with buying a SaaS product.
+- Azure App Service was the right choice when the priority was operational speed and simplicity, even though it gives up some of the customisation and control that AKS provides.
+- Event-driven integration was chosen to reduce coupling across ownership boundaries, but it introduced eventual consistency, more complex observability, and a harder debugging experience.
 
 These are examples where the trade-offs are meaningful and the reasoning matters years later.
 
