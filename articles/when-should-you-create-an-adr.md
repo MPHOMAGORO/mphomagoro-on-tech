@@ -20,7 +20,7 @@ Imagine you are a climber preparing to trek to Everest Base Camp.
 
 There is more than one way to get there. You could take the Classic Everest Base Camp route, follow the Gokyo Lakes and Cho La Pass variant, tackle the Three Passes Trek, or take the historic route from Jiri.
 
-Each can lead you toward the same destination, but the journeys are very different. They vary in time, difficulty, altitude exposure, scenery, logistics and risk.
+Each can lead you toward the same destination, but the journeys are very different. They vary in time, difficulty, altitude exposure, scenery, logistics, and risk.
 
 Suppose the climber chooses the Classic route.
 
@@ -30,7 +30,7 @@ Months later, someone looking only at the route they took might ask:
 
 But *better* according to what?
 
-Perhaps the climber had limited time. Perhaps they wanted a more established route, simpler logistics or less altitude exposure. The decision only makes sense when you understand the circumstances in which it was made.
+Perhaps the climber had limited time. Perhaps they wanted a more established route, simpler logistics, or less altitude exposure. The decision only makes sense when you understand the circumstances in which it was made.
 
 Architecture decisions have the same problem.
 
@@ -67,11 +67,13 @@ In other words, an ADR helps future readers understand why the trade-off was acc
 
 :::important Important rule
 
-A common practice is to create a new superseding ADR and leave the original unchanged, preserving the evolution of the architectural reasoning
+A common practice is to create a new superseding ADR and leave the original unchanged, preserving the evolution of the architectural reasoning.
 
 :::
 
-## When is a decision worth recording? 
+## When is a decision worth recording?
+
+A quick checklist: if the decision has long-term consequences, affects more than one team or service, or would be costly or disruptive to reverse, it is worth recording.
 
 A useful rule is to ask:
 
@@ -92,18 +94,16 @@ A few signs usually indicate that a decision is worth capturing:
 - The decision may be challenged later by someone who was not involved at the time
 - The decision shapes long-term system direction, cost, performance, or risk
 
-If the decision could reasonably be debated later, it is usually worth recording.
-
-This is the practical threshold: if the reasoning behind the decision might be questioned again, it is usually worth preserving.
+If the decision could reasonably be debated later, it is often worth recording. A practical test is whether the reasoning behind it might be questioned again later.
 
 ## Practical examples
 
 ### Decisions that usually deserve an ADR
 
-- Choosing a relational database over a NoSQL database for a system that needs strong consistency, reporting, and transactional guarantees
-- Building an internal platform capability instead of buying a SaaS product
-- Choosing Azure App Service instead of AKS for a workload that prioritises simplicity and operational speed over deep control
-- Adopting an event-driven architecture for integration between services with different ownership boundaries
+- Choosing a relational database over a NoSQL database for a system that needs strong consistency, reporting, and transactional guarantees; the trade-off is between operational simplicity and flexible schema evolution versus transactional safety and predictable analytics.
+- Building an internal platform capability instead of buying a SaaS product; the trade-off is control and long-term flexibility versus speed, team focus, and reduced operational burden.
+- Choosing Azure App Service instead of AKS for a workload that prioritises simplicity and operational speed over deep control; the trade-off is reduced operational overhead versus less customisation and lower platform flexibility.
+- Adopting an event-driven architecture for integration between services with different ownership boundaries; the trade-off is loose coupling and clearer service boundaries versus increased operational complexity, eventual consistency, and harder debugging.
 
 These are examples where the trade-offs are meaningful and the reasoning matters years later.
 
@@ -116,7 +116,7 @@ These are examples where the trade-offs are meaningful and the reasoning matters
 
 These are usually good candidates for a ticket, PR, or design note, but not necessarily a dedicated ADR.
 
-## Borderline Cases
+## Borderline cases
 
 Sometimes the same technical choice may or may not deserve an ADR depending on its scope, consequences, and how difficult it would be to reverse.
 
@@ -124,36 +124,30 @@ Sometimes the same technical choice may or may not deserve an ADR depending on i
 
 If one service replaces an authentication library with another while keeping the same authentication model, a dedicated ADR may be unnecessary.
 
-But if the decision establish how dozens of services authenticate, determines the organisation's identity provider, the reasoning probably deserves to be preserved.
+But if the decision establishes how dozens of services authenticate and determines the organisation's identity provider, the reasoning probably deserves to be preserved.
 
 ### 2. Changing an API
 
 Adding another endpoint to an existing API probably does not deserve an ADR.
 
 Changing the integration model from synchronous REST calls to asynchronous messaging probably does.
-That choice changes failure handling, consistency, observability and how systems interact.
+That choice changes failure handling, consistency, observability, and how systems interact.
 
 
 ### 3. Introducing Redis
 
 Using Redis as a temporary cache inside one application may simply be an implementation detail.
-Using Redis as shared infrastructure for distributed caching, session storage, coordination, or communication between multiple services is different. 
+Using Redis as shared infrastructure for distributed caching, session storage, coordination, or communication between multiple services is different.
 The decision introduces an operational dependency and architectural consequences that could affect several systems.
 
-The technology has not changed. The significance of the decision has.
+The technology may be the same; the architectural significance is not.
 
 
 ## When not to create one
 
 The important counterpoint is that not every technical decision deserves an ADR.
 
-An ADR is not a record of every choice. It is a record of the decisions that reshape the system or create non-trivial trade-offs. If a decision is local, reversible, obvious, and unlikely to be misunderstood later, then it usually does not warrant the overhead.
-
-This is a useful rule of thumb, rather than a rigid standard.
-
-The threshold is not "is this a technical decision?" It is "would the reasoning matter later?"
-
-That distinction is what separates a useful ADR from unnecessary paperwork.
+An ADR is not a record of every choice. It is a record of the decisions that reshape the system or create non-trivial trade-offs. If a decision is local, reversible, obvious, and unlikely to be misunderstood later, it usually does not warrant the overhead. This is a useful rule of thumb rather than a rigid standard. A useful threshold is not whether the decision is technical, but whether the reasoning would matter later.
 
 ## Final takeaway
 
