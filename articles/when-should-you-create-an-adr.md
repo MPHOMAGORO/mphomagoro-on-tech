@@ -1,7 +1,7 @@
 ---
 title: "When Should You Create An ADR"
 description: "Learn when to create an Architecture Decision Record (ADR) to document important technical decisions, their context, and their consequences."
-date: 2026-09-30T07:00:00+01:00
+date: 2026-10-08T07:00:00+01:00
 authors: [mpho]
 image: /img/articles/when-to-create-an-adr/crossroads.png
 tags:
@@ -14,7 +14,6 @@ slug: when-to-create-an-adr
 ---
 
 ![When to create an ADR](/img/articles/when-to-create-an-adr/crossroads.png)
-
 
 Imagine you are a climber preparing to trek to Everest Base Camp.
 
