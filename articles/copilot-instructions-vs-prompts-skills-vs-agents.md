@@ -52,7 +52,7 @@ At some point, you realise the problem. You are spending a surprising amount of 
 And that is where prompting starts to feel insufficient.
 
 That is where GitHub Copilot customisation starts to become genuinely useful.
-
+<!-- truncate -->
 ## A simple way to think about Copilot customisation
 
 The easiest way to understand the different features is not to start with their implementation.

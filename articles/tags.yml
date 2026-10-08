@@ -3,9 +3,9 @@ ai-engineering:
   permalink: /ai-engineering
   description: Building practical AI-powered software systems.
 
-solution-architecture:
-  label: Solution Architecture
-  permalink: /solution-architecture
+architecture:
+  label: Architecture
+  permalink: /architecture
   description: Architecture decisions, trade-offs and solution design.
 
 software-engineering:

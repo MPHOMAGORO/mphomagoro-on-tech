@@ -13,7 +13,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
 
-# I Used GitHub Copilot Every Day — Why I Still Took GH-300
+## I Used GitHub Copilot Every Day — Why I Still Took GH-300
 
 ![GitHub Copilot and GH-300](/img/articles/github-copilot-gh300/hero.png)
 
