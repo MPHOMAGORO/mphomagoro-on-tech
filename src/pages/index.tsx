@@ -51,7 +51,7 @@ const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}
 const latestArticles = [
   {
     title: 'When Should You Create An ADR',
-    description: 'Everyday use meets a few unexpected lessons.',
+    description: 'Learn when to create an Architecture Decision Record (ADR) to document important technical decisions, their context, and their consequences.',
     tag: 'Architecture',
     date: '08 October 2026',
     dateTime: '2026-10-08', 
@@ -69,7 +69,7 @@ const latestArticles = [
   },
   {
     title: 'I Used GitHub Copilot Every Day — GH-300 Still Taught Me These Things',
-    description: 'Everyday use meets a few unexpected lessons.',
+    description: 'What studying for GH-300 taught me despite already using GitHub Copilot professionally.',
     tag: 'AI Engineering',
     date: '11 Sep 2026',
     dateTime: '2026-09-11',
@@ -178,6 +178,7 @@ function Topics() {
     </section>
   );
 }
+
 
 function LatestArticles() {
   return (
