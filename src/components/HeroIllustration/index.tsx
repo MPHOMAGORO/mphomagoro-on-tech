@@ -102,8 +102,8 @@ export default function HeroIllustration(): ReactNode {
         </linearGradient>
 
         <linearGradient id="hi-panel" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#ffffff" stopOpacity="0.75" />
-          <stop offset="1" stopColor="#e3e5ff" stopOpacity="0.45" />
+          <stop className={styles.panelStopStart} offset="0" stopColor="#ffffff" stopOpacity="0.75" />
+          <stop className={styles.panelStopEnd} offset="1" stopColor="#e3e5ff" stopOpacity="0.45" />
         </linearGradient>
 
         <linearGradient id="hi-robot" x1="0" y1="0" x2="1" y2="1">
@@ -146,6 +146,7 @@ export default function HeroIllustration(): ReactNode {
       {/* Floating UI panel with a small flow diagram */}
       <g className={styles.floatSlow}>
         <rect
+          className={styles.panel}
           x="330"
           y="22"
           width="190"
@@ -155,11 +156,11 @@ export default function HeroIllustration(): ReactNode {
           stroke="#ffffff"
           strokeOpacity="0.9"
         />
-        <g fill="#8e9bff" opacity="0.7">
+        <g className={styles.panelText} fill="#8e9bff" opacity="0.7">
           <rect x="350" y="44" width="46" height="6" rx="3" />
           <rect x="350" y="58" width="30" height="6" rx="3" />
         </g>
-        <g fill="none" stroke="#8e9bff" strokeWidth="2" opacity="0.8">
+        <g className={styles.panelDiagram} fill="none" stroke="#8e9bff" strokeWidth="2" opacity="0.8">
           <rect x="420" y="40" width="34" height="22" rx="6" />
           <rect x="400" y="92" width="34" height="22" rx="6" />
           <rect x="462" y="92" width="34" height="22" rx="6" />
