@@ -33,6 +33,12 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser smoke tests
+        run: npm run test:smoke
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
