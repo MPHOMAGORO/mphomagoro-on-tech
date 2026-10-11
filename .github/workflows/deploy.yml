@@ -30,11 +30,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Security audit (warning only until upstream Docusaurus advisories are fixed)
+        continue-on-error: true
+        run: npm run audit:high:warn
+
       - name: Build website
         run: npm run build
 
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chrome
 
       - name: Run browser smoke tests
         run: npm run test:smoke

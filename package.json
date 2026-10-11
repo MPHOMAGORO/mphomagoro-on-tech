@@ -9,6 +9,8 @@
     "prebuild": "node scripts/filter-future-posts.mjs",
     "build": "docusaurus build",
     "postbuild": "node scripts/filter-future-posts.mjs restore",
+    "audit:high": "npm audit --audit-level=high",
+    "audit:high:warn": "npm audit --audit-level=high || true",
     "test:smoke": "playwright test",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -33,7 +35,7 @@
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
-    "@playwright/test": "^1.64.0",
+    "@playwright/test": "1.64.0",
     "@types/react": "^19.0.0",
     "typescript": "~6.0.2"
   },
