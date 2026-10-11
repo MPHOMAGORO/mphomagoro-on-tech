@@ -294,7 +294,7 @@ function AboutTeaser() {
             <stop offset="1" stopColor="#4de3ff" stopOpacity="0.4" />
           </linearGradient>
         </defs>
-        <circle cx="300" cy="90" r="88" fill="#c8b8ff" opacity="0.25" />
+        <circle className={styles.aboutHalo} cx="300" cy="90" r="88" fill="#c8b8ff" opacity="0.25" />
         <path
           d="M10 110 C 90 40, 150 170, 240 100 S 390 40, 470 90"
           fill="none"
@@ -308,19 +308,28 @@ function AboutTeaser() {
           strokeWidth="1.5"
           opacity="0.6"
         />
-        <g stroke="#5b61d6" strokeWidth="1" opacity="0.5">
+        <g className={styles.aboutGuides} stroke="#5b61d6" strokeWidth="1" opacity="0.5">
           <line x1="200" y1="40" x2="200" y2="120" />
           <line x1="300" y1="30" x2="300" y2="110" />
           <line x1="390" y1="20" x2="390" y2="80" />
         </g>
-        <g fill="#2a2f6b">
+        <g className={styles.aboutMarkers} fill="#2a2f6b">
           <circle cx="200" cy="120" r="3" />
           <circle cx="300" cy="110" r="3" />
           <circle cx="390" cy="80" r="3" />
         </g>
         <circle cx="110" cy="100" r="20" fill="url(#about-orb)" />
-        <rect x="370" y="20" width="96" height="60" rx="10" fill="#ffffff" opacity="0.55" />
-        <g fill="#9aa3e8" opacity="0.8">
+        <rect
+          className={styles.aboutCard}
+          x="370"
+          y="20"
+          width="96"
+          height="60"
+          rx="10"
+          fill="#ffffff"
+          opacity="0.55"
+        />
+        <g className={styles.aboutCardText} fill="#9aa3e8" opacity="0.8">
           <rect x="384" y="34" width="56" height="5" rx="2.5" />
           <rect x="384" y="47" width="42" height="5" rx="2.5" />
           <rect x="384" y="60" width="50" height="5" rx="2.5" />
