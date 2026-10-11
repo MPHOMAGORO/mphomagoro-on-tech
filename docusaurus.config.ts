@@ -4,6 +4,17 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const isProduction = process.env.NODE_ENV === 'production';
+const gtagPlugin = isProduction
+  ? [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-8BQ8W900ZZ',
+        anonymizeIP: true,
+      },
+    ]
+  : null;
+
 const config: Config = {
   title: 'Mpho Magoro on Tech',
   tagline: 'AI Engineering, Solution Architecture and Software Engineering',
@@ -62,13 +73,10 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
-        gtag: {
-          trackingID: 'G-8BQ8W900ZZ',
-          anonymizeIP: true,
-        },
       } satisfies Preset.Options,
     ],
   ],
+  plugins: gtagPlugin ? [gtagPlugin] : [],
 
   themeConfig: {
     image: 'img/mpho-magoro-social-card.png',

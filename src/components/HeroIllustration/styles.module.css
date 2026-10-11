@@ -49,3 +49,30 @@
 [data-theme='dark'] .illustration {
   filter: saturate(1.1) brightness(0.92);
 }
+
+/* The flow-diagram panel is pale glass in light mode; give it a deep glass
+   fill with brighter lines so the diagram stays legible on a dark page. */
+[data-theme='dark'] .panelStopStart {
+  stop-color: #2a2f66;
+  stop-opacity: 0.85;
+}
+
+[data-theme='dark'] .panelStopEnd {
+  stop-color: #1a1d42;
+  stop-opacity: 0.7;
+}
+
+[data-theme='dark'] .panel {
+  stroke: #8e9bff;
+  stroke-opacity: 0.45;
+}
+
+[data-theme='dark'] .panelText {
+  fill: #a9b4ff;
+  opacity: 0.9;
+}
+
+[data-theme='dark'] .panelDiagram {
+  stroke: #b8c1ff;
+  opacity: 1;
+}

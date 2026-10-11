@@ -137,7 +137,7 @@
   text-decoration: none;
 }
 
-.arrowLink svg {
+.arrowLink .pi {
   transition: transform 160ms ease;
 }
 
@@ -147,8 +147,8 @@ a:hover .arrowLink {
   text-decoration: none;
 }
 
-a.arrowLink:hover svg,
-a:hover .arrowLink svg {
+a.arrowLink:hover .pi,
+a:hover .arrowLink .pi {
   transform: translate(2px, -2px);
 }
 
@@ -434,6 +434,34 @@ a:hover .arrowLink svg {
 .aboutArt {
   width: 100%;
   height: auto;
+}
+
+/* The About artwork uses pale fills tuned for light mode; on a dark page
+   they turn muddy grey, so swap in deep glass fills and brighter lines. */
+[data-theme='dark'] .aboutHalo {
+  fill: #6e58ff;
+  opacity: 0.18;
+}
+
+[data-theme='dark'] .aboutGuides {
+  stroke: #8e9bff;
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .aboutMarkers {
+  fill: #b8c1ff;
+}
+
+[data-theme='dark'] .aboutCard {
+  fill: #232859;
+  stroke: #8e9bff;
+  stroke-opacity: 0.45;
+  opacity: 0.95;
+}
+
+[data-theme='dark'] .aboutCardText {
+  fill: #a9b4ff;
+  opacity: 0.9;
 }
 
 

@@ -1,6 +1,14 @@
 import {expect, test} from '@playwright/test';
 
-const routes = ['/', '/articles', '/guides', '/about'];
+const routes = [
+  '/',
+  '/articles',
+  '/articles/gh300-github-copilot-lessons',
+  '/guides',
+  '/guides/github-copilot',
+  '/guides/ai-engineering/introduction',
+  '/about',
+];
 
 for (const route of routes) {
   test(`${route} renders without browser errors`, async ({page}) => {
