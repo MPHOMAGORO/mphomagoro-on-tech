@@ -530,14 +530,14 @@ article a:not(.button):not(.pagination-nav__link):not(.tag):hover {
   border: 1px solid var(--glass-border);
   background: var(--glass-bg-strong);
   box-shadow: var(--glass-shadow);
-  color: #ffffff !important;
+  color: var(--ifm-heading-color) !important;
 }
 
 .button--secondary:hover {
   border-color: var(--glass-border);
   background: var(--glass-bg-strong);
   box-shadow: var(--glass-shadow-hover);
-  color: #ffffff;
+  color: var(--ifm-heading-color);
 }
 
 
