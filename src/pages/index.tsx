@@ -1,4 +1,4 @@
-import type {ComponentType, ReactNode, SVGProps} from 'react';
+import type {ComponentType, ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -14,11 +14,12 @@ import {
   RingIcon,
   SparkleIcon,
   TerminalIcon,
+  type IconProps,
 } from '@site/src/components/Icons';
 
 import styles from './index.module.css';
 
-type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+type IconComponent = ComponentType<IconProps>;
 type Accent = 'blue' | 'violet' | 'mint' | 'peach';
 
 const topics: {label: string; link: string; Icon: IconComponent; accent: Accent}[] = [

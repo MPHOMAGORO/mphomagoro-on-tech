@@ -137,7 +137,7 @@
   text-decoration: none;
 }
 
-.arrowLink svg {
+.arrowLink .pi {
   transition: transform 160ms ease;
 }
 
@@ -147,8 +147,8 @@ a:hover .arrowLink {
   text-decoration: none;
 }
 
-a.arrowLink:hover svg,
-a:hover .arrowLink svg {
+a.arrowLink:hover .pi,
+a:hover .arrowLink .pi {
   transform: translate(2px, -2px);
 }
 
