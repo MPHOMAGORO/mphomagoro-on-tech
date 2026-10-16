@@ -89,7 +89,7 @@ const guides: {
   {
     title: 'AI Engineering',
     description: 'Practical patterns experiments, workflows and lessons from applying AI in software engineering problems.',
-    link: '/guides/ai-engineering/introduction',
+    link: '/guides/ai-engineering',
     Icon: ChipIcon,
     accent: 'blue',
   },

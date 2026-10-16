@@ -11,18 +11,18 @@ pagination_prev: null
 
 Practical guides on AI engineering, GitHub Copilot, solution architecture, and software engineering.
 
-## AI Engineering
+## [AI Engineering](./ai-engineering)
 
 Guides for designing and building AI-powered systems.
 
-## GitHub Copilot
+## [GitHub Copilot](./github-copilot)
 
 Practical guides covering Copilot agents, skills, instructions, and AI-assisted engineering workflows.
 
-## Solution Architecture
+## [Solution Architecture](./solution-architecture)
 
 Architecture patterns, decision-making, trade-offs, and solution design.
 
-## Software Engineering
+## [Software Engineering](./software-engineering)
 
 Engineering practices, software design, testing, delivery, and developer productivity.
