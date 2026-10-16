@@ -154,7 +154,7 @@ __The goal is not to record the final outcome alone. The goal is to preserve the
 
 :::note
 
-This article focuses on when a decision is worth recording. Choosing an ADR format and writing one are separate questions.
+This article focuses on when a decision is worth recording. Once you decide to document one, see [How to write an effective ADR](/guides/solution-architecture/how-to-write-an-effective-adr).
 
 :::
 
