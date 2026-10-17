@@ -45,7 +45,7 @@ An effective ADR should answer seven questions:
 - Identify the relevant stakeholders
 
 
-## How to Write an ADR — Step by Step
+## How to Write an Effective ADR — Step by Step
 
 Use the following steps as a guide, adapting the level of detail to the decision. The goal is to preserve the reasoning, not to fill every section with boilerplate.
 
