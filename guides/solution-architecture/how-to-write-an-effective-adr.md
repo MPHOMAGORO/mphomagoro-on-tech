@@ -99,7 +99,7 @@ Cover mistakes that materially reduce decision quality:
 
 ## Reviewing and Maintaining ADRs
 
-:::note Recommended ADR Revision Policy
+:::tip Recommended ADR Revision Policy
 
 __Never edit an accepted ADR when a decision changes__. Instead, leave the original document unmodified to preserve its historical context. Create a new, superseding ADR to document the change, and use the Status section in both files to link them together (e.g., “Superseded by ADR-XXX” and “Supersedes ADR-YYY”). This keeps the architectural evolution transparent and accurate.
 
@@ -125,7 +125,8 @@ Copy the template below and adapt it to your architectural decision.
 
 - **Status:** Proposed
 - **Date:** YYYY-MM-DD
-- **Decision Makers:** [Names]
+- *Author:**: [Name]
+- **Decision Makers:** [Names] (Optional)
 - **Stakeholders:** [Names]
 
 ## Context
