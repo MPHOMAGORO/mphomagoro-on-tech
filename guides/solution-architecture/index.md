@@ -19,4 +19,4 @@ The goal is not to produce abstract theory, but to translate architecture into p
 
 ## Latest Guides
 
-- [How to write an effective ADR](./how-to-write-an-effective-adr): A practical guide to recording the context, options, rationale, and consequences behind an architecture decision.
+- [How to write an effective ADR](/guides/solution-architecture/how-to-write-an-effective-adr): A practical guide to recording the context, options, rationale, and consequences behind an architecture decision.
