@@ -3,11 +3,11 @@ title: "How to write an effective ADR"
 description: "How to write an ADR that is actually useful"
 date: 2026-14-08T07:00:00+01:00
 authors: [mpho]
-image: /img/articles/when-to-create-an-adr/crossroads.png
+image: /img/guides/architecture/how-to-write-an-effective-adr/hero%20image.png
 tags:
   - architecture
 
-hide_table_of_contents: false
+hide_table_of_contents: true
 toc_min_heading_level: 2
 toc_max_heading_level: 2
 ---
