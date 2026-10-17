@@ -47,36 +47,40 @@ An effective ADR should answer seven questions:
 
 ## How to Write an ADR — Step by Step
 
-### 01. Write a meaningful title.
+Use the following steps as a guide, adapting the level of detail to the decision. The goal is to preserve the reasoning, not to fill every section with boilerplate.
+
+### 01. Write a meaningful title
+
+State the decision in a short, specific phrase. A title such as “Use PostgreSQL for order storage” is more useful in a decision log than “Database decision.” If your team numbers ADRs, include the identifier according to its convention.
 
 ### 02. Record the status.
 
-Proposed, Accepted, Rejected or superseded.
+Mark the ADR as Proposed while the decision is under review, then record whether it was Accepted or Rejected. If a later decision replaces it, mark it Superseded and link to the newer ADR. Use status terms consistently across the decision log.
 
 ### 03. Record  the ownership
-The author and decision-makers where appropriate
+Name the author and the people accountable for making or approving the decision. Include other stakeholders when their input or the decision's impact is important. This helps future readers understand whose perspective the ADR represents and who to contact with questions.
 
 ### 04. Date
-The date 
+Record when the ADR was created or when the decision was made, following the convention used by your team. A clear date helps readers place the decision in the context of the system and constraints at that time.
 
 ### 05. Explain the context and problem
-Describe what is happening, why it matters, what is driving the change, which constraints and assumptions exist.
+Describe the situation that requires a decision, why it matters, and what is driving the change. Include the relevant requirements, constraints, and evidence. Label assumptions as assumptions so readers do not mistake them for verified facts.
 
 
 ### 06. Identify the options considered.
-Present credible alternatives. For each alternative, record the advantages and disadvantages.
+Present credible alternatives, including keeping the current approach when that is a realistic option. Compare them against the decision drivers, noting the main advantages, disadvantages, and reasons for ruling options out. Avoid making the alternatives look weaker just to justify a preferred choice.
 
 ### 07. State the decision and rationale
 
-Explain the selected decision and why it provides the best fit for the circumstances.
+State the chosen option clearly. Explain why it fits the context and requirements better than the alternatives, using the decision drivers and available evidence. If the decision is still being reviewed, keep its status Proposed rather than presenting it as final.
 
 ### 08. Document consequences
 
-Capture positive outcomes, risks 
+Describe the expected benefits as well as the costs, risks, and limitations the team accepts. Include relevant effects on operations, security, performance, maintainability, or delivery. Record mitigations and follow-up actions when they are part of making the decision workable.
 
 ### 09. Links
 
-Add references to related tickets, supporting documents, and superseding ADRs.
+Link to useful supporting material, such as design documents, research, tickets, or related ADRs. When a decision changes, link the new ADR to the one it supersedes so readers can follow how the architecture evolved.
 
 ## Worked Example: From Problem to Architectural Decision
 
@@ -117,12 +121,12 @@ __Never edit an accepted ADR when a decision changes__. Instead, leave the origi
 Copy the template below and adapt it to your architectural decision.
 
 ```md title="adr-template.md"
-# <ADR-Version-No>[Decision Title]
+# <ADR-Version-No>-[Decision Title]
 
 - **Status:** Proposed
 - **Date:** YYYY-MM-DD
-- **Decision Makers:** [Names ]
-- **Stakeholders:** [Names ]
+- **Decision Makers:** [Names]
+- **Stakeholders:** [Names]
 
 ## Context
 
