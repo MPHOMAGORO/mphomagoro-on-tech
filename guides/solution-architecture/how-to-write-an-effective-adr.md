@@ -1,7 +1,7 @@
 ---
 title: "How to write an effective ADR"
 description: "How to write an ADR that is actually useful"
-date: 2026-14-08T07:00:00+01:00
+date: 2026-10-19T07:00:00+01:00
 authors: [mpho]
 tags:
   - architecture
@@ -19,30 +19,28 @@ Its purpose is simple: preserve the reasoning behind a decision before the conte
 
 In other words, an ADR helps future readers understand why the trade-off was acceptable at the time.
 
-The term "Architecture Decision Record" was coined by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
-
+The ADR format was popularized by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
 
 ## What Makes an ADR Effective?
 
-An effective ADR is focused on one architectural or design decision. It is concise, and grounded in its context. 
+An effective ADR is focused on one architectural or design decision. It is concise and grounded in its context.
 
-An effective ADR should answer seven questions:
+An effective ADR should answer eight questions:
 - What problem required a decision?
 - What requirements and constraints matter?
 - What alternatives were considered and why they were ruled out?
 - What decision was made, and why?
 - What trade-offs and risks were accepted?
-- Under what circumstances might the decision need reconsideration
-- When the decision was made?
-- Whether the decision was accepted, rejected or still in progress?
+- Under what circumstances might the decision need reconsideration?
+- When was the decision made?
+- Whether the decision was accepted, rejected, or still in progress?
 
 ## Before You Start Writing
 
 - Identify the actual architectural or design decision.
-- Understand th requirments and constraints
-- Separate verified facts from assumptions
-- Identify the relevant stakeholders
-
+- Understand the requirements and constraints.
+- Separate verified facts from assumptions.
+- Identify the relevant stakeholders.
 
 ## How to Write an Effective ADR — Step by Step
 
@@ -54,17 +52,16 @@ State the decision in a short, specific phrase. A title such as “Use PostgreSQ
 
 ### 02. Record the status.
 
-Mark the ADR as Proposed while the decision is under review, then record whether it was Accepted or Rejected. If a later decision replaces it, mark it Superseded and link to the newer ADR. Use status terms consistently across the decision log.
+Many teams use a simple status convention such as Proposed, Accepted, Rejected, and Superseded. Record the status clearly and consistently so readers can tell whether a decision is still being evaluated, final, or replaced by a later ADR.
 
-### 03. Record  the ownership
-Name the author and the people accountable for making or approving the decision. Include other stakeholders when their input or the decision's impact is important. This helps future readers understand whose perspective the ADR represents and who to contact with questions.
+### 03. Record the ownership
+Name the author and include other stakeholders when their input or the decision's impact is important. This helps future readers understand whose perspective the ADR represents and who to contact with questions.
 
 ### 04. Date
 Record when the ADR was created or when the decision was made, following the convention used by your team. A clear date helps readers place the decision in the context of the system and constraints at that time.
 
 ### 05. Explain the context and problem
 Describe the situation that requires a decision, why it matters, and what is driving the change. Include the relevant requirements, constraints, and evidence. Label assumptions as assumptions so readers do not mistake them for verified facts.
-
 
 ### 06. Identify the options considered.
 Present credible alternatives, including keeping the current approach when that is a realistic option. Compare them against the decision drivers, noting the main advantages, disadvantages, and reasons for ruling options out. Avoid making the alternatives look weaker just to justify a preferred choice.
@@ -83,8 +80,6 @@ Link to useful supporting material, such as design documents, research, tickets,
 
 ## Worked Example: From Problem to Architectural Decision
 
-
-
 ## Common Mistakes to Avoid
 
 Cover mistakes that materially reduce decision quality:
@@ -100,7 +95,7 @@ Cover mistakes that materially reduce decision quality:
 
 :::tip Recommended ADR Revision Policy
 
-__Never edit an accepted ADR when a decision changes__. Instead, leave the original document unmodified to preserve its historical context. Create a new, superseding ADR to document the change, and use the Status section in both files to link them together (e.g., “Superseded by ADR-XXX” and “Supersedes ADR-YYY”). This keeps the architectural evolution transparent and accurate.
+As a rule of thumb, do not rewrite an accepted ADR when a decision changes. Leave the original document intact to preserve its historical context, then create a new, superseding ADR to document the change. Use the status fields in both files to link them together (for example, “Superseded by ADR-XXX” and “Supersedes ADR-YYY”). This keeps the architectural evolution transparent and accurate.
 
 :::
 
@@ -114,18 +109,25 @@ __Never edit an accepted ADR when a decision changes__. Instead, leave the origi
 - [ ] Are the status and decision ownership clear?
 - [ ] Could another person understand why this decision made sense in two years?
 
+## Conclusion
+
+An effective ADR is not a formality or a documentation exercise. It is a record of the reasoning that shaped the system at the moment the decision mattered most.
+
+Its real value appears later, when the team has moved on, the constraints have changed, and the original trade-offs are no longer obvious. A good ADR helps future engineers understand why the choice was made, what was accepted, what was rejected, and which risks were tolerated in exchange for the benefits the system needed.
+
+Write ADRs for the people who will inherit the architecture after the decision is made, not just for the people who were in the room when it was agreed. When an ADR does its job well, it turns a short-lived decision into durable engineering memory.
 
 ## Reusable ADR Template
 
 Copy the template below and adapt it to your architectural decision.
 
 ```md title="adr-template.md"
+
 # <ADR-Version-No>-[Decision Title]
 
 - **Status:** Proposed
 - **Date:** YYYY-MM-DD
-- *Author:**: [Name]
-- **Decision Makers:** [Names] (Optional)
+- **Author:** [Name]
 - **Stakeholders:** [Names]
 
 ## Context
@@ -141,17 +143,17 @@ Describe the problem, requirements, assumptions and constraints.
 ### Option 1: [Name]
 
 **Advantages**
-- 
+- Describe the advantages
 
 **Disadvantages**
-- 
+- Describe the disadvantages
 
 ### Option 2: [Name]
 **Advantages**
--
+- Describe the advantages
 
 **Disadvantages**
--
+- Describe the disadvantages
 
 ## Decision
 Describe the selected option.
@@ -162,13 +164,13 @@ Explain why this option was selected.
 ## Consequences
 
 ### Positive
--
+- Describe the positive consequence of the decision
 
 ### Negative
--
+- Describe the negative consequence of the decision
 
 ### Risks and Follow-up Actions
--
+- Explain the accepted risks and the follow-up actions
 
 ## Links
 
