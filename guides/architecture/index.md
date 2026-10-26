@@ -1,6 +1,6 @@
 ---
-title: Solution Architecture
-sidebar_label: Solution Architecture
+title: Architecture
+sidebar_label: Architecture
 description: Architecture decisions, trade-offs and solution design.
 ---
 
