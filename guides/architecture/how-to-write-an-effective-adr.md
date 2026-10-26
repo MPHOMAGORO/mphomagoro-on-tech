@@ -13,19 +13,19 @@ toc_max_heading_level: 2
 
 ## Introduction: Writing an ADR Is More Than Filling in a Template
 
-An Architecture Decision Record is a formal document that captures and explains a significant architectural decision during the design and development of systems.
+An Architecture Decision Record is a lightweight record that captures a significant architectural decision during the design and development of a system.
 
-Its purpose is simple: preserve the reasoning behind a decision before the context fades.
+Its purpose is simple: preserve the reasoning behind the decision before the context fades.
 
-In other words, an ADR helps future readers understand why the trade-off was acceptable at the time.
+In other words, an ADR helps future readers understand why the trade-off was acceptable at the time and what consequences were expected.
 
-The ADR format was popularised by [Michael Nygard](https://cognitect.com/authors/MichaelNygard.html) in 2011 in his [article](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
+Michael Nygard's 2011 article, [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions), describes a lightweight format for recording architecturally significant decisions.
 
 ## What Makes an ADR Effective?
 
-An effective ADR is focused on one architectural or design decision. It is concise and grounded in its context.
+A useful ADR focuses on one architectural or design decision. It is concise, grounded in the context that created it, and easy for future readers to understand.
 
-An effective ADR should answer eight questions:
+A useful ADR often helps answer these questions, though the exact structure can vary by team and decision:
 - What problem required a decision?
 - What requirements and constraints matter?
 - What alternatives were considered and why they were ruled out?
@@ -44,7 +44,7 @@ An effective ADR should answer eight questions:
 
 ## How to Write an Effective ADR — Step by Step
 
-Use the following steps as a guide, adapting the level of detail to the decision. The goal is to preserve the reasoning, not to fill every section with boilerplate.
+Use the following steps as a guide, adjusting the level of detail to the decision. The goal is to preserve the reasoning, not to fill every section with boilerplate.
 
 ### 01. Write a meaningful title
 
@@ -54,7 +54,7 @@ State the decision in a short, specific phrase. A title such as “Use PostgreSQ
 
 Many teams use a simple status convention such as Proposed, Accepted, Rejected, and Superseded. Record the status clearly and consistently so readers can tell whether a decision is still being evaluated, final, or replaced by a later ADR.
 
-### 03. Record the ownership
+### 03. Record ownership
 Name the author and include other stakeholders when their input or the decision's impact is important. This helps future readers understand whose perspective the ADR represents and who to contact with questions.
 
 ### 04. Date
@@ -79,6 +79,9 @@ Describe the expected benefits as well as the costs, risks, and limitations the 
 Link to useful supporting material, such as design documents, research, tickets, or related ADRs. When a decision changes, link the new ADR to the one it supersedes so readers can follow how the architecture evolved.
 
 ## Worked Example: From Problem to Architectural Decision
+
+The following fictional example illustrates how these sections can be applied in practice. The organisation, stakeholders, and evaluation are invented.
+
 ## ADR-001-Build vs Buy an Appointment Booking Capability
 
 - **Status:** Proposed
@@ -88,25 +91,21 @@ Link to useful supporting material, such as design documents, research, tickets,
 
 ### Context
 
-The organisation requires an online appointment booking capability that allows customers to schedule and manage appointments through its existing WordPress website.
+The organisation needs an online appointment booking capability on its existing WordPress website.
 
-Two approaches are being considered:
+Two options are being considered:
 
 1. Adopt a third-party Software as a Service (SaaS) booking platform, such as Setmore, and integrate it with WordPress.
 2. Build and operate an internally owned booking capability within the existing WordPress environment.
 
-Building an internal booking capability would provide greater control over its functionality, customisation and future development. However, it would require engineering effort, ongoing maintenance and operational support.
-
-Adopting an established SaaS solution could accelerate delivery and reduce internal operational responsibilities. However, this would introduce dependency on an external provider and limit control over the booking platform.
+The main question is whether the organisation should spend limited engineering capacity on a supporting capability that is not a source of competitive differentiation.
 
 **Assumptions**
 
 - The organisation already operates a WordPress website.
 - Appointment scheduling is a supporting business capability rather than a source of competitive differentiation.
-- Standard booking functionality can satisfy the majority of business requirements.
+- Standard booking functionality can satisfy most business requirements.
 - Engineering resources are limited and must be prioritised against other business initiatives.
-
-These assumptions must be validated with stakeholders before the decision is accepted.
 
 **Constraints**
 
@@ -130,48 +129,31 @@ These assumptions must be validated with stakeholders before the decision is acc
 
 #### Option 1: Adopt a Third-Party SaaS Booking Platform (Setmore)
 
-Integrate Setmore with the WordPress website while delegating the operation and maintenance of the booking platform to the SaaS provider.
-
 **Advantages**
 
-- **Faster implementation:** Provides an existing booking capability without developing the core scheduling functionality.
-- **Reduced engineering effort:** Allows the team to focus on business-specific functionality rather than building a commodity capability.
-- **Lower operational burden:** The provider is responsible for operating and maintaining the SaaS platform.
-- **Predictable initial scope:** Reduces the implementation uncertainty associated with custom software development.
-- **Established functionality:** Provides access to existing scheduling features and supported integrations.
-- **Reduced infrastructure responsibility:** Removes the need to host and operate the core booking application internally.
+- Faster implementation with lower initial delivery risk.
+- Less engineering effort and lower operational burden.
+- Access to established booking features and supported integrations.
 
 **Disadvantages**
 
-- **Vendor dependency:** Availability, pricing, functionality and service continuity depend on the external provider.
-- **Limited customisation:** Business workflows must operate within the capabilities and integration mechanisms supported by the platform.
-- **Recurring costs:** Subscription fees may increase as usage or feature requirements grow.
-- **Reduced control:** The organisation has limited influence over the provider's product roadmap and architectural decisions.
-- **Data portability concerns:** Migrating to another solution may require exporting, transforming and reconciling booking and customer data.
-- **Third-party security dependency:** The organisation must assess the provider's security, privacy and contractual controls.
+- Vendor dependency and reduced control over pricing and roadmap.
+- Limited customisation and possible lock-in.
+- Ongoing subscription and integration costs.
 
 #### Option 2: Build and Operate an Internal WordPress Booking Capability
 
-Develop a booking capability within the existing WordPress environment, with the organisation retaining responsibility for development, maintenance and operation.
-
 **Advantages**
 
-- **Greater control:** The organisation can determine the booking system's functionality, business rules and development roadmap.
-- **Customisation:** Supports specialised workflows that may not be available in third-party platforms.
-- **Integration flexibility:** Enables custom integrations with internal systems where technically feasible.
-- **Reduced SaaS lock-in:** Avoids reliance on a single external booking SaaS provider.
-- **Control over data management:** Provides greater control over how booking information is stored, accessed and retained.
-- **Long-term adaptability:** The capability can evolve alongside business requirements, provided sufficient engineering investment is maintained.
+- Greater control over functionality and future roadmap.
+- Better fit for specialised or unusual workflows.
+- Full control over data management and integration decisions.
 
 **Disadvantages**
 
-- **Higher initial development effort:** Requires designing, implementing, testing and deploying booking functionality.
-- **Longer time to market:** Core features must be developed or assembled before the solution can be made available.
-- **Ongoing maintenance:** The organisation becomes responsible for defects, upgrades, compatibility and enhancements.
-- **Operational responsibility:** Requires monitoring, backup, recovery, security patching and incident response.
-- **Opportunity cost:** Engineering resources allocated to booking functionality cannot be used for other business priorities.
-- **Technical complexity:** Scheduling conflicts, availability management, notifications and data consistency require careful implementation.
-- **Long-term ownership costs:** Maintenance and future enhancements may outweigh the cost of subscribing to an existing service.
+- Higher upfront engineering effort and longer time to market.
+- Ongoing maintenance, patching and operational responsibility.
+- Opportunity cost for limited engineering capacity.
 
 ### Decision
 
@@ -183,17 +165,15 @@ This decision is conditional on validating that the selected SaaS platform satis
 
 ### Rationale
 
-Appointment booking is currently assumed to be a supporting business capability rather than a capability that provides competitive differentiation.
+Appointment booking is treated as a supporting business capability rather than a source of differentiation. In that context, the organisation's priority is to deliver value quickly without consuming scarce engineering capacity on a commodity capability.
 
-Developing a custom booking platform would provide greater control and potential flexibility. However, those benefits do not currently justify the initial development effort, ongoing operational responsibilities and opportunity costs associated with building and maintaining the system internally.
+A custom platform would offer more control and flexibility, but those benefits do not currently justify the development effort, operational burden and opportunity cost of owning the service internally.
 
-A managed SaaS solution allows the organisation to deliver booking functionality more quickly while preserving engineering resources for higher-priority initiatives.
+A managed SaaS solution is a better fit because it reduces delivery risk, preserves engineering capacity, and keeps the organisation focused on higher-value initiatives.
 
-Although adopting SaaS introduces vendor dependency and customisation constraints, these trade-offs are considered acceptable provided the business requirements can be met and a viable exit strategy exists.
+The trade-off is only acceptable if the provider satisfies the organisation's functional, security and integration requirements and remains commercially viable over time.
 
-**The decision prioritises business value, delivery speed and reduced operational complexity over maximum technical control.**
-
-The decision should be reconsidered if future requirements introduce specialised workflows, significant integration complexity or commercial constraints that cannot reasonably be accommodated by the SaaS solution.
+**The decision prioritises speed, operational simplicity and business focus over maximum technical control.**
 
 ### Consequences
 
@@ -232,7 +212,6 @@ The decision should be reconsidered if future requirements introduce specialised
 
 ## Common Mistakes to Avoid
 
-Cover mistakes that materially reduce decision quality:
 - Recording the selected technology without explaining the problem.
 - Presenting only advantages of the preferred option.
 - Inventing weak alternatives to justify a predetermined choice.
@@ -261,11 +240,11 @@ As a rule of thumb, do not rewrite an accepted ADR when a decision changes. Leav
 
 ## Conclusion
 
-An effective ADR is not a formality or a documentation exercise. It is a record of the reasoning that shaped the system at the moment the decision mattered most.
+A good ADR does more than record a choice. It preserves the reasoning that made that choice reasonable at the time, including the trade-offs, constraints, and uncertainty that shaped it.
 
-Its real value appears later, when the team has moved on, the constraints have changed, and the original trade-offs are no longer obvious. A good ADR helps future engineers understand why the choice was made, what was accepted, what was rejected, and which risks were tolerated in exchange for the benefits the system needed.
+That is why ADRs are valuable: they give future developers and reviewers a way to understand not just what was decided, but why the decision made sense in context. Without that context, teams are much more likely to misread old decisions as inevitable or to reverse them without understanding the cost of doing so.
 
-Write ADRs for the people who will inherit the architecture after the decision is made, not just for the people who were in the room when it was agreed. When an ADR does its job well, it turns a short-lived decision into durable engineering memory.
+The real discipline is not writing a document for formality's sake. It is making architectural knowledge durable enough to survive team turnover, changing requirements, and time itself. When done well, an ADR becomes a practical record of engineering judgement rather than a static archive of decisions.
 
 Please see [When should you create an ADR](../../articles/when-to-create-an-adr) article for understanding when a decision is worth recording.
 
