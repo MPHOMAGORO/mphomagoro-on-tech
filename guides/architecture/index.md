@@ -18,5 +18,5 @@ It covers the kinds of questions that shape resilient technology choices:
 The goal is not to produce abstract theory, but to translate architecture into practical decisions teams can use in real projects.
 
 ## Latest Guides
-
+### How to write an effective ADR
 - [How to write an effective ADR](/guides/architecture/how-to-write-an-effective-adr): A practical guide to recording the context, options, rationale, and consequences behind an architecture decision.
