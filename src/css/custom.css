@@ -193,6 +193,26 @@ html {
   background: var(--site-bg);
 }
 
+.docs-doc-page .theme-doc-sidebar-container {
+  display: none;
+}
+
+.docs-doc-page .theme-doc-main-wrapper {
+  max-width: 100%;
+}
+
+@media (min-width: 997px) {
+  .docs-doc-page .docItemContainer .row > .col:first-child {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+
+  .docs-doc-page .docItemContainer .row > .col:last-child {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+}
+
 /* Transparent so the fixed wash below (z-index -1) isn't painted over */
 body {
   background: transparent;

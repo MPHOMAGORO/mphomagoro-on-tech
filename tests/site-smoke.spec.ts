@@ -6,7 +6,7 @@ const routes = [
   '/articles/gh300-github-copilot-lessons',
   '/guides',
   '/guides/github-copilot',
-  '/guides/ai-engineering/introduction',
+  '/guides/ai-engineering',
   '/about',
 ];
 

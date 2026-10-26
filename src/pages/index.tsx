@@ -89,7 +89,7 @@ const guides: {
   {
     title: 'AI Engineering',
     description: 'Practical patterns experiments, workflows and lessons from applying AI in software engineering problems.',
-    link: '/guides/ai-engineering/introduction',
+    link: '/guides/ai-engineering',
     Icon: ChipIcon,
     accent: 'blue',
   },
@@ -108,9 +108,9 @@ const guides: {
     accent: 'mint',
   },
   {
-    title: 'Solution Architecture',
+    title: 'Architecture',
     description: 'Architecture decisions, trade-offs and best practices.',
-    link: '/guides/solution-architecture',
+    link: '/guides/architecture',
     Icon: CubeIcon,
     accent: 'peach',
   },
@@ -134,7 +134,7 @@ function Hero() {
           </Heading>
 
           <p className={styles.heroSubtitle}>
-     Practical thinking on AI Engineering, Solution Architecture and Software Engineering.
+     Practical thinking on AI Engineering, Architecture and Software Engineering.
           </p>
 
           <div className={styles.heroButtons}>
