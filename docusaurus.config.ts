@@ -55,6 +55,7 @@ const config: Config = {
           path: 'guides',
           sidebarPath: './sidebars.ts',
           routeBasePath: 'guides',
+          breadcrumbs: true,
         },
         blog: {
           path: 'articles',
@@ -80,6 +81,7 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/mpho-magoro-social-card.png',
+    scrollToTop: true,
     colorMode: {
       defaultMode: 'dark',
       respectPrefersColorScheme: false,
